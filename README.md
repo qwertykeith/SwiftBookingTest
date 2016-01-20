@@ -6,13 +6,13 @@ This test is to help us filter candidates for the C# Developer position at GetSw
 
 The aim is to get a feel for your coding style and how you approach application architecture, as well as to test your knowledge of a few of the core technologies we use with GetSwift.
 
-This should just be a small quick project, we would like to see how you would approach the code using best practices with the view that the project might become much larger over time.
+This should just be a small quick project, we would like to see how you would approach the code using best practices with a view that the project might become much larger over time.
 
 The API documentation is here: http://app.getswift.co/ApiDocs/Intro
 
 The merchant key to use is: "3285db46-93d9-4c10-a708-c2795ae7872d"
 
-We've provided a solution and site for you to use as well as an index page to start with. When you're done, submit your changes back to us as a pull request.
+We've provided a solution and site for you to start with as well as an home page to fill in. When you're done, submit your changes back to us as a pull request.
 
 ## Requirements
 
