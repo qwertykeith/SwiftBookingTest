@@ -8,13 +8,10 @@ This should be a small quick project.
 
 We would like to see how you approach the code, using best practices, keeping in mind that the project may have to scale over time.
 
-The API documentation is here: http://app.getswift.co/ApiDocs/Intro
-
-The merchant key to use is: `"3285db46-93d9-4c10-a708-c2795ae7872d"`
-
-We've provided a solution and site for you to start with, as well as a home page to fill in.
-
-*When you're done, submit your changes back to us as a pull request.*
+- The API documentation is here: http://app.getswift.co/ApiDocs/Intro
+- The merchant key to use is: `"3285db46-93d9-4c10-a708-c2795ae7872d"`
+- We've provided a solution and site for you to start with, as well as a home page to fill in.
+- **When you're done, submit your changes back to us as a pull request.**
 
 ## Requirements
 
