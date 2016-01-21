@@ -1,4 +1,4 @@
-# Swift Code Test Jan 2016
+# GetSwift Code Test Jan 2016
 
 This is a C# screening test for developer positions at GetSwift.
 
