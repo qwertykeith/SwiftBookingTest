@@ -1,25 +1,47 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model SwiftBookingTest.Web.Models.HomeViewModel
+@{
+    ViewBag.Title = "GetSwift";
 }
 
 <h2>GetSwift Code Test</h2>
 
-<div>
-    <input type="text" placeholder="Name" value="" /><br />
-    <input type="text" placeholder="Phone" value="" /><br />
-    <input type="text" placeholder="Address" value="" /><br />
-    <button>Add person</button>
-</div>
+@using (Html.BeginForm("Create", "Client", FormMethod.Post))
+{
+    <div>
+        @Html.TextBox("Name")<br/>
+        @Html.TextBox("Phone")<br/>
+        @Html.TextBox("Address")<br/>
+        
+        <input type="submit" value="Add Person" />
+    </div>
+}
 
 <div>
     <h3>Saved people</h3>
     <ul>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Some address st, Melbourne, Australia </li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Another address st, New York</li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 668 Joel St, Brisbane, Australia</li>
+        @foreach (var client in Model.Clients)
+        {
+            <li><button class="book-swift-btn" data-id="@client.Id.ToString()">Book with GetSwift</button> <strong>@client.Name</strong> (@client.Phone) @client.Address</li>
+        }        
     </ul>
+</div>
 
-</div>
 <div style="background-color:#eee;padding:20px;">
-    Results from the API call go here!
+    <div id="swift-api-response" style="font-family:'Courier New';font-size:small;">
+
+    </div>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        (function () {
+            $(".book-swift-btn").on('click', function () {
+                $('#swift-api-response').text('');                
+                $.get('/SwiftApi/BookDelivery/' + $(this).data('id'), function(data) {
+                    $('#swift-api-response').html(data);
+                });
+            });
+        })(jQuery);
+    </script>
+}
