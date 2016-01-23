@@ -3,57 +3,38 @@
     ViewBag.Title = "GetSwift";
 }
 
-<h2>GetSwift Code Test</h2>
+<div ng-app="SwiftBookingTestApp">
+    <div ng-controller="SwiftApiController">
+        <h2>GetSwift Code Test by Brad Sheldrick</h2>
 
-@using (Html.BeginForm("CreateClient", "Home", FormMethod.Post, new { @class = "form-client" }))
-{
-    <div>
-        @Html.TextBoxFor(m => m.NewClient.Name, new { @class = "form-control", placeholder = "Name" }) @Html.ValidationMessageFor(m => m.NewClient.Name)<br/>
-        @Html.TextBoxFor(m => m.NewClient.Phone, new { @class = "form-control", placeholder = "Phone" }) @Html.ValidationMessageFor(m => m.NewClient.Phone)<br/>
-        @Html.TextBoxFor(m => m.NewClient.Address, new { @class = "form-control", placeholder = "Address" }) @Html.ValidationMessageFor(m => m.NewClient.Address)<br/>
-        
-        <button type="submit" class="btn btn-lg btn-primary btn-block">Add Client</button>
-    </div>
-}
+        @using (Html.BeginForm("CreateClient", "Home", FormMethod.Post, new { @class = "form-client" }))
+        {
+            <div>
+                @Html.TextBoxFor(m => m.NewClient.Name, new { @class = "form-control", placeholder = "Name" }) @Html.ValidationMessageFor(m => m.NewClient.Name)<br />
+                @Html.TextBoxFor(m => m.NewClient.Phone, new { @class = "form-control", placeholder = "Phone" }) @Html.ValidationMessageFor(m => m.NewClient.Phone)<br />
+                @Html.TextBoxFor(m => m.NewClient.Address, new { @class = "form-control", placeholder = "Address" }) @Html.ValidationMessageFor(m => m.NewClient.Address)<br />
 
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Add Client</button>
+            </div>
+        }
 
-<h3>Saved clients</h3>
-@foreach (var client in Model.Clients)
-{
-    <div class="row" style="padding-bottom: 5px;">
-        <div class="col-md-2">
-            <button class="btn btn-info book-swift-btn" data-id="@client.Id.ToString()">Book with GetSwift</button>
+        <h3>Saved clients</h3>
+        @foreach (var client in Model.Clients)
+        {
+            <div class="row row-client">
+                <div class="col-md-2">
+                    <button class="btn btn-info book-swift-btn" ng-click="book('@client.Id.ToString()')" ng-disabled="loading"><i class="fa fa-arrow-circle-o-right"></i> Book with GetSwift</button>
+                </div>
+                <div class="col-md-8">
+                    <strong>@client.Name</strong> (@client.Phone) @client.Address
+                </div>
+            </div>
+        }
+
+        <h3>Last request</h3>
+        <div id="last-request">
+            <i class="fa fa-refresh fa-spin" ng-show="loading"></i>
+            <span ng-bind-html="apiResponseData"></span>
         </div>
-        <div class="col-md-8">
-            <strong>@client.Name</strong> (@client.Phone) @client.Address
-        </div>
-    </div>            
-}    
-
-<h3>Last request</h3>
-<div style="background-color:#ddd; padding:20px;">
-    <i id="swift-api-spinner" class="fa fa-refresh fa-spin"></i>
-    <div id="swift-api-response" style="font-family:'Courier New';font-size:small;">
-        
     </div>
 </div>
-
-@section scripts
-{
-    <script type="text/javascript">
-        (function () {
-            $('#swift-api-spinner').hide();
-
-            $('.book-swift-btn').on('click', function () {
-                $('.book-swift-btn').prop('disabled', true);
-                $('#swift-api-spinner').show();
-                $('#swift-api-response').text('');                
-                $.get('/SwiftApi/BookDelivery/' + $(this).data('id'), function (data) {
-                    $('.book-swift-btn').prop('disabled', false);
-                    $('#swift-api-spinner').hide();
-                    $('#swift-api-response').html(data);
-                });
-            });
-        })(jQuery);
-    </script>
-}

@@ -26,6 +26,13 @@ namespace SwiftBookingTest.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.js",
+                        "~/Scripts/angular-sanitize.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app.js"));
+
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/bootstrap-theme.css",
