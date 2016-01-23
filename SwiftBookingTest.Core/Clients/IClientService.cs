@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SwiftBookingTest.Core.Clients.ServiceModels;
+﻿using SwiftBookingTest.Core.Clients.ServiceModels;
 
 namespace SwiftBookingTest.Core.Clients
 {
