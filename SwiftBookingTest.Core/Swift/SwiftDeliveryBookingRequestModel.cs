@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwiftBookingTest.Web.Models
+﻿namespace SwiftBookingTest.Core.Swift
 {
     public class SwiftDeliveryBookingRequestModel
     {
@@ -14,11 +8,11 @@ namespace SwiftBookingTest.Web.Models
 
     public class SwiftBooking
     {
-        public SwiftDetail PickupDetail { get; set; }
-        public SwiftDetail DropoffDetail { get; set; }
+        public SwiftDeliveryDetail PickupDetail { get; set; }
+        public SwiftDeliveryDetail DropoffDetail { get; set; }
     }
 
-    public class SwiftDetail
+    public class SwiftDeliveryDetail
     {
         public string Name { get; set; }
         public string Phone { get; set; }

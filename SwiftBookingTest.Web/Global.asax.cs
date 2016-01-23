@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
 using SwiftBookingTest.Core.Clients;
-using SwiftBookingTest.Core.Storage;
+using SwiftBookingTest.Core.Swift;
 using SwiftBookingTest.Data;
 
 namespace SwiftBookingTest.Web
@@ -24,7 +20,7 @@ namespace SwiftBookingTest.Web
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configure(WebApiConfig.Register);            
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -43,10 +39,22 @@ namespace SwiftBookingTest.Web
                 .AsImplementedInterfaces()
                 .InstancePerDependency();
 
+            builder.RegisterType<SwiftService>()
+                .As<ISwiftService>()
+                .AsImplementedInterfaces()
+                .InstancePerDependency();
+
             builder.RegisterType<SwiftStorage>()
                 .As<IClientStorage>()
                 .AsImplementedInterfaces()
                 .InstancePerDependency();
+            
+            var swiftSettings = new SwiftApiSettings();
+            swiftSettings.BaseAddress = ConfigurationManager.AppSettings["SwiftApiBaseAddress"];
+            swiftSettings.MerchantKey = ConfigurationManager.AppSettings["SwiftApiMerchantKey"];
+            swiftSettings.ApiRoot = ConfigurationManager.AppSettings["SwiftApiRoot"];
+
+            builder.RegisterInstance(swiftSettings).As<SwiftApiSettings>();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
         }        

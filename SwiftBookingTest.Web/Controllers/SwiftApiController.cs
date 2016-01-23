@@ -14,66 +14,50 @@ using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
+using SwiftBookingTest.Core.Swift;
+using SwiftBookingTest.Core.Swift.ServiceModels;
+using System.Net;
 
 namespace SwiftBookingTest.Web.Controllers
 {
     public class SwiftApiController : Controller
     {
-        private readonly IClientService _clientService;
+        private readonly ISwiftService _swiftService;
 
-        public SwiftApiController(IClientService clientService)
+        public SwiftApiController(ISwiftService swiftService)
         {
-            if (clientService == null)
+            if (swiftService == null)
             {
-                throw new ArgumentNullException("clientService");
+                throw new ArgumentNullException("swiftService");
             }
 
-            _clientService = clientService;
+            _swiftService = swiftService;
         }
 
         [HttpGet]
         public async Task<JsonResult> BookDelivery(Guid id)
         {
-            var response = _clientService.GetClient(new GetClientRequest(id));
+            var pickupDetail = new SwiftDeliveryDetail
+            {
+                Name = "Chad",
+                Phone = "0354431112",
+                Address = "234 High St, Bendigo, Victoria, Australia"
+            };
+
+            var response = await _swiftService.CreateDeliveryBooking(new CreateDeliveryBookingRequest(id, pickupDetail));
 
             if (response.Success)
             {
-                var swiftApiBaseUrl = ConfigurationManager.AppSettings["SwiftApiBaseUrl"];
-                var swiftApiMerchantKey = ConfigurationManager.AppSettings["SwiftApiMerchantKey"];
-
-                var deliveryBookingRequest = new SwiftDeliveryBookingRequestModel
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    ApiKey = swiftApiMerchantKey,
-                    Booking = new SwiftBooking
-                    {
-                        PickupDetail = new SwiftDetail
-                        {
-                            Name = "David Bowie",
-                            Phone = "0354421895",
-                            Address = "147 Queen St, Bendigo, Victoria, Australia"
-                        },
-                        DropoffDetail = new SwiftDetail
-                        {
-                            Name = response.Client.Name,
-                            Phone = response.Client.Phone,
-                            Address = response.Client.Address
-                        }
-                    }
-                };                
+                    string serialized = JsonConvert.SerializeObject(response.Content, Formatting.Indented);
+                    serialized = serialized.Replace("\r\n", "<br/>").Replace(" ", "&nbsp;");
 
-                var httpClient = new HttpClient() { BaseAddress = new Uri(swiftApiBaseUrl) };
-                var apiResponse = await httpClient.PostAsJsonAsync("/api/v2/deliveries", deliveryBookingRequest);
-
-                if (apiResponse.IsSuccessStatusCode)
-                {                    
-                    dynamic apiResponseContent = await apiResponse.Content.ReadAsAsync<dynamic>();
-                    string serialized = JsonConvert.SerializeObject(apiResponseContent, Formatting.Indented);
-
-                    return Json(serialized.Replace("\r\n", "<br/>").Replace(" ", "&nbsp;"), JsonRequestBehavior.AllowGet);
-                }                                
+                    return Json(serialized, JsonRequestBehavior.AllowGet);
+                }
             }
 
-            return Json(new { Message = "Error processing request" }, JsonRequestBehavior.AllowGet);
+            return Json(response.Exception, JsonRequestBehavior.AllowGet);                        
         }
     }
 }

@@ -11,21 +11,6 @@ namespace SwiftBookingTest.Core.Clients.ServiceModels
     {
         public CreateClientRequest(string name, string phone, string address)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException("name");
-            }
-
-            if (string.IsNullOrWhiteSpace(phone))
-            {
-                throw new ArgumentNullException("phone");
-            }
-
-            if (string.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentNullException("address");
-            }
-
             Name = name;
             Phone = phone;
             Address = address;

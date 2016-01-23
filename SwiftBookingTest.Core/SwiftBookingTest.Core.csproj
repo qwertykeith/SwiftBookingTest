@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,9 +58,17 @@
     <Compile Include="Common\ValidationError.cs" />
     <Compile Include="Common\ValidationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\IClientStorage.cs" />
+    <Compile Include="Clients\IClientStorage.cs" />
+    <Compile Include="Swift\ISwiftService.cs" />
+    <Compile Include="Swift\ServiceModels\CreateDeliveryBookingRequest.cs" />
+    <Compile Include="Swift\ServiceModels\CreateDeliveryBookingResponse.cs" />
+    <Compile Include="Swift\SwiftApiSettings.cs" />
+    <Compile Include="Swift\SwiftDeliveryBookingRequestModel.cs" />
+    <Compile Include="Swift\SwiftService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Storage\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
