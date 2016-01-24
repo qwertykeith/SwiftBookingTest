@@ -2,24 +2,94 @@
     ViewBag.Title = "Index";
 }
 
-<h2>GetSwift Code Test</h2>
+@model SwiftBookingTest.Web.Models.HomeViewModel
 
-<div>
-    <input type="text" placeholder="Name" value="" /><br />
-    <input type="text" placeholder="Phone" value="" /><br />
-    <input type="text" placeholder="Address" value="" /><br />
-    <button>Add person</button>
-</div>
+<div class="container-fluid">
 
-<div>
-    <h3>Saved people</h3>
-    <ul>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Some address st, Melbourne, Australia </li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Another address st, New York</li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 668 Joel St, Brisbane, Australia</li>
-    </ul>
+    <h3>Create Record</h3>
+    <div class="jumbotron">
+        @using (Html.BeginForm("Create", "Booking"))
+        {
+            @Html.AntiForgeryToken()
 
-</div>
-<div style="background-color:#eee;padding:20px;">
-    Results from the API call go here!
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BookingViewModel.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BookingViewModel.Name, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.BookingViewModel.Name, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BookingViewModel.Phone, htmlAttributes: new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BookingViewModel.Phone, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.BookingViewModel.Phone, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BookingViewModel.Address, htmlAttributes: new {@class = "control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BookingViewModel.Address, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.BookingViewModel.Address, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div>
+        <h3>Saved Records</h3>
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingViewModel.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingViewModel.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingViewModel.Address)
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model.SavedBookings)
+            {
+                <tr>
+                    <td>
+                        <input type="submit" value="Submit to Swift" class="btn btn-primary" onclick="javascript:GetSwift.submitBookingRequest(@item.Id)"/>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                </tr>
+            }
+
+            @if (Model.SavedBookings.Count() <= 0)
+            {
+                <p>Please create a record above.</p>
+            }
+        </table>
+    </div>
+
+    <h3>API Output</h3>
+    <div id="resultsDiv" style="background-color: #eee; padding: 20px;">
+        <p id="result"></p>
+    </div>
 </div>
