@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using SwiftBookingTest.Web.DAL;
 using SwiftBookingTest.Web.Models;
-using SwiftBookingTest.Web.Remote;
 
 namespace SwiftBookingTest.Web.Controllers
 {
@@ -10,13 +9,24 @@ namespace SwiftBookingTest.Web.Controllers
     {
         public ActionResult Index()
         {
-            using (var db = new DataContext())
+            using (var db = new SwiftDataContext())
             {
-                var homeViewModel = new HomeViewModel
+                //Attempt to retrieve the model object and modelstate from TempData - only present on validation failure
+                var homeViewModel = TempData["HomeViewModelTemp"] as HomeViewModel;
+                var modelState = TempData["ModelState"] as ModelStateDictionary;
+              
+                //If model is not null, we've had a validation error, merge the model state back in.
+                if (homeViewModel != null && modelState != null)
                 {
-                    BookingViewModel = new BookingViewModel(), //Instantiate blank model
-                    SavedBookings = db.Bookings.ToList().Select(z => BookingViewModel.FromDb(z)) //Grab any existing bookings
-                };
+                    ModelState.Merge(modelState);
+                }
+                else 
+                {
+                    homeViewModel = new HomeViewModel();
+                }
+
+                //Grab any existing bookings, ideally would be cached.
+                homeViewModel.SavedBookings = db.Bookings.ToList().Select(z => BookingViewModel.FromDb(z)); 
 
                 return View(homeViewModel);
             }

@@ -9,13 +9,15 @@ namespace SwiftBookingTest.Web.Remote
     /// </summary>
     public class SwiftApi
     {
-        //Hard-coded for testing purposes
+        //Hard-coded settings for demo purposes
         const string MerchantKey = "3285db46-93d9-4c10-a708-c2795ae7872d";
+        const string RestServiceURL = "https://app.getswift.co/";
+        const string DeliveriesService = "api/v2/deliveries";
 
         public static string SubmitBookingRequest(BookingDataModel booking)
         {
-            var client = new RestClient("https://app.getswift.co/");
-            var request = new RestRequest("api/v2/deliveries", Method.POST);
+            var client = new RestClient(RestServiceURL);
+            var request = new RestRequest(DeliveriesService, Method.POST);
 
             request.RequestFormat = DataFormat.Json;
 
@@ -26,8 +28,9 @@ namespace SwiftBookingTest.Web.Remote
                     booking = new
                     {
                         pickupDetail = new
-                        { //Test Pickup details are hardcoded
-                            name = "Test",
+                        { 
+                            //Test Pickup details are hardcoded
+                            name = "John Doe",
                             phone = "0455555555",
                             address = "99 Bayswater Road, Kensington, Melbourne"
                         },

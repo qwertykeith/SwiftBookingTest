@@ -7,9 +7,9 @@ namespace SwiftBookingTest.Web.DAL
     /// The following is the datacontext for the test application
     /// Currently we are only storing one entity - Bookings.
     /// </summary>
-    public class DataContext : DbContext
+    public class SwiftDataContext : DbContext
     {
-        public DataContext()
+        public SwiftDataContext()
             : base("SwiftDataContext")
         {
             //Assuming a basic structure for the purposes of this test

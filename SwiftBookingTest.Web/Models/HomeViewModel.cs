@@ -8,6 +8,11 @@ namespace SwiftBookingTest.Web.Models
     /// </summary>
     public class HomeViewModel
     {
+        public HomeViewModel()
+        {
+            this.BookingViewModel = new BookingViewModel();
+        }
+
         public BookingViewModel BookingViewModel { get; set; }
 
         public IEnumerable<BookingViewModel> SavedBookings { get; set; }

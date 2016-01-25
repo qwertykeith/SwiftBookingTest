@@ -7,7 +7,9 @@ var GetSwift = {
 	//Simple function to call the Booking Submit function.
 	//Returns a JSON blob and outputs the information raw.
 	//The error and success handling would need to fleshed out significantly before production use.
-	submitBookingRequest: function (id) {
+    submitBookingRequest: function (id) {
+        $("#result").empty();
+
 		$.ajax({
 			url: "/Booking/Submit",
 			type: "post",
