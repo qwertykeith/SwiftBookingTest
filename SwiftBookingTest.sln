@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{0A7DB9D6-600A-493A-B19B-DC9683D3D661}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core", "SwiftBookingTest.Core\SwiftBookingTest.Core.csproj", "{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.CoreContracts", "SwiftBookingTest.CoreContracts\SwiftBookingTest.CoreContracts.csproj", "{B11A27D1-B126-4479-8542-34A4D2C7B5F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Model", "SwiftBookingTest.Model\SwiftBookingTest.Model.csproj", "{D683A080-EF36-4D1D-BC7D-003FBE128B2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{3BAD3AD8-790D-40D3-803E-FEA90A76418D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
