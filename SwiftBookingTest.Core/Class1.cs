@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SwiftBookingTest.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Class1
     {
     }
