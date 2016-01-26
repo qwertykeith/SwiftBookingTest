@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Model", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{3BAD3AD8-790D-40D3-803E-FEA90A76418D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C07B955A-4256-4D27-BA24-402F348A1E37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Test", "SwiftBookingTest.Test\SwiftBookingTest.Test.csproj", "{BCD11610-EF36-4361-87D4-7FE2814102D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +37,15 @@ Global
 		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCD11610-EF36-4361-87D4-7FE2814102D3} = {C07B955A-4256-4D27-BA24-402F348A1E37}
 	EndGlobalSection
 EndGlobal

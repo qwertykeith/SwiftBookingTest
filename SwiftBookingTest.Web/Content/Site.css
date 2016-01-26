@@ -1,0 +1,166 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #f4f6fc;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+[ng:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+/*.nav-tabs > li.nav-tabs-inverse.active > a {
+    background-color: #008cba !important;
+    border-color: #007196 !important;
+    color: white !important;
+}*/
+.nav-tabs-inverse .nav-tabs > li.active > a {
+    background-color: #008cba !important;
+    border-color: #007196 !important;
+    color: white !important;
+}
+
+.post-thumbnail {
+    max-height: 240px;
+}
+
+.post-tumbnail-container {
+    background-color: white;
+    padding: 5px;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
+.padding-top-10 {
+    padding-top: 10px;
+}
+
+.padding-left-10 {
+    padding-top: 10px;
+}
+
+.margin-10 {
+    margin: 10px;
+}
+
+.polaroid {
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.polaroid-container {
+    padding: 10px;
+}
+
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+}
+
+.btn-primary.outline {
+    border: 2px solid #0099cc;
+    color: #0099cc;
+}
+
+    .btn-primary.outline.half-right-border {
+        border-right: 1px !important;
+        border-style: solid;
+        border-color: #0099cc;
+    }
+
+    .btn-primary.outline.half-left-border {
+        border-left: 1px !important;
+        border-style: solid;
+        border-color: #0099cc;
+    }
+
+    .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+        color: #33a6cc;
+        border-color: #33a6cc;
+    }
+
+    .btn-primary.outline:active, .btn-primary.outline.active {
+        border-color: #007299;
+        color: #007299;
+        box-shadow: none;
+    }
+
+.bottom-right-shadow {
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.on-mouse-hover:hover {
+    cursor: pointer;
+}
+
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #545050;
+}
+.sd-warning.ngn-warn {
+    background-color: #FF9900;
+}

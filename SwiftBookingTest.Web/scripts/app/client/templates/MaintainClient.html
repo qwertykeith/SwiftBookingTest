@@ -1,0 +1,119 @@
+﻿<h2>{{::vm.Title}}</h2>
+<hr />
+<form class="form-horizontal" name="vm.ClientFactory.formClientMaintenance" novalidate>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="form-group has-feedback" ng-class="{'has-success' :
+                     !vm.ClientFactory.formClientMaintenance.inputName.$pristine &&
+                     vm.ClientFactory.formClientMaintenance.inputName.$valid ,
+                     'has-error':!vm.ClientFactory.formClientMaintenance.inputName.$pristine &&
+                     !vm.ClientFactory.formClientMaintenance.inputName.$valid}">
+                <label for="inputName" class="control-label col-md-3">Name</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="inputName" placeholder="Name"
+                           data-ng-model-options="{ updateOn: 'blur'}"
+                           ng-model="vm.ClientFactory.Client.Name" required />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputName.$pristine
+                          && vm.ClientFactory.formClientMaintenance.inputName.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputName.$pristine && !vm.ClientFactory.formClientMaintenance.inputName.$valid"></span>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback" ng-class="{'has-success' :
+                     !vm.ClientFactory.formClientMaintenance.inputAddress.$pristine &&
+                     vm.ClientFactory.formClientMaintenance.inputAddress.$valid ,
+                     'has-error':!vm.ClientFactory.formClientMaintenance.inputAddress.$pristine &&
+                     !vm.ClientFactory.formClientMaintenance.inputAddress.$valid}">
+                <label for="inputAddress" class="control-label col-md-3">Address</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="inputAddress" placeholder="No, Street name, Suburb, City"
+                           data-ng-model-options="{ updateOn: 'blur'}"
+                           ng-model="vm.ClientFactory.Client.Address" required />
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputAddress.$pristine
+                          && vm.ClientFactory.formClientMaintenance.inputAddress.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputAddress.$pristine && !vm.ClientFactory.formClientMaintenance.inputAddress.$valid"></span>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback" ng-class="{'has-success' :
+                     !vm.ClientFactory.formClientMaintenance.inputNumber.$pristine &&
+                     vm.ClientFactory.formClientMaintenance.inputNumber.$valid ,
+                     'has-error':!vm.ClientFactory.formClientMaintenance.inputNumber.$pristine &&
+                     !vm.ClientFactory.formClientMaintenance.inputNumber.$valid}">
+                <label for="inputAddress" class="control-label col-md-3">Phone Number</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="inputNumber" placeholder="Number1, Number2 and so on"
+                           ng-pattern="/^[0-9, ]+$/"
+                           ng-model="vm.ClientFactory.ClientPhones" required />
+
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputNumber.$pristine
+                          && vm.ClientFactory.formClientMaintenance.inputNumber.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback"
+                          ng-if="!vm.ClientFactory.formClientMaintenance.inputNumber.$pristine
+                          && !vm.ClientFactory.formClientMaintenance.inputNumber.$valid"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn btn-primary" title="Save client record"
+                            ng-disabled="vm.ClientFactory.formClientMaintenance.$pristine
+                            || vm.ClientFactory.formClientMaintenance.$invalid
+                            || vm.ClientFactory.IsBusy" ng-click="vm.ClientFactory.SaveClient()">
+                        <i class="glyphicon glyphicon-refresh gly-spin"
+                           ng-if="vm.ClientFactory.IsBusy"></i>&nbsp;Save
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="form-group margin-top-30">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-primary">
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-if="vm.ClientFactory.ClientRecords.length>0">
+                            <tr data-ng-repeat="clientRecord in vm.ClientFactory.ClientRecords track by $index">
+                                <td>
+                                    {{clientRecord.Name}}
+                                </td>
+                                <td>
+                                    {{clientRecord.Address}}
+                                </td>
+                                <td>
+                                    {{clientRecord.FormattedPhoneNumbers}}
+                                </td>
+                                <td class="text-center">
+                                    <span title="Send it for delivery"
+                                          ng-click="vm.ClientFactory.SendDelivery(clientRecord)"
+                                          class="glyphicon glyphicon-upload on-mouse-hover"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-if="vm.ClientFactory.ClientRecords.length<=0">
+                            <tr>
+                                <td colspan="4">
+                                    No clients record
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
