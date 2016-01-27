@@ -1,25 +1,15 @@
-﻿@{
+﻿@model SwiftBookingTest.Web.Models.IndexViewModel
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>GetSwift Code Test</h2>
 
-<div>
-    <input type="text" placeholder="Name" value="" /><br />
-    <input type="text" placeholder="Phone" value="" /><br />
-    <input type="text" placeholder="Address" value="" /><br />
-    <button>Add person</button>
-</div>
-
+@Html.Partial("CreateDeliveryPoint", Model.DeliveryPointToAdd ?? new SwiftBookingTest.Web.Models.DeliveryPoint())
 <div>
     <h3>Saved people</h3>
-    <ul>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Some address st, Melbourne, Australia </li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Another address st, New York</li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 668 Joel St, Brisbane, Australia</li>
-    </ul>
-
+    @Html.DisplayFor(x => x.DeliveryPoints, "DeliveryPoint") 
 </div>
 <div style="background-color:#eee;padding:20px;">
-    Results from the API call go here!
+    <pre>@Html.DisplayFor(x => x.Message)</pre>
 </div>

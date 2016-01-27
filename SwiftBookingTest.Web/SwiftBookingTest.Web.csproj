@@ -127,10 +127,33 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\DeliveryDataAccessor.cs" />
+    <Compile Include="Data\SwiftDemoContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601250513475_InitialCreate.cs" />
+    <Compile Include="Migrations\201601250513475_InitialCreate.Designer.cs">
+      <DependentUpon>201601250513475_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601260825457_DeliveryPoint.cs" />
+    <Compile Include="Migrations\201601260825457_DeliveryPoint.Designer.cs">
+      <DependentUpon>201601260825457_DeliveryPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601261235424_AddDelivery.cs" />
+    <Compile Include="Migrations\201601261235424_AddDelivery.Designer.cs">
+      <DependentUpon>201601261235424_AddDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Delivery.cs" />
+    <Compile Include="Models\DeliveryPoint.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DeliveryService.cs" />
+    <Compile Include="Swift\BookingTranslator.cs" />
+    <Compile Include="Swift\MessageTypes\Booking.cs" />
+    <Compile Include="Swift\SwiftClient.cs" />
+    <Compile Include="Swift\SwiftConnector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -220,10 +243,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601250513475_InitialCreate.resx">
+      <DependentUpon>201601250513475_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601260825457_DeliveryPoint.resx">
+      <DependentUpon>201601260825457_DeliveryPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601261235424_AddDelivery.resx">
+      <DependentUpon>201601261235424_AddDelivery.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
