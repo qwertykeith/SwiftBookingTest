@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SwiftBookingTest.Web.Models.DeliveryPoint>
+<ul>
+    @foreach (var deliveryPoint in Model)
+    {
+
+        using (Html.BeginForm("BookDeliveryAsync", "Home"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <li>@deliveryPoint.Name - @deliveryPoint.Address - @deliveryPoint.Phone 
+                    
+                <input type="hidden" name="deliveryPointId" value="@deliveryPoint.ID" />
+                <input type="submit" value="Book Delivery" />
+            </li>
+        }
+    }
+</ul>
+
