@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\controllers\BookingController.js" />
+    <Content Include="app\services\clientsService.js" />
     <Content Include="app\SwiftBookingApp.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

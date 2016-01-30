@@ -78,6 +78,9 @@ namespace SwiftBookingTest.Web.Api
                 return BadRequest(ModelState);
             }
 
+            //we need to now register this with the Swift API
+
+
             db.Clients.Add(client);
             await db.SaveChangesAsync();
 

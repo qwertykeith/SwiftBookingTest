@@ -1,25 +1,35 @@
-﻿swiftApp.controller('BookingController', function ($scope) {
-    $scope.hasApiError = false;
-    $scope.hasApiResult = false;
+﻿swiftApp.controller('BookingController', [
+    '$scope', 'ClientsService', function($scope, clientSvc) {
+        $scope.hasApiError = false;
+        $scope.hasApiResult = false;
 
-    $scope.newPerson = {
-        Name: null,
-        PrimaryPhone: null,
-        Address: null
-    };
+        $scope.clientsList = [];
 
-    $scope.clientsList = [
-        {
-            Name: 'Test Name',
-            PrimaryPhone: '0400 123 456',
-            PickupAddress: '1 Bourke St, Melbourne 3000',
-            DeliveryAddress: '2 Bourke St, Melbourne 3000'
-        },
-        {
-            Name: 'Test Name',
-            PrimaryPhone: '0400 123 456',
-            PickupAddress: '1 Bourke St, Melbourne 3000',
-            DeliveryAddress: '2 Bourke St, Melbourne 3000'
+        $scope.newClient = {
+            Name: null,
+            PrimaryPhone: null,
+            Address: null
+        };
+
+        $scope.addPerson = function () {
+            clientSvc.insertClient($scope.newClient)
+                .success(function(data) {
+                    $scope.clientsList.push(data);
+                    $scope.hasApiResult = true;
+                    $scope.hasApiError = false;
+                })
+                .error(function (data) {
+                    $scope.hasApiResult = true;
+                    $scope.hasApiError = true;
+                });
         }
-    ];
-});
+
+
+        clientSvc.listClients()
+            .success(function(data, status) {
+                $scope.clientsList.concat(data);
+            });
+
+
+    }
+]);

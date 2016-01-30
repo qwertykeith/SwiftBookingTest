@@ -17,18 +17,18 @@
         <form>
             <div class="form-group">
                 <label for="txtName">Name</label>
-                <input type="text" class="form-control" id="txtName" placeholder="Name" value="{{newPerson.Name}}" />
+                <input type="text" class="form-control" id="txtName" placeholder="Name" ng-model="newClient.Name" />
             </div>
             <div class="form-group">
                 <label for="txtPhone">Phone</label>
-                <input type="text" class="form-control" id="txtPhone" placeholder="Phone" value="{{newPerson.Phone}}"/>
+                <input type="text" class="form-control" id="txtPhone" placeholder="Phone" ng-model="newClient.PrimaryPhone"/>
             </div>
             <div class="form-group">
                 <label for="txtAddress">Address</label>
-                <input type="text" class="form-control" id="txtAddress" placeholder="Address" value="{{newPerson.Address}}" />
+                <input type="text" class="form-control" id="txtAddress" placeholder="Address" ng-model="newClient.Address" />
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Add Person</button>
+                <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="addPerson()">Add Person</button>
             </div>
             <div class="alert" ng-show="hasApiResult" ng-class="{'alert-danger': hasApiError, 'alert-success': !hasApiError}" role="alert">
                 <strong>Result</strong>{{apiResult}}
