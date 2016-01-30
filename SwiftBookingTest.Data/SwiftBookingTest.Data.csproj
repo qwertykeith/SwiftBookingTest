@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Model\Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwiftApi\Model\Booking.cs" />
+    <Compile Include="SwiftApi\SwiftApiService.cs" />
     <Compile Include="SwiftBookingContext.cs" />
   </ItemGroup>
   <ItemGroup>
