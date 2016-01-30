@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="SwiftBookingApp">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular");
 </head>
-<body>
+<body ngCloak>
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/swiftbookingapp");
     @RenderSection("scripts", required: false)
 </body>
 </html>
