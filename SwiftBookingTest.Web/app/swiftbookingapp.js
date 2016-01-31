@@ -1,0 +1,1 @@
+﻿var swiftApp = angular.module('SwiftBookingApp',[]);
