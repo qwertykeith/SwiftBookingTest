@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1EE26CB5-CA63-4C5A-84D2-598A73B93602}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SwiftBookingTest.Bootstrap</RootNamespace>
+    <AssemblyName>SwiftBookingTest.Bootstrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbInitializer.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SwiftBookingTest.DAL\SwiftBookingTest.DAL.csproj">
+      <Project>{d3fcd46f-f4b9-4ecc-a524-36b71c653844}</Project>
+      <Name>SwiftBookingTest.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Model\SwiftBookingTest.Model.csproj">
+      <Project>{8e0d7608-4cc8-4152-88b3-0134f77ffb71}</Project>
+      <Name>SwiftBookingTest.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Repository.Contracts\SwiftBookingTest.Repository.Contracts.csproj">
+      <Project>{b6b61bca-419d-4b52-8f4d-0f336d699ac0}</Project>
+      <Name>SwiftBookingTest.Repository.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Repository\SwiftBookingTest.Repository.csproj">
+      <Project>{c3a2f8ec-83e1-4989-bb5a-a82e533a25a9}</Project>
+      <Name>SwiftBookingTest.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Service.Contracts\SwiftBookingTest.Service.Contracts.csproj">
+      <Project>{0f656979-a336-47d1-9984-0901bba7a1e4}</Project>
+      <Name>SwiftBookingTest.Service.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Service\SwiftBookingTest.Service.csproj">
+      <Project>{e11cf86d-466a-478e-b094-fcb6fff7e531}</Project>
+      <Name>SwiftBookingTest.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.SwiftAPI\SwiftBookingTest.SwiftAPI.csproj">
+      <Project>{78767302-542b-4407-b69c-3dc1927ce22f}</Project>
+      <Name>SwiftBookingTest.SwiftAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

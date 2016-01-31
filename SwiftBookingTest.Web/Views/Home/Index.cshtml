@@ -4,22 +4,22 @@
 
 <h2>GetSwift Code Test</h2>
 
-<div>
-    <input type="text" placeholder="Name" value="" /><br />
-    <input type="text" placeholder="Phone" value="" /><br />
-    <input type="text" placeholder="Address" value="" /><br />
-    <button>Add person</button>
-</div>
+<div ng-controller="DeliveryController">
+    <div>
+        <input type="text" placeholder="Name" value="" ng-model="p.Name" /><br />
+        <input type="text" placeholder="Phone" value="" ng-model="p.Phone" /><br />
+        <input type="text" placeholder="Address" value="" ng-model="p.Address" /><br />
+        <button ng-click="addPeople()">Add person</button>
+    </div>
 
-<div>
-    <h3>Saved people</h3>
-    <ul>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Some address st, Melbourne, Australia </li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Another address st, New York</li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 668 Joel St, Brisbane, Australia</li>
-    </ul>
+    <div>
+        <h3>Saved people</h3>
+        <ul>
+            <li ng-repeat="p in people"><button ng-click="book(p)">Book</button> {{ p.Address }} </li>
+        </ul>
 
-</div>
-<div style="background-color:#eee;padding:20px;">
-    Results from the API call go here!
+    </div>
+    <div style="background-color:#eee;padding:20px;" ng-class="{'red':error}">
+        {{ response }}
+    </div>
 </div>

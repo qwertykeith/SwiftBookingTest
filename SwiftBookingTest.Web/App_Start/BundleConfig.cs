@@ -23,6 +23,13 @@ namespace SwiftBookingTest.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.js"));
+
+            // controller js can be grouped by page if there are too many app js files
+            bundles.Add(new ScriptBundle("~/bundles/swiftapp").Include(
+                        "~/app/app.js", "~/app/delivery-ctrl.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
