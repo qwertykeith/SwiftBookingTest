@@ -149,6 +149,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\SwiftApiController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <Content Include="app\controllers\BookingController.js" />
     <Content Include="app\services\clientsService.js" />
+    <Content Include="app\services\swiftService.js" />
     <Content Include="app\SwiftBookingApp.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

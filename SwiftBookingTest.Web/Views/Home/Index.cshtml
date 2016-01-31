@@ -11,6 +11,12 @@
 
 <div class="container" ng-controller="BookingController">
     <div class="row">
+        <div class="alert alert-dismissible" role="alert" ng-show="result != null" ng-class="{'alert-danger': hasApiError, 'alert-success': !hasApiError}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>API Result</strong><br/>{{result}}
+        </div>
+    </div>
+    <div class="row">
         <h1>Add Person</h1>
     </div>
     <div class="=row">
@@ -20,18 +26,15 @@
                 <input type="text" class="form-control" id="txtName" placeholder="Name" ng-model="newClient.Name" />
             </div>
             <div class="form-group">
-                <label for="txtPhone">Phone</label>
-                <input type="text" class="form-control" id="txtPhone" placeholder="Phone" ng-model="newClient.PrimaryPhone"/>
-            </div>
-            <div class="form-group">
                 <label for="txtAddress">Address</label>
                 <input type="text" class="form-control" id="txtAddress" placeholder="Address" ng-model="newClient.Address" />
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="addPerson()">Add Person</button>
+                <label for="txtPhone">Phone</label>
+                <input type="text" class="form-control" id="txtPhone" placeholder="Phone" ng-model="newClient.Phone" />
             </div>
-            <div class="alert" ng-show="hasApiResult" ng-class="{'alert-danger': hasApiError, 'alert-success': !hasApiError}" role="alert">
-                <strong>Result</strong>{{apiResult}}
+            <div class="form-group">
+                <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="addPerson()">Add Person</button>
             </div>
         </form>
     </div>
@@ -39,18 +42,22 @@
         <h1>Saved People</h1>
     </div>
 
-    <div class="row personRow" ng-repeat="client in clientsList">
-        <div class="col-md-4">
-            <h3>{{client.Name}}</h3>
-            <p>{{client.PrimaryPhone}}</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Pickup From</h3>
-            <p>{{client.PickupAddress}}</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Delivery To</h3>
-            <p>{{client.DeliveryAddress}}</p>
-        </div>
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="client in clientsList">
+                <td>{{client.Name}}</td>
+                <td>{{client.Address}}</td>
+                <td>{{client.Phone}}</td>
+                <td><button class="btn btn-sm btn-primary" ng-click="bookDelivery(client.Id)">Book Delivery</button></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

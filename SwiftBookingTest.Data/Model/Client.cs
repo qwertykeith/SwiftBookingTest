@@ -12,21 +12,13 @@ namespace SwiftBookingTest.Data.Model
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-
+      
         [Required]
         [StringLength(500)]
-        public string PickupAddress { get; set; }
-
-        [Required]
-        [StringLength(500)]
-        public string DeliveryAddress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string PrimaryPhone { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string BookingReference { get; set; }
+        public string Phone { get; set; }
     }
 }

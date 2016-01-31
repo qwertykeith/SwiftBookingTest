@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using SwiftBookingTest.Data.SwiftApi.Model;
 
@@ -19,12 +15,21 @@ namespace SwiftBookingTest.Data.SwiftApi
             _apiKey = apiKey;
         }
 
-        public async Task BookDeliveryAsync(Booking booking)
+        public async Task<string> BookDeliveryAsync(BookingDetail dropoffDetail, BookingDetail pickupDetail)
         {
             var client = new HttpClient();
 
-            await client.PostAsync(RootUrl + "deliveries", null);
-        }
+            var response = await client.PostAsJsonAsync(RootUrl + "deliveries", new
+            {
+                apiKey = _apiKey,
+                booking = new
+                {
+                    pickupDetail,
+                    dropoffDetail
+                }
+            });
 
+            return await response.Content.ReadAsStringAsync();
+        }
     }
 }

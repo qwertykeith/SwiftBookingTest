@@ -13,19 +13,19 @@ namespace SwiftBookingTest.Web.Api
     [RoutePrefix("api/Clients")]
     public class ClientsController : ApiController
     {
-        private SwiftBookingContext db = new SwiftBookingContext();
+        private readonly SwiftBookingContext _context = new SwiftBookingContext();
 
         // GET: api/Clients
         public IQueryable<Client> GetClients()
         {
-            return db.Clients;
+            return _context.Clients;
         }
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
         public async Task<IHttpActionResult> GetClient(int id)
         {
-            Client client = await db.Clients.FindAsync(id);
+            Client client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
@@ -48,11 +48,11 @@ namespace SwiftBookingTest.Web.Api
                 return BadRequest();
             }
 
-            db.Entry(client).State = EntityState.Modified;
+            _context.Entry(client).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,12 +77,9 @@ namespace SwiftBookingTest.Web.Api
             {
                 return BadRequest(ModelState);
             }
-
-            //we need to now register this with the Swift API
-
-
-            db.Clients.Add(client);
-            await db.SaveChangesAsync();
+            
+            _context.Clients.Add(client);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = client.Id }, client);
         }
@@ -91,14 +88,14 @@ namespace SwiftBookingTest.Web.Api
         [ResponseType(typeof(Client))]
         public async Task<IHttpActionResult> DeleteClient(int id)
         {
-            Client client = await db.Clients.FindAsync(id);
+            Client client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
             }
 
-            db.Clients.Remove(client);
-            await db.SaveChangesAsync();
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
 
             return Ok(client);
         }
@@ -107,7 +104,7 @@ namespace SwiftBookingTest.Web.Api
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -116,7 +113,7 @@ namespace SwiftBookingTest.Web.Api
         {
             //this is a safer way of checking if the client exists.
             //Using .Count() is inefficient compared to .Any()
-            return db.Clients.Any(e => e.Id == id);
+            return _context.Clients.Any(e => e.Id == id);
         }
     }
 }

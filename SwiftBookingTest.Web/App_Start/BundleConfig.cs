@@ -18,12 +18,14 @@ namespace SwiftBookingTest.Web
                 "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Scripts/angular.js"));
+                "~/Scripts/angular.js",
+                "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/swiftbookingapp").Include(
                 "~/app/SwiftBookingApp.js",
                 "~/app/controllers/BookingController.js",
-                "~/app/services/clientsService.js"));
+                "~/app/services/clientsService.js",
+                "~/app/services/swiftService.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
