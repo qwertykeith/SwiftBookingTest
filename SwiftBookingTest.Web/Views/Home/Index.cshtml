@@ -6,10 +6,13 @@
 
 <div ng-controller="DeliveryController">
     <div>
-        <input type="text" placeholder="Name" value="" ng-model="p.Name" /><br />
-        <input type="text" placeholder="Phone" value="" ng-model="p.Phone" /><br />
-        <input type="text" placeholder="Address" value="" ng-model="p.Address" /><br />
-        <button ng-click="addPeople()">Add person</button>
+		<form name="myForm">
+			<input type="text" placeholder="Name" value="" ng-model="p.Name" /><br />
+			<input type="text" placeholder="Phone" value="" ng-model="p.Phone" /><br />
+			<input type="text" placeholder="Address" value="" ng-model="p.Address" required maxlength="200" />
+			<br />
+			<button ng-click="addPeople()">Add person</button>
+		</form>
     </div>
 
     <div>

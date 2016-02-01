@@ -27,6 +27,7 @@
                 });
         };
         $scope.addPeople = function () {
+        	if (!$scope.myForm.$valid) return;
             var p = angular.copy($scope.p);
             var old = $scope.people.find(function (pi) {
                 return pi.Address == p.Address;
