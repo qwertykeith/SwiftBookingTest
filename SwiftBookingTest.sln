@@ -1,9 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{0A7DB9D6-600A-493A-B19B-DC9683D3D661}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Model", "SwiftBookingTest.Model\SwiftBookingTest.Model.csproj", "{8E0D7608-4CC8-4152-88B3-0134F77FFB71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{35AB1993-CB69-4F38-9FBE-C917A8ED491E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Repository.Contracts", "SwiftBookingTest.Repository.Contracts\SwiftBookingTest.Repository.Contracts.csproj", "{B6B61BCA-419D-4B52-8F4D-0F336D699AC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Service.Contracts", "SwiftBookingTest.Service.Contracts\SwiftBookingTest.Service.Contracts.csproj", "{0F656979-A336-47D1-9984-0901BBA7A1E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EADFDFEB-81E3-484B-8531-551491090887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.SwiftAPI", "SwiftBookingTest.SwiftAPI\SwiftBookingTest.SwiftAPI.csproj", "{18423EB8-1965-431E-AD4D-94BD5DC568A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.DAL", "SwiftBookingTest.DAL\SwiftBookingTest.DAL.csproj", "{D3FCD46F-F4B9-4ECC-A524-36B71C653844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Repository", "SwiftBookingTest.Repository\SwiftBookingTest.Repository.csproj", "{C3A2F8EC-83E1-4989-BB5A-A82E533A25A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Service", "SwiftBookingTest.Service\SwiftBookingTest.Service.csproj", "{E11CF86D-466A-478E-B094-FCB6FFF7E531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Bootstrap", "SwiftBookingTest.Bootstrap\SwiftBookingTest.Bootstrap.csproj", "{1EE26CB5-CA63-4C5A-84D2-598A73B93602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +35,44 @@ Global
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E0D7608-4CC8-4152-88B3-0134F77FFB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E0D7608-4CC8-4152-88B3-0134F77FFB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E0D7608-4CC8-4152-88B3-0134F77FFB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E0D7608-4CC8-4152-88B3-0134F77FFB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6B61BCA-419D-4B52-8F4D-0F336D699AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B61BCA-419D-4B52-8F4D-0F336D699AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B61BCA-419D-4B52-8F4D-0F336D699AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B61BCA-419D-4B52-8F4D-0F336D699AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F656979-A336-47D1-9984-0901BBA7A1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F656979-A336-47D1-9984-0901BBA7A1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F656979-A336-47D1-9984-0901BBA7A1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F656979-A336-47D1-9984-0901BBA7A1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18423EB8-1965-431E-AD4D-94BD5DC568A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18423EB8-1965-431E-AD4D-94BD5DC568A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18423EB8-1965-431E-AD4D-94BD5DC568A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18423EB8-1965-431E-AD4D-94BD5DC568A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3FCD46F-F4B9-4ECC-A524-36B71C653844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FCD46F-F4B9-4ECC-A524-36B71C653844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FCD46F-F4B9-4ECC-A524-36B71C653844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FCD46F-F4B9-4ECC-A524-36B71C653844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A2F8EC-83E1-4989-BB5A-A82E533A25A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A2F8EC-83E1-4989-BB5A-A82E533A25A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A2F8EC-83E1-4989-BB5A-A82E533A25A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A2F8EC-83E1-4989-BB5A-A82E533A25A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E11CF86D-466A-478E-B094-FCB6FFF7E531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E11CF86D-466A-478E-B094-FCB6FFF7E531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E11CF86D-466A-478E-B094-FCB6FFF7E531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E11CF86D-466A-478E-B094-FCB6FFF7E531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE26CB5-CA63-4C5A-84D2-598A73B93602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE26CB5-CA63-4C5A-84D2-598A73B93602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE26CB5-CA63-4C5A-84D2-598A73B93602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE26CB5-CA63-4C5A-84D2-598A73B93602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6B61BCA-419D-4B52-8F4D-0F336D699AC0} = {35AB1993-CB69-4F38-9FBE-C917A8ED491E}
+		{0F656979-A336-47D1-9984-0901BBA7A1E4} = {35AB1993-CB69-4F38-9FBE-C917A8ED491E}
 	EndGlobalSection
 EndGlobal
