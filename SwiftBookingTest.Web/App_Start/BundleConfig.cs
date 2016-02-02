@@ -23,6 +23,11 @@ namespace SwiftBookingTest.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app")
+                .Include("~/Scripts/knockout-{version}.js")
+                .Include("~/Scripts/application.js")
+                .Include("~/Scripts/client-record.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
