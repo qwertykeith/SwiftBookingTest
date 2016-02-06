@@ -5,6 +5,8 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SwiftBookingTest.Core.Configurations
 {
@@ -19,7 +21,20 @@ namespace SwiftBookingTest.Core.Configurations
         /// </summary>
         public ClientPhoneConfiguration()
         {
-            //Set rules for Number property
+            //Set rules for Num
+            this.Property(t => t.ClientRecordId)
+                .IsRequired()
+                .HasColumnAnnotation(
+                IndexAnnotation.AnnotationName,
+                new IndexAnnotation(
+                new IndexAttribute("UQ_ClientPhone_ClientRecord", 1) { IsUnique = true }));
+
+            this.Property(t => t.PhoneNumberId)
+                .IsRequired()
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                    new IndexAttribute("UQ_ClientPhone_PhoneNumber", 1) { IsUnique = true }));
         }
     }
 }
