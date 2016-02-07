@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,10 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Person.cs" />
+    <Compile Include="Persons\Commands\BookPersonCommand.cs" />
     <Compile Include="Persons\Commands\BookPersonCommandContext.cs" />
+    <Compile Include="Persons\Commands\BookPersonCommandResult.cs" />
     <Compile Include="Persons\Commands\ICommandContext.cs" />
     <Compile Include="Persons\Commands\NewPersonCommandContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwiftApi\Booking.cs" />
+    <Compile Include="SwiftApi\BookingAddress.cs" />
+    <Compile Include="SwiftApi\DeliveryRequest.cs" />
+    <Compile Include="SwiftApi\ISwiftClient.cs" />
+    <Compile Include="SwiftApi\SwiftClient.cs" />
     <Compile Include="SwiftBookingTestContext.cs" />
   </ItemGroup>
   <ItemGroup>
