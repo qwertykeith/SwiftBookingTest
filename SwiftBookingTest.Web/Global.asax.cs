@@ -6,6 +6,12 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
+
+using Autofac.Integration.Mvc;
+using Autofac;
+
+using SwiftBookingTest.Core;
 
 namespace SwiftBookingTest.Web
 {
@@ -16,8 +22,14 @@ namespace SwiftBookingTest.Web
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            var builder = new ContainerBuilder();
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
+            builder.Register(c => new SwiftBookingTestContext()).As<IContext>().InstancePerHttpRequest();
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
+
+            AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
