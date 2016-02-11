@@ -52,6 +52,7 @@
     <Compile Include="ApplicationConstants.cs" />
     <Compile Include="Configurations\ClientPhoneConfiguration.cs" />
     <Compile Include="Configurations\ClientRecordConfiguration.cs" />
+    <Compile Include="Configurations\OfficeAssignmentConfiguration.cs" />
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoryFactories.cs" />
     <Compile Include="Helpers\RepositoryProvider.cs" />

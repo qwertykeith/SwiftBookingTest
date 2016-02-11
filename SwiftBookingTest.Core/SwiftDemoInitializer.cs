@@ -38,8 +38,65 @@ namespace SwiftBookingTest.Core
             clients[1].ClientPhones.Add(new ClientPhone { ClientRecordId = clients[1].Id, PhoneNumberId = phones[3].Id });
             //context.SaveChanges();
             clients.ForEach(b => context.ClientRecords.Add(b));
+            SetInstructorsWithCoarse(context);
+            
             base.Seed(context);
         }
+
+        private static void SetInstructorsWithCoarse(SwiftDemoContext context)
+        {
+            var instructors = new List<Instructor>
+            {
+                new Instructor
+                {
+                    LastName = "Sharma",
+                    FirstName = "Bhanu",
+                    HireDate = DateTime.Now,
+                    Coarses =new List<Coarse>
+                    {
+                        new Coarse { CourseName="Net"},
+                    }
+                },
+                new Instructor
+                {
+                    LastName = "Sharma",
+                    FirstName = "Sonia",
+                    HireDate = DateTime.Now,
+                    Coarses =new List<Coarse>
+                    {
+                        new Coarse { CourseName="C"},
+                    }
+                },
+                new Instructor
+                {
+                    LastName = "Chaudhary",
+                    FirstName = "Atul",
+                    HireDate = DateTime.Now,
+                    Coarses =new List<Coarse>
+                    {
+                        new Coarse { CourseName="Java"},
+                        new Coarse { CourseName="c++"},
+                        new Coarse { CourseName="C"},
+                        new Coarse { CourseName="JavaScript"},
+                        new Coarse { CourseName="HTML5"},
+                        new Coarse { CourseName="CSS3"},
+                    }
+                },
+                new Instructor
+                {
+                    LastName = "Chaudhary",
+                    FirstName = "Kapil",
+                    HireDate = DateTime.Now,
+                    Coarses =new List<Coarse>
+                    {
+                        new Coarse { CourseName="C++"},
+                    }
+                }
+            };
+
+            instructors.ForEach(b => context.Instructors.Add(b));
+        }
+
         /// <summary>
         /// Adds the phone numbers.
         /// </summary>

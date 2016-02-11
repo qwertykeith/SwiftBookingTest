@@ -1,10 +1,5 @@
 ﻿using SwiftBookingTest.Model;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SwiftBookingTest.Core.Configurations
 {
@@ -21,6 +16,7 @@ namespace SwiftBookingTest.Core.Configurations
         {
             //Property(x => x.Name).IsRequired().HasMaxLength(150);
             //Property(x => x.Name).IsRequired().HasMaxLength(1000);
+            
         }
         
     }

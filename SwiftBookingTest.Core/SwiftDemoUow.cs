@@ -2,10 +2,6 @@
 using SwiftBookingTest.CoreContracts;
 using SwiftBookingTest.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SwiftBookingTest.Core
 {
@@ -28,7 +24,15 @@ namespace SwiftBookingTest.Core
         /// The client records.
         /// </value>
         public IRepository<ClientRecord> ClientRecords { get { return GetStandardRepo<ClientRecord>(); } }
+        
+        /// <summary>
+        /// Gets the client phones.
+        /// </summary>
+        /// <value>
+        /// The client phones.
+        /// </value>
         public IRepository<ClientPhone> ClientPhones { get { return GetStandardRepo<ClientPhone>(); } }
+        
         /// <summary>
         /// Gets the phone numbers.
         /// </summary>
@@ -36,6 +40,39 @@ namespace SwiftBookingTest.Core
         /// The phone numbers.
         /// </value>
         public IRepository<PhoneNumber> PhoneNumbers { get { return GetStandardRepo<PhoneNumber>(); } }
+
+        /// <summary>
+        /// Gets the phone numbers.
+        /// </summary>
+        /// <value>
+        /// The phone numbers.
+        /// </value>
+        public IRepository<Student> Students { get { return GetStandardRepo<Student>(); } }
+
+        /// <summary>
+        /// Gets the courses.
+        /// </summary>
+        /// <value>
+        /// The courses.
+        /// </value>
+        public IRepository<Coarse> Coarses { get { return GetStandardRepo<Coarse>(); } }
+
+      
+        /// <summary>
+        /// Gets the courses.
+        /// </summary>
+        /// <value>
+        /// The courses.
+        /// </value>
+        public IRepository<OfficeAssignment> OfficeAssignments { get { return GetStandardRepo<OfficeAssignment>(); } }
+
+        /// <summary>
+        /// Gets the instructors.
+        /// </summary>
+        /// <value>
+        /// The instructors.
+        /// </value>
+        public IRepository<Instructor> Instructors { get { return GetStandardRepo<Instructor>(); } }
 
         /// <summary>
         /// Save pending changes to the database
@@ -73,6 +110,8 @@ namespace SwiftBookingTest.Core
         }
 
         private SwiftDemoContext DbContext { get; set; }
+
+
 
         #region IDisposable
 

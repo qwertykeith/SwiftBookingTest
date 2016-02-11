@@ -28,7 +28,47 @@ namespace SwiftBookingTest.Web.Test.Fakes
             }
         }
 
+        public IRepository<Coarse> Coarses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IRepository<Instructor> Instructors
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IRepository<Coarse> OfficeAssignment
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IRepository<OfficeAssignment> OfficeAssignments
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public IRepository<PhoneNumber> PhoneNumbers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IRepository<Student> Students
         {
             get
             {

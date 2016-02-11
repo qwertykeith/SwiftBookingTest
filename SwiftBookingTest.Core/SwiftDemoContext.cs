@@ -1,12 +1,7 @@
 ﻿using SwiftBookingTest.Core.Configurations;
 using SwiftBookingTest.Model;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SwiftBookingTest.Core
 {
@@ -31,10 +26,50 @@ namespace SwiftBookingTest.Core
         {
             //Stop pluralizing of table name in database
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
             //set rules on client and phone number table
             modelBuilder.Configurations.Add(new ClientRecordConfiguration());
             modelBuilder.Configurations.Add(new ClientPhoneConfiguration());
+
+            #region many to many relationship
+            modelBuilder.Entity<Student>()
+                .HasMany<Coarse>(s => s.Coarses)
+                .WithMany(c => c.Students)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("StudentId");
+                    cs.MapRightKey("CoarseId");
+                    cs.ToTable("StudentCoarse");
+                });
+            #endregion
+
+            #region "Many to many relationship with same coarse table to instructor"
+            //many to many relationship
+            modelBuilder.Entity<Instructor>()
+                .HasMany<Coarse>(s => s.Coarses)
+                .WithMany(c => c.Instructors)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("InstructorId");
+                    cs.MapRightKey("CoarseId");
+                    cs.ToTable("InstructorCoarse");
+                });
+            #endregion
+
+            #region "Extend table"
+            ////splitting or extending api
+            //modelBuilder.Entity<Student>()
+            //    .Map(mc =>
+            //    {
+            //        mc.Properties(a => new { a.Id, a.StudentName });
+            //        mc.ToTable("Student");
+            //    }).
+            //    Map(mc =>
+            //    {
+            //        mc.Properties(a => new { a.Id, a.StudentRollNumber });
+            //        mc.ToTable("StudentDetail");
+            //    });
+            #endregion
+
         }
 
         /// <summary>
@@ -59,5 +94,36 @@ namespace SwiftBookingTest.Core
         /// The phone number.
         /// </value>
         public DbSet<PhoneNumber> PhoneNumber { get; set; }
+        /// <summary>
+        /// Gets or sets the students.
+        /// </summary>
+        /// <value>
+        /// The students.
+        /// </value>
+        public DbSet<Student> Students { get; set; }
+        /// <summary>
+        /// Gets or sets the courses.
+        /// </summary>
+        /// <value>
+        /// The courses.
+        /// </value>
+        public DbSet<Coarse> Coarses { get; set; }
+        /// <summary>
+        /// Gets or sets the office assignments.
+        /// </summary>
+        /// <value>
+        /// The office assignments.
+        /// </value>
+        public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
+
+        /// <summary>
+        /// Gets or sets the instructors.
+        /// </summary>
+        /// <value>
+        /// The instructors.
+        /// </value>
+        public DbSet<Instructor> Instructors { get; set; }
+
+
     }
 }

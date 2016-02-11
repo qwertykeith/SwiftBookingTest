@@ -38,5 +38,34 @@ namespace SwiftBookingTest.CoreContracts
         /// The phone numbers.
         /// </value>
         IRepository<PhoneNumber> PhoneNumbers { get; }
+        /// <summary>
+        /// Gets the students.
+        /// </summary>
+        /// <value>
+        /// The students.
+        /// </value>
+        IRepository<Student> Students { get; }
+        /// <summary>
+        /// Gets the courses.
+        /// </summary>
+        /// <value>
+        /// The courses.
+        /// </value>
+        IRepository<Coarse> Coarses { get; }
+
+        /// <summary>
+        /// Gets the office assignments.
+        /// </summary>
+        /// <value>
+        /// The office assignments.
+        /// </value>
+        IRepository<OfficeAssignment> OfficeAssignments { get; }
+        /// <summary>
+        /// Gets the instructors.
+        /// </summary>
+        /// <value>
+        /// The instructors.
+        /// </value>
+        IRepository<Instructor> Instructors { get; }
     }
 }

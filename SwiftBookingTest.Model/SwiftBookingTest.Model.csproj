@@ -45,8 +45,11 @@
     <Compile Include="BaseClass.cs" />
     <Compile Include="ClientPhone.cs" />
     <Compile Include="ClientRecord.cs" />
+    <Compile Include="Coarse.cs" />
     <Compile Include="PhoneNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="TestModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

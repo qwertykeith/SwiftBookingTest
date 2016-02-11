@@ -93,6 +93,7 @@ namespace SwiftBookingTest.Core.Repository
                 DbSet.Attach(entity);
             }
             dbEntityEntry.State = EntityState.Modified;
+            
         }
 
         /// <summary>

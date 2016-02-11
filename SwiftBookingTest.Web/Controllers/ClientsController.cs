@@ -35,25 +35,10 @@ namespace SwiftBookingTest.Web.Controllers
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).OrderBy(x => x.Name).ToList());
 
-            //get client records with phone numbers where phone numbers contains basic info only
-            //to avoid circular reference error
-            var filteredList = list
-                .Select(x => new ClientRecord
-                {
-                    Id = x.Id,
-                    Address = x.Address,
-                    Name = x.Name,
-                    RowVersion = x.RowVersion,
-                    ClientPhones = x.ClientPhones.Select(y => new ClientPhone
-                    {
-                        Id = y.Id,
-                        ClientRecordId = y.ClientRecordId,
-                        PhoneNumber = y.PhoneNumber,
-                        RowVersion = y.RowVersion
-                    }).ToList()
-                });
-
-            return Ok<IEnumerable<ClientRecord>>(filteredList.ToList());
+            foreach(var cp in list.SelectMany(x=>x.ClientPhones))
+                cp.ClientRecord = null;
+          
+            return Ok<IEnumerable<ClientRecord>>(list.ToList());
         }
 
         /// <summary>
@@ -80,7 +65,9 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
-            sdUow.ClientRecords.Update(clientRecord);
+            var ff = sdUow.ClientRecords.GetById(Id);
+            ff.Name = "Biknanu";
+            sdUow.ClientRecords.Update(ff);
             sdUow.Commit();
             return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
