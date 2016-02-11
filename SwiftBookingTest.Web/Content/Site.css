@@ -35,6 +35,11 @@ textarea {
     margin: 0.5em 0 0 0;
 }
 
+input.ng-invalid
+{
+  border: solid red 2px;
+}
+
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/

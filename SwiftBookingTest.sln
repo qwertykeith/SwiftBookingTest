@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{0A7DB9D6-600A-493A-B19B-DC9683D3D661}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.DataAccess", "SwiftBookingTest.DataAccess\SwiftBookingTest.DataAccess.csproj", "{6CFEE1D9-95E5-4C02-A067-7ABF98E0557C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Service", "SwiftBookingTest.Service\SwiftBookingTest.Service.csproj", "{3A66659F-E329-43F0-8E50-DFAE8A3C1BC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Domain", "SwiftBookingTest.Domain\SwiftBookingTest.Domain.csproj", "{67BC7842-A8EF-4551-BB07-6CCDB0BB9F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CFEE1D9-95E5-4C02-A067-7ABF98E0557C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CFEE1D9-95E5-4C02-A067-7ABF98E0557C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CFEE1D9-95E5-4C02-A067-7ABF98E0557C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CFEE1D9-95E5-4C02-A067-7ABF98E0557C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A66659F-E329-43F0-8E50-DFAE8A3C1BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A66659F-E329-43F0-8E50-DFAE8A3C1BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A66659F-E329-43F0-8E50-DFAE8A3C1BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A66659F-E329-43F0-8E50-DFAE8A3C1BC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67BC7842-A8EF-4551-BB07-6CCDB0BB9F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BC7842-A8EF-4551-BB07-6CCDB0BB9F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BC7842-A8EF-4551-BB07-6CCDB0BB9F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BC7842-A8EF-4551-BB07-6CCDB0BB9F21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
