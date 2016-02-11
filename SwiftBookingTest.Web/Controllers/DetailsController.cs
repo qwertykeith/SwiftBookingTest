@@ -1,30 +1,28 @@
 ﻿using SwiftBookingTest.Domain;
-using SwiftBookingTest.Web.Models;
 using SwiftBookingTest.Service;
+using SwiftBookingTest.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-    public class HomeController : Controller
+    [RoutePrefix("api")]
+    public class DetailsController : ApiController
     {
-        //
-        // GET: /Home/
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         /// <summary>
         /// Take the details that are submitted, and save them.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        [Route("Details")]
         [HttpPost]
-        public ActionResult AddDetails(DeliveryDetailsViewModel data)
+        public void Details(DeliveryDetailsViewModel data)
         {
             if (ModelState.IsValid)
             {
@@ -42,9 +40,39 @@ namespace SwiftBookingTest.Web.Controllers
                 {
                     service.SaveDeliveryDetails(model.FirstOfManyDeliveries);
                 }
-                return View("Details");
             }
-            return View("Details");
+        }
+
+        /// <summary>
+        /// Perform the post to GetSwift from here due to cross origin sharing of resources (CORS) issues doing it from 
+        /// Javascript in the browser
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        [Route("Deliver")]
+        [HttpPost]
+        public async Task<IHttpActionResult> Deliver(DeliveryDetailsDomain data)
+        {
+            if (ModelState.IsValid)
+            {
+                using (HttpClient client = new HttpClient())
+                {
+
+                    var response = await client.PostAsJsonAsync("https://app.getswift.co/api/v2/deliveries", new
+                    {
+                        apikey = ConfigurationManager.AppSettings["GetSwiftMerchantKey"],
+                        booking = new
+                        {
+                            pickupDetail = new { address = "256 St Georges Tce, Perth, Western Australia" },
+                            dropoffDetail= new { address = data.Address}
+                        }
+                
+                    });
+
+                    return Ok( await response.Content.ReadAsStringAsync());
+                }
+            }
+            return BadRequest();
         }
 
         /// <summary>
@@ -52,16 +80,17 @@ namespace SwiftBookingTest.Web.Controllers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        [Route("Details")]
         [HttpGet]
-        public ActionResult Details()
+        public List<DeliveryDetailsDomain> Details()
         {
             List<DeliveryDetailsDomain> deliveries = new List<DeliveryDetailsDomain>();
             using (IDeliveryService service = new DeliveryService())
             {
                 deliveries = service.GetStuffThatHasBeenDelivered();
             }
-            
-            return View("Index");
+
+            return deliveries;
         }
 
         /// <summary>
@@ -73,14 +102,17 @@ namespace SwiftBookingTest.Web.Controllers
         private List<DeliveryDetailsViewModel> Convert(List<DeliveryDetailsDomain> domainObjects)
         {
             List<DeliveryDetailsViewModel> returnData = new List<DeliveryDetailsViewModel>();
-            foreach(var val in domainObjects )
+            foreach (var val in domainObjects)
             {
-                returnData.Add(new DeliveryDetailsViewModel {
+                returnData.Add(new DeliveryDetailsViewModel
+                {
                     Name = val.Name,
                     Address = val.Address,
-                    Phone = val.Phone});
+                    Phone = val.Phone
+                });
             }
             return returnData;
         }
+
     }
 }

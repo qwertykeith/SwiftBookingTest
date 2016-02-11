@@ -1,25 +1,166 @@
-﻿@{
+﻿@model IEnumerable<SwiftBookingTest.Web.Models.DeliveryDetailsViewModel>
+@using System.Linq
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>GetSwift Code Test</h2>
+<!--  -->
 
-<div>
-    <input type="text" placeholder="Name" value="" /><br />
-    <input type="text" placeholder="Phone" value="" /><br />
-    <input type="text" placeholder="Address" value="" /><br />
-    <button>Add person</button>
-</div>
+<div id="content" ng-app="SwiftDeliveryApp" ng-controller="deliveryController" >
 
-<div>
+    <div style="padding:10px; ">
+        <form name="personForm" ng-submit="submitData('ajaxSubmitResultStuff')" novalidate>
+            <input type="text" placeholder="Name" name="Name" class="editor-field" ng-model="Name" value="" required /><br />
+            <input type="text" placeholder="Phone" name="Phone" class="editor-field" ng-model="Phone" value="" required /><br />
+            <input type="text" placeholder="Address" name="Address" class="editor-field" ng-model="Address" value="" required /><br />
+            <button type="submit" class="editor-field" ng-disabled="personForm.$invalid">Add Person</button>
+        </form>
+    </div>
+
+    @*<textarea id="ajaxSubmitResult">{{ajaxSubmitResultStuff | json}}</textarea><br />*@
+
     <h3>Saved people</h3>
+
     <ul>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Some address st, Melbourne, Australia </li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 123 Another address st, New York</li>
-        <li>[BOOK WITH GETSWIFT BUTTON] 668 Joel St, Brisbane, Australia</li>
+        <li ng-repeat="delivery in deliveries">
+            <div style="width: 100%; overflow: hidden; padding:5px">
+                <div style="width: 120px; float: left;"><input type="button" value="Book with GetSwift" ng-click="Process(delivery)" /> {{delivery.id}} </div>
+                <div style="margin-left: 130px;">{{delivery.address}}</div>
+            </div>
+        </li>
     </ul>
 
-</div>
-<div style="background-color:#eee;padding:20px;">
-    Results from the API call go here!
-</div>
+
+    <div style="background-color:#eee;padding:20px;">
+        {{swiftDeliveryResult | json}}
+    </div>
+
+
+</div> 
+    <script src="~/Scripts/angular.min.js"></script>
+
+<script>
+    var app = angular.module("SwiftDeliveryApp", []);
+
+    app.service('deliveryService', function ($http) {
+        console.log('deliveryService called.');
+        this.getDeliveries = function () {
+            console.log('getDeliveries called.');
+            return $http.get('/api/Details');
+        };
+    });
+
+    app.controller("deliveryController", function ($scope, deliveryService, $http)
+    {
+        console.log('deliveryController called.');
+
+        $scope.submitData = function (resultVarName)
+        {
+            var data = {
+                    Name: $scope.Name,
+                    Phone: $scope.Phone,
+                    Address: $scope.Address
+                };
+
+            // http://www.angularjshub.com/examples/forms/formsubmission/
+            $http.post("/api/Details", JSON.stringify(data))
+            .success(function (data, status, headers, config)
+            {
+                $scope[resultVarName] = "Done";
+                init();
+
+                $scope.Name = null;
+                $scope.Phone = null;
+                $scope.Address = null;
+            })
+            .error(function (data, status, headers, config)
+            {
+              $scope[resultVarName] = "SUBMIT ERROR";
+            });
+        };
+
+        $scope.Process = function (delivery) {
+
+            //var data = {
+            //    Name: delivery.name,
+            //    Phone: delivery.phone,
+            //    Address: delivery.address
+            //};
+
+
+            $http.post("/api/Deliver", JSON.stringify(delivery))
+            .success(function (data, status, headers, config) {
+                $scope['swiftDeliveryResult'] = data;
+ 
+            })
+            .error(function (data, status, headers, config) {
+                $scope['swiftDeliveryResult'] = data;
+            });
+
+        };
+
+        @*$scope.Process = function (delivery) {
+            var req = {
+                method: 'POST',
+                url: 'https://app.getswift.co/api/v2/deliveries',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    "apiKey": "@System.Web.Configuration.WebConfigurationManager.AppSettings["GetSwiftMerchantKey"]",
+                    "booking": {
+                        "pickupDetail": {
+                            "address": "256 St Georges Tce, Perth, Western Australia"
+                        },
+                        "dropoffDetail": {
+                            "address": delivery.address
+                        }
+                    }
+                }
+            }
+
+
+           // alert('Processing ' + delivery.address);
+
+            //$http(req)
+            $http.post('https://app.getswift.co/api/v2/deliveries', 
+                {
+                    "apiKey": "@System.Web.Configuration.WebConfigurationManager.AppSettings["GetSwiftMerchantKey"]",
+                    "booking": {
+                        "pickupDetail": {
+                            "address": "256 St Georges Tce, Perth, Western Australia"
+                        },
+                        "dropoffDetail": {
+                            "address": delivery.address
+                        }
+                    }
+                })
+            .then(
+                 function (response) {
+                     var data = response.data;
+                     $scope['swiftDeliveryResult'] = data;
+                 }, function (error) {
+                     var data = error.data;
+                     $scope['swiftDeliveryResult'] = data;
+            });
+
+ 
+        }; *@
+
+        function init() {
+            deliveryService.getDeliveries().then(function (res) {
+                $scope.deliveries = res.data;
+             });
+        }
+
+        init();
+
+    });
+
+
+ 
+</script>
+
+
+
