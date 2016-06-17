@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
 
+
 namespace SwiftBookingTest.Web.Controllers
 {
     public class ClientsController : ApiControllerBase
@@ -32,12 +33,15 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
+
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).OrderBy(x => x.Name).ToList());
 
-            foreach(var cp in list.SelectMany(x=>x.ClientPhones))
+            var newList = sdUow.ClientRecords.GetAllIncluding(cr => cr.ClientPhones).ToList();
+            // Set client record to null to fix circular reference issue
+            foreach (var cp in list.SelectMany(x => x.ClientPhones))
                 cp.ClientRecord = null;
-          
+
             return Ok<IEnumerable<ClientRecord>>(list.ToList());
         }
 
@@ -49,6 +53,7 @@ namespace SwiftBookingTest.Web.Controllers
         [Route("Post")]
         public HttpResponseMessage Post(ClientRecord clientRecord)
         {
+
             sdUow.ClientRecords.Add(clientRecord);
             sdUow.Commit();
             // Set client record to null to fix circular reference issue
@@ -85,6 +90,17 @@ namespace SwiftBookingTest.Web.Controllers
                 var result = await client.PostStringAsync<object>(CommonHelper.GetSwiftApi("deliveries"), SetPayload(clientRecord));
                 return Ok(JObject.Parse(await result.Content.ReadAsStringAsync()));
             }
+        }
+
+        /// <summary>
+        /// Gets the instructor by identifier.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet, Route("GetByInstructor")]
+        public async Task<IHttpActionResult> GetByInstructor()
+        {
+            var office = await Task.Factory.StartNew(() => sdUow.OfficeAssignments.GetByInstructor(1));
+            return Ok(office);
         }
 
         /// <summary>

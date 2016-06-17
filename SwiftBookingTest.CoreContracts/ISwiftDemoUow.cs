@@ -59,7 +59,7 @@ namespace SwiftBookingTest.CoreContracts
         /// <value>
         /// The office assignments.
         /// </value>
-        IRepository<OfficeAssignment> OfficeAssignments { get; }
+        IOfficeAssignmentRepository OfficeAssignments { get; }
         /// <summary>
         /// Gets the instructors.
         /// </summary>

@@ -22,10 +22,9 @@ namespace SwiftBookingTest.Web
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                        "~/scripts/jquery-{version}.js",
-                       "~/scripts/bootstrap.min.js",
-                       "~/scripts/angular.min.js",
-                       "~/scripts/angular-animate.min.js",
-                       "~/scripts/angular-ui-router.min.js",
+                       "~/scripts/bootstrap.js",
+                       "~/scripts/angular.js",
+                       "~/scripts/angular-ui-router.js",
                        "~/scripts/toaster.js"
                        ));
 

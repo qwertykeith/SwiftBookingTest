@@ -25,8 +25,10 @@
             SaveClient: SaveClient,
             Update: Update,
             SendDelivery: SendDelivery,
+            GetByInstructor: GetByInstructor,
             IsBusy: false
         }
+
         /*
          * @description Save client and gets the updated result
          */
@@ -44,6 +46,15 @@
             }).finally(function () {
                 //just for demo
                 ResetForm();
+            });
+        }
+
+
+        function GetByInstructor() {
+            $http.get(service.apiUrl + "/GetByInstructor?Id=1").then(function (response) {
+                console.log(response.data);
+            }, function (error) {
+                console.log(error);
             });
         }
 
@@ -68,7 +79,7 @@
                         duration: 6000,
                         position: 'top',
                         sticky: true,
-                        
+
                     });
 
                 }

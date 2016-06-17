@@ -52,7 +52,7 @@ namespace SwiftBookingTest.Web.Test.Fakes
             }
         }
 
-        public IRepository<OfficeAssignment> OfficeAssignments
+        public IOfficeAssignmentRepository OfficeAssignments
         {
             get
             {

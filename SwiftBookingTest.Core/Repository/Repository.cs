@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +52,23 @@ namespace SwiftBookingTest.Core.Repository
         /// <returns></returns>
         public virtual IQueryable<T> GetAll()
         {
+
             return DbSet;
+        }
+
+        /// <summary>
+        /// Gets all including.
+        /// </summary>
+        /// <param name="includedProperties">The included properties.</param>
+        /// <returns></returns>
+        public virtual IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includedProperties)
+        {
+            IQueryable<T> query = DbSet;
+            foreach (var includedProperty in includedProperties)
+            {
+                query = query.Include(includedProperty);
+            }
+            return query;
         }
 
         /// <summary>
@@ -70,7 +87,9 @@ namespace SwiftBookingTest.Core.Repository
         /// <param name="entity">The entity.</param>
         public virtual void Add(T entity)
         {
+
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+
             if (dbEntityEntry.State != EntityState.Detached)
             {
                 dbEntityEntry.State = EntityState.Added;
@@ -93,7 +112,7 @@ namespace SwiftBookingTest.Core.Repository
                 DbSet.Attach(entity);
             }
             dbEntityEntry.State = EntityState.Modified;
-            
+
         }
 
         /// <summary>

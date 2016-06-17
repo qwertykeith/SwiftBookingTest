@@ -58,13 +58,7 @@ namespace SwiftBookingTest.Core
         public IRepository<Coarse> Coarses { get { return GetStandardRepo<Coarse>(); } }
 
       
-        /// <summary>
-        /// Gets the courses.
-        /// </summary>
-        /// <value>
-        /// The courses.
-        /// </value>
-        public IRepository<OfficeAssignment> OfficeAssignments { get { return GetStandardRepo<OfficeAssignment>(); } }
+        
 
         /// <summary>
         /// Gets the instructors.
@@ -73,6 +67,14 @@ namespace SwiftBookingTest.Core
         /// The instructors.
         /// </value>
         public IRepository<Instructor> Instructors { get { return GetStandardRepo<Instructor>(); } }
+
+        /// <summary>
+        /// Gets the office assignments.
+        /// </summary>
+        /// <value>
+        /// The office assignments.
+        /// </value>
+        public IOfficeAssignmentRepository OfficeAssignments { get { return GetRepo<IOfficeAssignmentRepository>(); } }
 
         /// <summary>
         /// Save pending changes to the database

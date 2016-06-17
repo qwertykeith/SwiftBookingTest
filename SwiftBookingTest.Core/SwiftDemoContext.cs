@@ -2,6 +2,9 @@
 using SwiftBookingTest.Model;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace SwiftBookingTest.Core
 {
@@ -10,12 +13,30 @@ namespace SwiftBookingTest.Core
     /// </summary>
     public class SwiftDemoContext : DbContext
     {
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SwiftDemoContext"/> class.
         /// </summary>
         public SwiftDemoContext()
             : base("SwiftBookingTest")
         {
+        }
+
+        //protected override bool ShouldValidateEntity(DbEntityEntry entityEntry)
+        //{
+        //    //return base.ShouldValidateEntity(entityEntry)
+        //    //    || (entityEntry.State == EntityState.Deleted
+        //    //    && entityEntry.Entity is ClientRecord);
+        //}
+
+        protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
+        {
+            var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
+
+            //result.ValidationErrors.Add(new DbValidationError("propertyName", "ErrorMessage"));
+
+            return base.ValidateEntity(entityEntry, items);
         }
 
         /// <summary>
@@ -79,6 +100,7 @@ namespace SwiftBookingTest.Core
         /// The client records.
         /// </value>
         public DbSet<ClientRecord> ClientRecords { get; set; }
+
         /// <summary>
         /// Gets or sets the phone numbers.
         /// </summary>
@@ -94,6 +116,7 @@ namespace SwiftBookingTest.Core
         /// The phone number.
         /// </value>
         public DbSet<PhoneNumber> PhoneNumber { get; set; }
+
         /// <summary>
         /// Gets or sets the students.
         /// </summary>
@@ -101,6 +124,7 @@ namespace SwiftBookingTest.Core
         /// The students.
         /// </value>
         public DbSet<Student> Students { get; set; }
+
         /// <summary>
         /// Gets or sets the courses.
         /// </summary>
@@ -108,6 +132,7 @@ namespace SwiftBookingTest.Core
         /// The courses.
         /// </value>
         public DbSet<Coarse> Coarses { get; set; }
+
         /// <summary>
         /// Gets or sets the office assignments.
         /// </summary>

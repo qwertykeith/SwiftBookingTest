@@ -3,7 +3,7 @@
     /*
      * @description Main app module
      */
-    angular.module("mainModule", ["ui.router", "commonModule", "ngNotify", "ngAnimate"]);
+    angular.module("mainModule", ["ui.router", "commonModule", "ngNotify"]);
 
     /*
      * @description Configuration for main app module
