@@ -143,6 +143,13 @@ namespace SwiftBookingTest.Core.Repository
             if (entity == null) return; // not found; assume already deleted.
             Delete(entity);
         }
+
+        public void DeleteByIds(IEnumerable<T> T)
+        {
+            if (T == null) return;
+            
+            DbSet.RemoveRange(T);
+        }
     }
 
 }

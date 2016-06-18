@@ -50,5 +50,7 @@ namespace SwiftBookingTest.CoreContracts
         /// </summary>
         /// <param name="id">The identifier.</param>
         void Delete(int id);
+
+        void DeleteByIds(IEnumerable<T> T);
     }
 }

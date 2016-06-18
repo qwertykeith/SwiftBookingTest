@@ -19,16 +19,75 @@ namespace SwiftBookingConsole
 
         private static void GetClient()
         {
+            GetCustomerWhereNameContainsLetter("a");
+
+            DeleteBhanuPhoneRecord();
+
+            AddBhanuPhones();
+
+            GetClientWherePhoneNumberIsRepeatedMoreThanTwice();
+        }
+
+        private static void GetCustomerWhereNameContainsLetter(string letters)
+        {
             using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories())))
             {
-                var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).ToList();
-                //Add(Uow, clients);
+                var clients = Uow.ClientRecords.GetAll().Where(x => x.Name.ToLower().Contains(letters)).ToList();
+            }
+        }
+
+        private static void GetClientWherePhoneNumberIsRepeatedMoreThanTwice()
+        {
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories())))
+            {
 
 
-                var pp = clients.Where(x => x.ClientPhones.GroupBy(y => y.PhoneNumber.Number)
-                .Count() > 2).SelectMany(z => z.ClientPhones).First();
+                var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber));
+                var pp = clients.Where(z => z.ClientPhones
+                    .GroupBy(x => x.PhoneNumber.Number)
+                    .Select(c => c.Count()).Any(y => y > 2))
+                    .ToList();
 
                 Console.ReadLine();
+            }
+        }
+
+        private static void AddBhanuPhones()
+        {
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories())))
+            {
+                var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).Where(x => x.Id == 3).First();
+                clients.ClientPhones.Add(new ClientPhone
+                {
+                    ClientRecord = clients,
+                    PhoneNumber = new PhoneNumber { Number = "55555" }
+                });
+                clients.ClientPhones.Add(new ClientPhone
+                {
+                    ClientRecord = clients,
+                    PhoneNumber = new PhoneNumber { Number = "22222" }
+                });
+                clients.Address = "W";
+                Uow.Commit();
+            }
+        }
+
+        private static void DeleteBhanuPhoneRecord()
+        {
+            //under the hood in both delete method executes each delete command individually
+
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories())))
+            {
+                var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).Where(x => x.Id == 3).First();
+                var newList = clients.ClientPhones.ToList();
+                //newList.ForEach((x) =>
+                //{
+                //    Uow.PhoneNumbers.Delete(x.PhoneNumber);
+                //    Uow.ClientPhones.Delete(x);
+                //});
+                Uow.PhoneNumbers.DeleteByIds(newList.Select(v => v.PhoneNumber));
+                Uow.ClientPhones.DeleteByIds(newList);
+                Uow.Commit();
             }
         }
 
@@ -42,6 +101,13 @@ namespace SwiftBookingConsole
             });
             var firstClientPone = firstClient.ClientPhones.ToList()[0];
             firstClientPone.PhoneNumber.Number = "00000000000";
+            Uow.Commit();
+        }
+
+        private static void AddClient(SwiftDemoUow Uow)
+        {
+            var client = new ClientRecord { Address = "12, Sanoor, Bali", Name = "Bhanu Sharma", ClientPhones = null };
+            Uow.ClientRecords.Add(client);
             Uow.Commit();
         }
     }
