@@ -27,7 +27,10 @@ namespace SwiftBookingConsole
 
             GetClientWherePhoneNumberIsRepeatedMoreThanTwice();
         }
-
+        /// <summary>
+        /// Gets the customer where name contains letter.
+        /// </summary>
+        /// <param name="letters">The letters.</param>
         private static void GetCustomerWhereNameContainsLetter(string letters)
         {
             using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories())))
