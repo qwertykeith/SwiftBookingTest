@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SwiftBookingTest.CoreContracts
 {
-    public interface IOfficeAssignmentRepository
+    public interface IOfficeAssignmentRepository : IRepository<OfficeAssignment>
     {
         /// <summary>
         /// Gets the by instructor.

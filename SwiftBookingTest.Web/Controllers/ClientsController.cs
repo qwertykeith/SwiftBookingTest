@@ -33,16 +33,16 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-
-            var list = await Task.Factory.StartNew(() =>
-             sdUow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).OrderBy(x => x.Name).ToList());
+            //var list = await Task.Factory.StartNew(() =>
+            // sdUow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).OrderBy(x => x.Name).ToList());
 
             var newList = sdUow.ClientRecords.GetAllIncluding(cr => cr.ClientPhones).ToList();
+            var pp = sdUow.OfficeAssignments.GetAll().ToList();
             // Set client record to null to fix circular reference issue
-            foreach (var cp in list.SelectMany(x => x.ClientPhones))
+            foreach (var cp in newList.SelectMany(x => x.ClientPhones))
                 cp.ClientRecord = null;
 
-            return Ok<IEnumerable<ClientRecord>>(list.ToList());
+            return Ok<IEnumerable<ClientRecord>>(newList.ToList());
         }
 
         /// <summary>
@@ -91,18 +91,7 @@ namespace SwiftBookingTest.Web.Controllers
                 return Ok(JObject.Parse(await result.Content.ReadAsStringAsync()));
             }
         }
-
-        /// <summary>
-        /// Gets the instructor by identifier.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet, Route("GetByInstructor")]
-        public async Task<IHttpActionResult> GetByInstructor()
-        {
-            var office = await Task.Factory.StartNew(() => sdUow.OfficeAssignments.GetByInstructor(1));
-            return Ok(office);
-        }
-
+        
         /// <summary>
         /// Sets the payload.
         /// </summary>

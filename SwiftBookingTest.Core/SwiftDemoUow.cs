@@ -15,6 +15,9 @@ namespace SwiftBookingTest.Core
             RepositoryProvider = repositoryProvider;
         }
 
+        private SwiftDemoContext DbContext { get; set; }
+
+
         // Code Camper repositories
 
         /// <summary>
@@ -110,8 +113,6 @@ namespace SwiftBookingTest.Core
         {
             return RepositoryProvider.GetRepository<T>();
         }
-
-        private SwiftDemoContext DbContext { get; set; }
 
 
 

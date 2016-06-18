@@ -46,10 +46,10 @@ namespace SwiftBookingTest.Core
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Stop pluralizing of table name in database
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //set rules on client and phone number table
-            modelBuilder.Configurations.Add(new ClientRecordConfiguration());
-            modelBuilder.Configurations.Add(new ClientPhoneConfiguration());
+            //modelBuilder.Configurations.Add(new ClientRecordConfiguration());
+            //modelBuilder.Configurations.Add(new ClientPhoneConfiguration());
 
             #region many to many relationship
             modelBuilder.Entity<Student>()

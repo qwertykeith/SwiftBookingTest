@@ -11,7 +11,9 @@ namespace SwiftBookingTest.Core.Repository
 {
     public class OfficeAssignmentRepository : Repository<OfficeAssignment>, IOfficeAssignmentRepository
     {
-        public OfficeAssignmentRepository(DbContext context) : base(context) { }
+        public OfficeAssignmentRepository(DbContext context) : base(context)
+        {
+        }
 
         /// <summary>
         /// Gets the by instructor.
@@ -21,7 +23,7 @@ namespace SwiftBookingTest.Core.Repository
         /// <exception cref="System.NotImplementedException"></exception>
         public IQueryable<OfficeAssignment> GetByInstructor(int instructorId)
         {
-           return  DbSet.Where(x => x.InstructorID == instructorId);
+            return DbSet.Where(x => x.InstructorID == instructorId);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core", "SwiftBookingTest.Core\SwiftBookingTest.Core.csproj", "{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C07B955A-4256-4D27-BA24-402F348A1E37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Test", "SwiftBookingTest.Test\SwiftBookingTest.Test.csproj", "{BCD11610-EF36-4361-87D4-7FE2814102D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingConsole", "SwiftBookingConsole\SwiftBookingConsole.csproj", "{6571E520-E0BC-4761-8A19-DC27C49C4BF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
