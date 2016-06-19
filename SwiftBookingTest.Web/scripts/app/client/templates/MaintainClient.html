@@ -81,6 +81,7 @@
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Phone number</th>
+                                <th style="display:none;"></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -95,10 +96,14 @@
                                 <td>
                                     {{clientRecord.FormattedPhoneNumbers}}
                                 </td>
-                                <td class="text-center">
+                                <td style="display:none;" class="text-center">
                                     <span title="Send it for delivery"
                                           ng-click="vm.ClientFactory.Update(clientRecord)"
                                           class="glyphicon glyphicon-upload on-mouse-hover"></span>
+                                </td>
+                                <td>
+                                    <span title="Edit" class="fa fa-edit  on-mouse-hover"
+                                          ng-click="vm.ClientFactory.Update(clientRecord)"></span>
                                 </td>
                             </tr>
                         </tbody>
