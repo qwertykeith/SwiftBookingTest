@@ -23,6 +23,7 @@ namespace SwiftBookingTest.Model
 
         public ClientRecord()
         {
+            var state = this.State;
             this.ClientPhones = new List<ClientPhone>();
         }
         /// <summary>

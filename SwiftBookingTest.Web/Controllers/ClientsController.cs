@@ -12,6 +12,7 @@ using System.Text;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
+using SwiftBookingTest.Core.Extensions;
 
 
 namespace SwiftBookingTest.Web.Controllers
@@ -71,9 +72,17 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
-            var ff = sdUow.ClientRecords.GetById(Id);
-            ff.Name = "Biknanu";
-            sdUow.ClientRecords.Update(ff);
+            clientRecord.Name = "Biknanu";
+            var newPhones = clientRecord.ClientPhones.ToList();
+            newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
+            {
+                x.ClientRecordId = clientRecord.Id;
+                x.PhoneNumberId = x.PhoneNumber.Id;
+                string number = x.PhoneNumber.Number;
+                x.PhoneNumber = new PhoneNumber { Number = number };
+                sdUow.ClientPhones.Add(x);
+            });
+            sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
             return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
@@ -92,7 +101,7 @@ namespace SwiftBookingTest.Web.Controllers
                 return Ok(JObject.Parse(await result.Content.ReadAsStringAsync()));
             }
         }
-        
+
         /// <summary>
         /// Sets the payload.
         /// </summary>

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace SwiftBookingTest.Model
@@ -7,7 +9,7 @@ namespace SwiftBookingTest.Model
     /// Represents base class property
     /// </summary>
     [DataContract]
-    public abstract class BaseClass
+    public abstract class BaseClass : IObjectWithState
     {
         private int _id;
         private byte[] _rowVersion { get; set; }
@@ -38,5 +40,12 @@ namespace SwiftBookingTest.Model
             set { _rowVersion = value; }
         }
 
+        [NotMapped]
+        public State State
+        {
+            get;
+            set;
+
+        }
     }
 }

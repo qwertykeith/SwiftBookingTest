@@ -26,7 +26,11 @@
             Update: Update,
             SendDelivery: SendDelivery,
             GetByInstructor: GetByInstructor,
-            IsBusy: false
+            IsBusy: false,
+            PhoneNumber: { "Number": "", Id: null },
+            AddPhoneNumber: AddPhoneNumber,
+            SelectedClient: null,
+            SelectClient: SelectClient
         }
 
         /*
@@ -99,18 +103,37 @@
                     theme: "prime"
                 });
             });
-        }
+        };
 
         /*
          * @description Update client record
          */
         function Update(clientRecord) {
-            APIFactory.Put(service.apiUrl + "?Id=" + clientRecord.Id, clientRecord).then(function (response) {
+            APIFactory.Put(service.apiUrl + "?Id=" + service.SelectedClient.Id,
+            service.SelectedClient).then(function (response) {
                 clientRecord = response.data;
             }, function (error) {
-                Notification.error(error.data);
+                ngNotify.set(error.data.ExceptionMessage, {
+                    type: 'error',
+                    sticky: true,
+                    position: 'top',
+                    theme: "prime"
+                });
             });
-        }
+        };
+
+        function AddPhoneNumber() {
+            service.SelectedClient.ClientPhones.push({
+                "ClientRecord": null,
+                "PhoneNumber": { Number: service.PhoneNumber.Number },
+                "PhoneNumberId": -1,
+                "ClientRecordId": -1
+            });
+        };
+
+        function SelectClient(clientRecord) {
+            service.SelectedClient = clientRecord;
+        };
 
         return service;
 
