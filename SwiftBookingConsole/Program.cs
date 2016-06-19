@@ -11,7 +11,6 @@ namespace SwiftBookingConsole
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             GetClient();
@@ -27,6 +26,7 @@ namespace SwiftBookingConsole
 
             GetClientWherePhoneNumberIsRepeatedMoreThanTwice();
         }
+
         /// <summary>
         /// Gets the customer where name contains letter.
         /// </summary>
@@ -113,5 +113,6 @@ namespace SwiftBookingConsole
             Uow.ClientRecords.Add(client);
             Uow.Commit();
         }
+
     }
 }

@@ -25,6 +25,11 @@ namespace SwiftBookingTest.Web.Test.Fakes
 
         }
 
+        public void DeleteByIds(IEnumerable<ClientRecord> T)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<ClientRecord> GetAll()
         {
             return new List<ClientRecord>

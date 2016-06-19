@@ -17,9 +17,10 @@ namespace SwiftBookingTest.Web
             //    new CamelCasePropertyNamesContractResolver();
 
             ////Helpful to remove circular reference
-            //config.Formatters.JsonFormatter
-            //.SerializerSettings
-            //.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter
+            .SerializerSettings
+            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             config.Filters.Add(new ValidationActionFilter());
         }
     }
