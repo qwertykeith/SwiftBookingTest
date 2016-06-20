@@ -114,8 +114,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ClientsControllerTest.cs" />
-    <Compile Include="Fakes\FakeClientRecordRepository.cs" />
-    <Compile Include="Fakes\FakeDemoUow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

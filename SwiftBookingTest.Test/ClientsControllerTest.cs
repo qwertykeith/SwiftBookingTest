@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SwiftBookingTest.Web.Controllers;
 using SwiftBookingTest.CoreContracts;
-using SwiftBookingTest.Web.Test.Fakes;
 using System.Collections.Generic;
 using SwiftBookingTest.Model;
 
@@ -27,15 +26,13 @@ namespace SwiftBookingTest.Web.Test
     {
 
 
-        private FakeDemoUow _repo;
         private ClientsController _ctrl;
 
 
         [TestInitialize]
         public void Init()
         {
-            _repo = new FakeDemoUow();
-
+            
         }
 
 
@@ -62,6 +59,19 @@ namespace SwiftBookingTest.Web.Test
         [TestMethod]
         public void PostTest()
         {
+            var repo = new Mock<ISwiftDemoUow>();
+            List<ClientRecord> cl = new List<ClientRecord>();
+            _ctrl = new ClientsController(repo.Object);
+
+            ClientRecord cRec = new ClientRecord
+            {
+                Address = "21, Test Street, Test Suburb, 5023",
+                Name = "Test Name",
+                ClientPhones = new List<ClientPhone> { new ClientPhone { PhoneNumber = new PhoneNumber { Number = "123456" } } }
+            };
+
+            repo.Setup(r => r.ClientRecords.Add(cRec));
+
             var config = new HttpConfiguration();
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/api/v1/topics");
             var route = config.Routes.MapHttpBatchRoute("DefaultApi", "api/{controller}/{id}", null);
@@ -70,13 +80,6 @@ namespace SwiftBookingTest.Web.Test
             _ctrl.ControllerContext = new HttpControllerContext(config, routeData, request);
             _ctrl.Request = request;
             _ctrl.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = config;
-
-            ClientRecord cRec = new ClientRecord
-            {
-                Address = "21, Test Street, Test Suburb, 5023",
-                Name = "Test Name",
-                ClientPhones = new List<ClientPhone> { new ClientPhone { PhoneNumber = new PhoneNumber { Number = "123456" } } }
-            };
 
             var result = _ctrl.Post(cRec);
             Assert.AreEqual(HttpStatusCode.Created, result.StatusCode);
