@@ -15,6 +15,7 @@ using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using System.Web.Http.Results;
+using Moq;
 
 namespace SwiftBookingTest.Web.Test
 {
@@ -34,7 +35,7 @@ namespace SwiftBookingTest.Web.Test
         public void Init()
         {
             _repo = new FakeDemoUow();
-            _ctrl = new ClientsController(_repo);
+
         }
 
 
@@ -44,19 +45,15 @@ namespace SwiftBookingTest.Web.Test
         [TestMethod]
         public void GetTest()
         {
+            var repo = new Mock<ISwiftDemoUow>();
+            _ctrl = new ClientsController(repo.Object);
+
+            List<ClientRecord> cl = new List<ClientRecord>();
+            cl.Add(new ClientRecord { Id = 1, Name = "asas" });
+            repo.Setup(r => r.ClientRecords.GetAll()).Returns(cl.AsQueryable());
+
             var kk = ((OkNegotiatedContentResult<IEnumerable<ClientRecord>>)(_ctrl.Get().Result)).Content;
-            kk = kk.ToList();
-            Assert.IsTrue(kk.Count() > 0);
-            Assert.IsTrue(kk.First().Address != string.Empty);
-            Assert.IsTrue(kk.First().FormattedPhoneNumbers != string.Empty);
-            Assert.IsTrue(kk.First().Name != string.Empty);
-            Assert.IsTrue(kk.First().Id > 0);
-            Assert.IsTrue(kk.First().ClientPhones.Count > 0);
-            Assert.IsTrue(kk.First().ClientPhones.First().ClientRecordId > 0);
-
-            Assert.IsTrue(kk.First().ClientPhones.First().PhoneNumber != null);
-            Assert.IsTrue(kk.First().ClientPhones.First().PhoneNumber.Number != string.Empty);
-
+            Assert.IsTrue(cl.SequenceEqual(kk));
         }
 
         /// <summary>
