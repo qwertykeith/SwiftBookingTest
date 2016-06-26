@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessEngine\IClientRecordsBusinessEngine.cs" />
+    <Compile Include="IBusinessEngine.cs" />
     <Compile Include="IOfficeAssignmentRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISwiftDemoUow.cs" />

@@ -32,7 +32,7 @@ namespace SwiftBookingTest.Web.Test
         [TestInitialize]
         public void Init()
         {
-            
+
         }
 
 
@@ -57,6 +57,7 @@ namespace SwiftBookingTest.Web.Test
         /// Posts the test.
         /// </summary>
         [TestMethod]
+        [TestCategory("Post with http call")]
         public void PostTest()
         {
             var repo = new Mock<ISwiftDemoUow>();
@@ -89,5 +90,7 @@ namespace SwiftBookingTest.Web.Test
 
             Assert.IsNotNull(topic);
         }
+
+       
     }
 }

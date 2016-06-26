@@ -15,6 +15,19 @@ namespace SwiftBookingTest.Core.Helpers
     public class RepositoryProvider : IRepositoryProvider
     {
         /// <summary>
+        /// Gets the repositories.
+        /// </summary>
+        /// <value>
+        /// The repositories.
+        /// </value>
+        protected Dictionary<Type, object> Repositories { get; private set; }
+
+        /// <summary>
+        /// The _repository factories
+        /// </summary>
+        private RepositoryFactories _repositoryFactories;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryProvider"/> class.
         /// </summary>
         /// <param name="repositoryFactories">The repository factories.</param>
@@ -67,13 +80,7 @@ namespace SwiftBookingTest.Core.Helpers
             return MakeRepository<T>(factory, DbContext);
         }
 
-        /// <summary>
-        /// Gets the repositories.
-        /// </summary>
-        /// <value>
-        /// The repositories.
-        /// </value>
-        protected Dictionary<Type, object> Repositories { get; private set; }
+        
 
         /// <summary>
         /// Makes the repository.
@@ -110,10 +117,7 @@ namespace SwiftBookingTest.Core.Helpers
             Repositories[typeof(T)] = repository;
         }
 
-        /// <summary>
-        /// The _repository factories
-        /// </summary>
-        private RepositoryFactories _repositoryFactories;
+       
 
     }
 }

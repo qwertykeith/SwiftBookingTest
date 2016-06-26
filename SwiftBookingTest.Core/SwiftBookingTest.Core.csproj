@@ -51,10 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationConstants.cs" />
+    <Compile Include="BusinessEngine\ClientRecordsBusinessEngine.cs" />
     <Compile Include="Configurations\ClientPhoneConfiguration.cs" />
     <Compile Include="Configurations\ClientRecordConfiguration.cs" />
     <Compile Include="Configurations\OfficeAssignmentConfiguration.cs" />
     <Compile Include="Extensions\ExtensionHelper.cs" />
+    <Compile Include="Helpers\BusinessEngineFactory.cs" />
+    <Compile Include="Helpers\BusinessEngineProvider.cs" />
+    <Compile Include="Helpers\IBusinessEngineProvider.cs" />
     <Compile Include="Helpers\StateHelpers.cs" />
     <Compile Include="Helpers\IRepositoryProvider.cs" />
     <Compile Include="Helpers\RepositoryFactories.cs" />

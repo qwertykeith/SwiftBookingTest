@@ -21,6 +21,10 @@ namespace SwiftBookingTest.Core.Helpers
                 //add customised repository
             };
         }
+        /// <summary>
+        /// The _repository factories
+        /// </summary>
+        private readonly IDictionary<Type, Func<DbContext, object>> _repositoryFactories;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryFactories"/> class.
@@ -81,10 +85,7 @@ namespace SwiftBookingTest.Core.Helpers
             return dbContext => new Repository<T>(dbContext);
         }
 
-        /// <summary>
-        /// The _repository factories
-        /// </summary>
-        private readonly IDictionary<Type, Func<DbContext, object>> _repositoryFactories;
+        
 
     }
 }

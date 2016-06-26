@@ -3,6 +3,8 @@ using SwiftBookingTest.Core;
 using SwiftBookingTest.CoreContracts;
 using Ninject;
 using SwiftBookingTest.Core.Helpers;
+using SwiftBookingTest.CoreContracts.BusinessEngine;
+using SwiftBookingTest.Core.BusinessEngine;
 
 namespace SwiftBookingTest.Web
 {
@@ -17,8 +19,15 @@ namespace SwiftBookingTest.Web
 
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>()
                 .InSingletonScope();
-
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
+
+
+            kernel.Bind<BusinessEngineFactory>().To<BusinessEngineFactory>()
+                .InSingletonScope();
+            kernel.Bind<IBusinessEngineProvider>().To<BusinessEngineProvider>();
+
+            kernel.Bind<IClientRecordsBusinessEngine>().To<ClientRecordsBusinessEngine>();
+
             kernel.Bind<ISwiftDemoUow>().To<SwiftDemoUow>();
 
             // Tell WebApi how to use our Ninject IoC

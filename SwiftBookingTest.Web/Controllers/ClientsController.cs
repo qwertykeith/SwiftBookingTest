@@ -13,7 +13,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
 using SwiftBookingTest.Core.Extensions;
-
+using SwiftBookingTest.CoreContracts.BusinessEngine;
 
 namespace SwiftBookingTest.Web.Controllers
 {
@@ -29,11 +29,28 @@ namespace SwiftBookingTest.Web.Controllers
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ClientsController"/> class.
+        /// </summary>
+        /// <param name="uow">The uow.</param>
+        public ClientsController(IClientRecordsBusinessEngine bow)
+        {
+            buow = bow;
+        }
+
+        public ClientsController(ISwiftDemoUow uow, IClientRecordsBusinessEngine bow)
+        {
+            sdUow = uow;
+            buow = bow;
+        }
+
+        /// <summary>
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
+            var someThing = buow.IsClientHasPhone(1);
+
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
