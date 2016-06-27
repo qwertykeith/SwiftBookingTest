@@ -8,8 +8,22 @@ using SwiftBookingTest.Model;
 
 namespace SwiftBookingTest.Core.BusinessEngine
 {
-    public class BaseBusinessEngine: IBusinessEngine
+    public class BaseBusinessEngine : IBusinessEngine
     {
+        private ISwiftDemoUow _uow;
+        public ISwiftDemoUow Uow
+        {
+            get
+            {
+                return _uow;
+            }
+
+            set
+            {
+                _uow = value;
+            }
+        }
+
         public bool IsNull(BaseClass entity, bool checkId = false)
         {
             if (!checkId)

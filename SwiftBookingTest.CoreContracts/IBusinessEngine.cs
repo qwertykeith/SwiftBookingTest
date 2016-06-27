@@ -16,5 +16,12 @@ namespace SwiftBookingTest.CoreContracts
         /// <param name="checkId">if set to <c>true</c> [check identifier].</param>
         /// <returns></returns>
         bool IsNull(BaseClass entity, bool checkId = false);
+        /// <summary>
+        /// Gets or sets the _uow.
+        /// </summary>
+        /// <value>
+        /// The _uow.
+        /// </value>
+        ISwiftDemoUow Uow { get; set; }
     }
 }

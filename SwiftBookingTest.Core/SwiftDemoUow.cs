@@ -1,4 +1,5 @@
 ﻿using SwiftBookingTest.Core.Helpers;
+using SwiftBookingTest.Core.Repository;
 using SwiftBookingTest.CoreContracts;
 using SwiftBookingTest.Model;
 using System;
@@ -7,12 +8,20 @@ namespace SwiftBookingTest.Core
 {
     public class SwiftDemoUow : ISwiftDemoUow, IDisposable
     {
-        public SwiftDemoUow(IRepositoryProvider repositoryProvider)
+        //public SwiftDemoUow(IRepositoryProvider repositoryProvider)
+        //{
+        //    CreateDbContext();
+        //    repositoryProvider.DbContext = DbContext;
+        //    RepositoryProvider = repositoryProvider;
+        //}
+
+        public SwiftDemoUow(IRepositoryProvider repositoryProvider, ISwiftBookingBusinessEngineUow businessUow)
         {
             CreateDbContext();
-
             repositoryProvider.DbContext = DbContext;
             RepositoryProvider = repositoryProvider;
+            repositoryProvider.SwiftBookingBusinessEngineUow = businessUow;
+            repositoryProvider.SwiftBookingBusinessEngineUow.SwiftDemoUow = this;
         }
 
         private SwiftDemoContext DbContext { get; set; }
@@ -74,7 +83,7 @@ namespace SwiftBookingTest.Core
         /// <value>
         /// The office assignments.
         /// </value>
-        public IOfficeAssignmentRepository OfficeAssignments { get { return GetRepo<IOfficeAssignmentRepository>(); } }
+        public IOfficeAssignmentRepository OfficeAssignments { get { return GetRepo<OfficeAssignmentRepository>(); } }
 
         /// <summary>
         /// Save pending changes to the database

@@ -29,21 +29,7 @@ namespace SwiftBookingTest.Web.Controllers
         {
             sdUow = uow;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ClientsController"/> class.
-        /// </summary>
-        /// <param name="uow">The uow.</param>
-        public ClientsController(ISwiftBookingBusinessEngineUow bow)
-        {
-            buow = bow;
-        }
-
-        public ClientsController(ISwiftDemoUow uow, ISwiftBookingBusinessEngineUow bow)
-        {
-            sdUow = uow;
-            buow = bow;
-        }
+        
 
         #endregion
 
@@ -53,9 +39,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-            var someThing = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(1);
-            var poo = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(2);
-
+            var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
@@ -65,7 +49,7 @@ namespace SwiftBookingTest.Web.Controllers
             foreach (var cp in list.SelectMany(x => x.ClientPhones))
             {
                 cp.ClientRecord = null;
-                var thooo = buow.PhoneNumberBusinessValidatiors.IsNull(cp.PhoneNumber);
+                //var thooo = buow.PhoneNumberBusinessValidatiors.IsNull(cp.PhoneNumber);
             }
             return Ok<IEnumerable<ClientRecord>>(list);
         }
@@ -96,7 +80,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
-            var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
+            //var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
 
             clientRecord.Name = "Biknanu";
             var newPhones = clientRecord.ClientPhones.ToList();

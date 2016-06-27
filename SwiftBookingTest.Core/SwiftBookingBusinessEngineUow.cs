@@ -13,6 +13,7 @@ namespace SwiftBookingTest.Core
     public class SwiftBookingBusinessEngineUow : ISwiftBookingBusinessEngineUow, IDisposable
     {
         protected IBusinessEngineProvider BusinessProvider { get; set; }
+        private ISwiftDemoUow _swiftDemoUow;
 
         public SwiftBookingBusinessEngineUow(IBusinessEngineProvider businessEngineProvider)
         {
@@ -32,6 +33,19 @@ namespace SwiftBookingTest.Core
             get
             {
                 return BusinessProvider.GetBusinessEngine<PhoneNumberBusinessEngine>();
+            }
+        }
+
+        public ISwiftDemoUow SwiftDemoUow
+        {
+            get
+            {
+                return _swiftDemoUow;
+            }
+
+            set
+            {
+                _swiftDemoUow = value;
             }
         }
 

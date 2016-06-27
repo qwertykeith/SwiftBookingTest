@@ -16,7 +16,7 @@ namespace SwiftBookingTest.Core.Repository
     /// The generic repository for data access
     /// </summary>
     /// <typeparam name="T">Type of entity for this Repository.</typeparam>
-    public class Repository<T> : IRepository<T> where T : class
+    public  class Repository<T> : IRepository<T> where T : class
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Repository{T}"/> class.
@@ -30,7 +30,7 @@ namespace SwiftBookingTest.Core.Repository
             DbContext = dbContext;
             DbSet = DbContext.Set<T>();
         }
-
+        
         /// <summary>
         /// Gets or sets the database context.
         /// </summary>

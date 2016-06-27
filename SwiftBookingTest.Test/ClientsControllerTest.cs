@@ -15,6 +15,8 @@ using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using System.Web.Http.Results;
 using Moq;
+using SwiftBookingTest.Core.Helpers;
+using SwiftBookingTest.Core;
 
 namespace SwiftBookingTest.Web.Test
 {
@@ -43,25 +45,17 @@ namespace SwiftBookingTest.Web.Test
         public void GetTest()
         {
             var repo = new Mock<ISwiftDemoUow>();
-            var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
-            _ctrl = new ClientsController(repo.Object, businessEngine.Object);
-
+            var coreRepoObject = repo.Object;
+            _ctrl = new ClientsController(coreRepoObject);
             List<ClientRecord> cl = new List<ClientRecord>();
             cl.Add(new ClientRecord { Id = 1, Name = "Atul" });
             cl.Add(new ClientRecord { Id = 2, Name = "Kapil" });
-
-            businessEngine.Setup(r => r.ClientRecordBusinessValidatiors.IsClientHasPhone(1)).Returns(cl.FirstOrDefault(x => x.Id == 1) != null);
-            businessEngine.Setup(r => r.ClientRecordBusinessValidatiors.IsClientHasPhone(2)).Returns(cl.FirstOrDefault(x => x.Id == 2) != null);
-
-            var phoneNumbers = cl.SelectMany(x => x.ClientPhones)?.Select(y => y.PhoneNumber);
-            if (phoneNumbers != null && phoneNumbers.Count() > 0)
-            {
-                foreach (var pNumber in phoneNumbers)
-                    businessEngine.Setup(r => r.PhoneNumberBusinessValidatiors.IsNull(pNumber, false)).Returns(true);
-            }
-
+            List<OfficeAssignment> ass = new List<OfficeAssignment> {
+                new OfficeAssignment {
+                    Instructor = new Instructor { InstructorID = 1 }, InstructorID = 1 }
+            };
+            repo.Setup(r => r.OfficeAssignments.GetByInstructor(1)).Returns(ass.AsQueryable());
             repo.Setup(r => r.ClientRecords.GetAll()).Returns(cl.AsQueryable());
-
             var kk = ((OkNegotiatedContentResult<IEnumerable<ClientRecord>>)(_ctrl.Get().Result)).Content;
             Assert.IsTrue(cl.SequenceEqual(kk));
         }
@@ -77,7 +71,8 @@ namespace SwiftBookingTest.Web.Test
             var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
 
             List<ClientRecord> cl = new List<ClientRecord>();
-            _ctrl = new ClientsController(repo.Object, businessEngine.Object);
+            //_ctrl = new ClientsController(repo.Object, businessEngine.Object);
+            _ctrl = new ClientsController(repo.Object);
 
             ClientRecord cRec = new ClientRecord
             {

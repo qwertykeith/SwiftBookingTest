@@ -27,6 +27,8 @@ namespace SwiftBookingTest.Core.Helpers
         /// </summary>
         private RepositoryFactories _repositoryFactories;
 
+       private ISwiftBookingBusinessEngineUow _iSwiftBookingBusinessEngineUow;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryProvider"/> class.
         /// </summary>
@@ -37,11 +39,26 @@ namespace SwiftBookingTest.Core.Helpers
             Repositories = new Dictionary<Type, object>();
         }
 
+
         /// <summary>
         /// Get and set the <see cref="DbContext" /> with which to initialize a repository
         /// if one must be created.
         /// </summary>
         public DbContext DbContext { get; set; }
+
+        public ISwiftBookingBusinessEngineUow SwiftBookingBusinessEngineUow
+        {
+            get
+            {
+                return _iSwiftBookingBusinessEngineUow;
+            }
+
+            set
+            {
+                _iSwiftBookingBusinessEngineUow = value;
+            }
+        }
+
 
         /// <summary>
         /// Get an <see cref="IRepository{T}" /> for entity type, T.
@@ -80,7 +97,7 @@ namespace SwiftBookingTest.Core.Helpers
             return MakeRepository<T>(factory, DbContext);
         }
 
-        
+
 
         /// <summary>
         /// Makes the repository.
@@ -95,11 +112,19 @@ namespace SwiftBookingTest.Core.Helpers
             var f = factory ?? _repositoryFactories.GetRepositoryFactory<T>();
             if (f == null)
             {
-                throw new NotImplementedException("No factory for repository type, " + typeof(T).FullName);
+                var newF = Activator.CreateInstance(typeof(T), dbContext, this.SwiftBookingBusinessEngineUow);
+                if (newF == null)
+                    throw new NotImplementedException("No factory for repository type, " + typeof(T).FullName);
+                Repositories[typeof(T)] = (T)newF;
+                return (T)newF;
             }
-            var repo = (T)f(dbContext);
-            Repositories[typeof(T)] = repo;
-            return repo;
+            else
+            {
+                var repo = (T)f(dbContext);
+                Repositories[typeof(T)] = repo;
+                return repo;
+            }
+
         }
 
         /// <summary>
@@ -117,7 +142,7 @@ namespace SwiftBookingTest.Core.Helpers
             Repositories[typeof(T)] = repository;
         }
 
-       
+
 
     }
 }

@@ -11,13 +11,8 @@ namespace SwiftBookingTest.Core.BusinessEngine
 {
     public class PhoneNumberBusinessEngine : BaseBusinessEngine, IPhoneNumberBusinessEngine
     {
-        private ISwiftDemoUow _uow;
 
         public PhoneNumberBusinessEngine() { }
-
-        public PhoneNumberBusinessEngine(ISwiftDemoUow uow)
-        {
-            this._uow = uow;
-        }
+        
     }
 }

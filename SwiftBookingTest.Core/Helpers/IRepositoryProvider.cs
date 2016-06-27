@@ -26,6 +26,14 @@ namespace SwiftBookingTest.Core.Helpers
         DbContext DbContext { get; set; }
 
         /// <summary>
+        /// Gets or sets the swift booking business engine uow.
+        /// </summary>
+        /// <value>
+        /// The swift booking business engine uow.
+        /// </value>
+        ISwiftBookingBusinessEngineUow SwiftBookingBusinessEngineUow { get; set; }
+
+        /// <summary>
         /// Get an <see cref="IRepository{T}"/> for entity type, T.
         /// </summary>
         /// <typeparam name="T">

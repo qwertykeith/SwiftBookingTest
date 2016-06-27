@@ -11,10 +11,18 @@ namespace SwiftBookingTest.Core.Repository
 {
     public class OfficeAssignmentRepository : Repository<OfficeAssignment>, IOfficeAssignmentRepository
     {
+        private SwiftBookingBusinessEngineUow _businessUow;
+
         public OfficeAssignmentRepository(DbContext context) : base(context)
         {
         }
 
+        public OfficeAssignmentRepository(DbContext context, SwiftBookingBusinessEngineUow businessUow) : base(context)
+        {
+            _businessUow = businessUow;
+        }
+
+       
         /// <summary>
         /// Gets the by instructor.
         /// </summary>
@@ -23,6 +31,10 @@ namespace SwiftBookingTest.Core.Repository
         /// <exception cref="System.NotImplementedException"></exception>
         public IQueryable<OfficeAssignment> GetByInstructor(int instructorId)
         {
+
+            var pp = _businessUow.ClientRecordBusinessValidatiors.IsNull(new ClientRecord { });
+            var pp2 = _businessUow.PhoneNumberBusinessValidatiors.IsNull(new PhoneNumber { });
+            var hij = _businessUow.SwiftDemoUow.Instructors.GetById(instructorId);
             return DbSet.Where(x => x.InstructorID == instructorId);
         }
     }
