@@ -32,9 +32,8 @@ namespace SwiftBookingTest.Core.Repository
         public IQueryable<OfficeAssignment> GetByInstructor(int instructorId)
         {
 
-            //var pp = _businessUow.ClientRecordBusinessValidatiors.IsNull(new ClientRecord { });
-            //var pp2 = _businessUow.PhoneNumberBusinessValidatiors.IsNull(new PhoneNumber { });
-            //var hij = _businessUow.SwiftDemoUow.Instructors.GetById(instructorId);
+            var pp = _businessUow.ClientRecordBusinessValidatiors.IsNull(new ClientRecord { });
+            var pp2 = _businessUow.PhoneNumberBusinessValidatiors.IsNull(new PhoneNumber { });
             return DbSet.Where(x => x.InstructorID == instructorId);
         }
     }
