@@ -32,12 +32,12 @@ namespace SwiftBookingTest.Web.Controllers
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
         /// <param name="uow">The uow.</param>
-        public ClientsController(IClientRecordsBusinessEngine bow)
+        public ClientsController(ISwiftBookingBusinessEngineUow bow)
         {
             buow = bow;
         }
 
-        public ClientsController(ISwiftDemoUow uow, IClientRecordsBusinessEngine bow)
+        public ClientsController(ISwiftDemoUow uow, ISwiftBookingBusinessEngineUow bow)
         {
             sdUow = uow;
             buow = bow;
@@ -49,8 +49,13 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-            var someThing = buow.IsClientHasPhone(1);
 
+            var someThing = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(1);
+
+            var poo = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(2);
+
+            
+            
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
@@ -59,7 +64,11 @@ namespace SwiftBookingTest.Web.Controllers
             //var newList = sdUow.ClientRecords.GetAllIncluding(cr => cr.ClientPhones).ToList();
             // Set client record to null to fix circular reference issue
             foreach (var cp in list.SelectMany(x => x.ClientPhones))
+            {
                 cp.ClientRecord = null;
+                var thooo = buow.PhoneNumberBusinessValidatiors.IsNumberValid(cp.PhoneNumber);
+
+            }
 
             return Ok<IEnumerable<ClientRecord>>(list);
         }

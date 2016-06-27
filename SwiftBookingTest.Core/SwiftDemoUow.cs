@@ -60,9 +60,6 @@ namespace SwiftBookingTest.Core
         /// </value>
         public IRepository<Coarse> Coarses { get { return GetStandardRepo<Coarse>(); } }
 
-      
-        
-
         /// <summary>
         /// Gets the instructors.
         /// </summary>

@@ -22,10 +22,13 @@ namespace SwiftBookingTest.Core.Helpers
         /// </value>
         protected Dictionary<Type, object> BusinessEngines { get; private set; }
 
-        public BusinessEngineProvider(BusinessEngineFactory businessEngineFactory)
+        private ISwiftDemoUow _uow;
+
+        public BusinessEngineProvider(BusinessEngineFactory businessEngineFactory, ISwiftDemoUow uow)
         {
             _businessFactories = businessEngineFactory;
             BusinessEngines = new Dictionary<Type, object>();
+            _uow = uow;
         }
 
         public virtual T GetBusinessEngine<T>() where T : IBusinessEngine
@@ -35,21 +38,28 @@ namespace SwiftBookingTest.Core.Helpers
             if (businessObj != null)
                 return (T)businessObj;
 
-            return MakeBusinessEngine<T>();
+            return MakeBusinessEngine<T>(_uow);
         }
 
         /// <summary>
         /// Makes the business engine.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="factory">The factory.</param>
-        /// <param name="dbContext">The database context.</param>
+        /// <param name="uow">The uow.</param>
         /// <returns></returns>
-        protected virtual T MakeBusinessEngine<T>()
+        protected virtual T MakeBusinessEngine<T>(ISwiftDemoUow uow)
         {
-            object o = Activator.CreateInstance<T>();
-            BusinessEngines[typeof(T)] = (T)o;
-            return (T)o;
+            try
+            {
+                object o = Activator.CreateInstance(typeof(T), uow);
+                BusinessEngines[typeof(T)] = (T)o;
+                return (T)o;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

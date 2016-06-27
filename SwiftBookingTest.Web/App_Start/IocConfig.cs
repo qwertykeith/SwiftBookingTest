@@ -26,9 +26,10 @@ namespace SwiftBookingTest.Web
                 .InSingletonScope();
             kernel.Bind<IBusinessEngineProvider>().To<BusinessEngineProvider>();
 
-            kernel.Bind<IClientRecordsBusinessEngine>().To<ClientRecordsBusinessEngine>();
+            
 
             kernel.Bind<ISwiftDemoUow>().To<SwiftDemoUow>();
+            kernel.Bind<ISwiftBookingBusinessEngineUow>().To<SwiftBookingBusinessEngineUow>();
 
             // Tell WebApi how to use our Ninject IoC
             config.DependencyResolver = new NinjectDependencyResolver(kernel);

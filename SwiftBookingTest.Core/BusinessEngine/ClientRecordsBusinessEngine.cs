@@ -1,4 +1,5 @@
-﻿using SwiftBookingTest.CoreContracts.BusinessEngine;
+﻿using SwiftBookingTest.CoreContracts;
+using SwiftBookingTest.CoreContracts.BusinessEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,19 @@ namespace SwiftBookingTest.Core.BusinessEngine
 {
     public class ClientRecordsBusinessEngine : IClientRecordsBusinessEngine
     {
+        private ISwiftDemoUow _uow;
+
+        public ClientRecordsBusinessEngine()
+        {
+
+        }
+
+        public ClientRecordsBusinessEngine(ISwiftDemoUow uow)
+        {
+            _uow = uow;
+        }
+
+
         /// <summary>
         /// Determines whether [is client has phone] [the specified client identifier].
         /// </summary>
@@ -17,7 +31,8 @@ namespace SwiftBookingTest.Core.BusinessEngine
         /// <exception cref="System.NotImplementedException"></exception>
         public bool IsClientHasPhone(long? clientId)
         {
-            throw new NotImplementedException();
+            var cr =  _uow.ClientRecords.GetById(1);
+            return cr != null;
         }
     }
 }
