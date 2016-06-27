@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Test", "Sw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingConsole", "SwiftBookingConsole\SwiftBookingConsole.csproj", "{6571E520-E0BC-4761-8A19-DC27C49C4BF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core.Tests", "SwiftBookingTest.Core.Tests\SwiftBookingTest.Core.Tests.csproj", "{F81E38CD-8F48-4ACE-B705-314F86C28E3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,11 +49,16 @@ Global
 		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BCD11610-EF36-4361-87D4-7FE2814102D3} = {C07B955A-4256-4D27-BA24-402F348A1E37}
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D} = {C07B955A-4256-4D27-BA24-402F348A1E37}
 	EndGlobalSection
 EndGlobal

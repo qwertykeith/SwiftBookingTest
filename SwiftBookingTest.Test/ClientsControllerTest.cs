@@ -58,6 +58,13 @@ namespace SwiftBookingTest.Web.Test
             repo.Setup(r => r.ClientRecords.GetAll()).Returns(cl.AsQueryable());
             var kk = ((OkNegotiatedContentResult<IEnumerable<ClientRecord>>)(_ctrl.Get().Result)).Content;
             Assert.IsTrue(cl.SequenceEqual(kk));
+
+
+            var officeAssignmentRepo = new Mock<IOfficeAssignmentRepository>();
+            var pp = officeAssignmentRepo.Object;
+            officeAssignmentRepo.Setup(x => x.GetByInstructor(1)).Returns(ass.AsQueryable());
+            var kak = pp.GetByInstructor(1);
+            Assert.IsTrue(kak.SequenceEqual(ass));
         }
 
         /// <summary>

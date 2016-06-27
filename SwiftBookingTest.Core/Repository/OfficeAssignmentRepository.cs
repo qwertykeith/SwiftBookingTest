@@ -11,13 +11,13 @@ namespace SwiftBookingTest.Core.Repository
 {
     public class OfficeAssignmentRepository : Repository<OfficeAssignment>, IOfficeAssignmentRepository
     {
-        private SwiftBookingBusinessEngineUow _businessUow;
+        private ISwiftBookingBusinessEngineUow _businessUow;
 
         public OfficeAssignmentRepository(DbContext context) : base(context)
         {
         }
 
-        public OfficeAssignmentRepository(DbContext context, SwiftBookingBusinessEngineUow businessUow) : base(context)
+        public OfficeAssignmentRepository(DbContext context, ISwiftBookingBusinessEngineUow businessUow) : base(context)
         {
             _businessUow = businessUow;
         }

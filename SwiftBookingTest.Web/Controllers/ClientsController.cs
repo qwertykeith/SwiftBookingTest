@@ -29,7 +29,6 @@ namespace SwiftBookingTest.Web.Controllers
         {
             sdUow = uow;
         }
-        
 
         #endregion
 
