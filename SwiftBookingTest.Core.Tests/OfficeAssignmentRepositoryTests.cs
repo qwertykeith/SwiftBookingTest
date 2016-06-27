@@ -23,27 +23,27 @@ namespace SwiftBookingTest.Core.Tests
             var list = new List<OfficeAssignment>();
             list.Add(new OfficeAssignment { InstructorID = 1 });
 
-
+            //tHESE ARE DEPENDENCY FOR CUSTOM REPO
             var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
-
             var dbContext = new Mock<SwiftDemoContext>();
             var dbset = GetMockDbSet<OfficeAssignment>(list.AsQueryable());
+            //DEPENDENCY ENDS HERE
 
+            //MOCK REPO
             var repo = new Mock<IOfficeAssignmentRepository>();
-            
-
-
-
+            //SET UP THE DBCONTEXT THIS SETS THE DBSET OBJECT
             dbContext.Setup(x => x.Set<OfficeAssignment>()).Returns(dbset.Object);
-
+            //SET BUSINESS RULE
             businessEngine.Setup(x => x.ClientRecordBusinessValidatiors.IsNull(cr, false)).Returns(true);
             businessEngine.Setup(x => x.PhoneNumberBusinessValidatiors.IsNull(null, false)).Returns(false);
             businessEngine.Setup(x => x.SwiftDemoUow.Instructors.GetById(1)).Returns(inst);
-
+            //SET TEST CALL 
             repo.Setup(x => x.GetByInstructor(1)).Returns(list.AsQueryable());
-
+            //MAKE CALL
             OfficeAssignmentRepository conRepo = new OfficeAssignmentRepository(dbContext.Object, businessEngine.Object);
+            //GET RESULT
             var data = conRepo.GetByInstructor(1);
+            //COMPARE RESULT
             Assert.IsTrue(data.SequenceEqual(list));
             Assert.IsFalse(data.Where(x => x.InstructorID != 1).Count() > 0);
         }
