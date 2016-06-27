@@ -9,22 +9,15 @@ using SwiftBookingTest.CoreContracts;
 
 namespace SwiftBookingTest.Core.BusinessEngine
 {
-    public class PhoneNumberBusinessEngine : IPhoneNumberBusinessEngine
+    public class PhoneNumberBusinessEngine : BaseBusinessEngine, IPhoneNumberBusinessEngine
     {
         private ISwiftDemoUow _uow;
 
-        public PhoneNumberBusinessEngine()
-        {
-
-        }
+        public PhoneNumberBusinessEngine() { }
 
         public PhoneNumberBusinessEngine(ISwiftDemoUow uow)
         {
             this._uow = uow;
-        }
-        public bool IsNumberValid(PhoneNumber number)
-        {
-            return number != null;
         }
     }
 }

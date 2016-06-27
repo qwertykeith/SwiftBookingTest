@@ -22,6 +22,9 @@ namespace SwiftBookingTest.Core.Helpers
         /// </value>
         protected Dictionary<Type, object> BusinessEngines { get; private set; }
 
+        /// <summary>
+        /// The repository unit of work as we need to connect to database 
+        /// </summary>
         private ISwiftDemoUow _uow;
 
         public BusinessEngineProvider(BusinessEngineFactory businessEngineFactory, ISwiftDemoUow uow)

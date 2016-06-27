@@ -5,17 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SwiftBookingTest.Model;
+using SwiftBookingTest.Core.BusinessEngine;
 
 namespace SwiftBookingTest.Core.BusinessEngine
 {
-    public class ClientRecordsBusinessEngine : IClientRecordsBusinessEngine
+    public class ClientRecordsBusinessEngine :BaseBusinessEngine, IClientRecordsBusinessEngine
     {
         private ISwiftDemoUow _uow;
 
-        public ClientRecordsBusinessEngine()
-        {
-
-        }
+        public ClientRecordsBusinessEngine(){}
 
         public ClientRecordsBusinessEngine(ISwiftDemoUow uow)
         {
@@ -31,8 +30,10 @@ namespace SwiftBookingTest.Core.BusinessEngine
         /// <exception cref="System.NotImplementedException"></exception>
         public bool IsClientHasPhone(long? clientId)
         {
-            var cr =  _uow.ClientRecords.GetById(1);
+            var cr = _uow.ClientRecords.GetById(1);
             return cr != null;
         }
+
+        
     }
 }

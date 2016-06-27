@@ -43,10 +43,23 @@ namespace SwiftBookingTest.Web.Test
         public void GetTest()
         {
             var repo = new Mock<ISwiftDemoUow>();
-            _ctrl = new ClientsController(repo.Object);
+            var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
+            _ctrl = new ClientsController(repo.Object, businessEngine.Object);
 
             List<ClientRecord> cl = new List<ClientRecord>();
-            cl.Add(new ClientRecord { Id = 1, Name = "asas" });
+            cl.Add(new ClientRecord { Id = 1, Name = "Atul" });
+            cl.Add(new ClientRecord { Id = 2, Name = "Kapil" });
+
+            businessEngine.Setup(r => r.ClientRecordBusinessValidatiors.IsClientHasPhone(1)).Returns(cl.FirstOrDefault(x => x.Id == 1) != null);
+            businessEngine.Setup(r => r.ClientRecordBusinessValidatiors.IsClientHasPhone(2)).Returns(cl.FirstOrDefault(x => x.Id == 2) != null);
+
+            var phoneNumbers = cl.SelectMany(x => x.ClientPhones)?.Select(y => y.PhoneNumber);
+            if (phoneNumbers != null && phoneNumbers.Count() > 0)
+            {
+                foreach (var pNumber in phoneNumbers)
+                    businessEngine.Setup(r => r.PhoneNumberBusinessValidatiors.IsNull(pNumber, false)).Returns(true);
+            }
+
             repo.Setup(r => r.ClientRecords.GetAll()).Returns(cl.AsQueryable());
 
             var kk = ((OkNegotiatedContentResult<IEnumerable<ClientRecord>>)(_ctrl.Get().Result)).Content;
@@ -61,8 +74,10 @@ namespace SwiftBookingTest.Web.Test
         public void PostTest()
         {
             var repo = new Mock<ISwiftDemoUow>();
+            var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
+
             List<ClientRecord> cl = new List<ClientRecord>();
-            _ctrl = new ClientsController(repo.Object);
+            _ctrl = new ClientsController(repo.Object, businessEngine.Object);
 
             ClientRecord cRec = new ClientRecord
             {
@@ -91,6 +106,6 @@ namespace SwiftBookingTest.Web.Test
             Assert.IsNotNull(topic);
         }
 
-       
+
     }
 }

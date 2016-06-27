@@ -19,6 +19,8 @@ namespace SwiftBookingTest.Web.Controllers
 {
     public class ClientsController : ApiControllerBase
     {
+        #region Contructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
@@ -43,33 +45,28 @@ namespace SwiftBookingTest.Web.Controllers
             buow = bow;
         }
 
+        #endregion
+
         /// <summary>
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-
             var someThing = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(1);
-
             var poo = buow.ClientRecordBusinessValidatiors.IsClientHasPhone(2);
 
-            
-            
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
              .OrderBy(x => x.Name).ToList());
 
-            //var newList = sdUow.ClientRecords.GetAllIncluding(cr => cr.ClientPhones).ToList();
             // Set client record to null to fix circular reference issue
             foreach (var cp in list.SelectMany(x => x.ClientPhones))
             {
                 cp.ClientRecord = null;
-                var thooo = buow.PhoneNumberBusinessValidatiors.IsNumberValid(cp.PhoneNumber);
-
+                var thooo = buow.PhoneNumberBusinessValidatiors.IsNull(cp.PhoneNumber);
             }
-
             return Ok<IEnumerable<ClientRecord>>(list);
         }
 
@@ -81,6 +78,7 @@ namespace SwiftBookingTest.Web.Controllers
         [Route("Post")]
         public HttpResponseMessage Post(ClientRecord clientRecord)
         {
+
 
             sdUow.ClientRecords.Add(clientRecord);
             sdUow.Commit();
@@ -98,6 +96,8 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
+            var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
+
             clientRecord.Name = "Biknanu";
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>

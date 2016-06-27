@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationConstants.cs" />
+    <Compile Include="BusinessEngine\BaseBusinessEngine.cs" />
     <Compile Include="BusinessEngine\ClientRecordsBusinessEngine.cs" />
     <Compile Include="BusinessEngine\PhoneNumberBusinessEngine.cs" />
     <Compile Include="Configurations\ClientPhoneConfiguration.cs" />

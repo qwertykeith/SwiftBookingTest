@@ -21,13 +21,10 @@ namespace SwiftBookingTest.Web
                 .InSingletonScope();
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
 
-
             kernel.Bind<BusinessEngineFactory>().To<BusinessEngineFactory>()
                 .InSingletonScope();
             kernel.Bind<IBusinessEngineProvider>().To<BusinessEngineProvider>();
-
             
-
             kernel.Bind<ISwiftDemoUow>().To<SwiftDemoUow>();
             kernel.Bind<ISwiftBookingBusinessEngineUow>().To<SwiftBookingBusinessEngineUow>();
 

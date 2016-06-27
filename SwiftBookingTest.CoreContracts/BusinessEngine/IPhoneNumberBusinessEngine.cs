@@ -9,6 +9,6 @@ namespace SwiftBookingTest.CoreContracts.BusinessEngine
 {
     public interface IPhoneNumberBusinessEngine : IBusinessEngine
     {
-        bool IsNumberValid(PhoneNumber number);
+        
     }
 }
