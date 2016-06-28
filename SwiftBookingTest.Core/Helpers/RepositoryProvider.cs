@@ -14,6 +14,7 @@ namespace SwiftBookingTest.Core.Helpers
     /// <seealso cref="SwiftBookingTest.Core.Helpers.IRepositoryProvider" />
     public class RepositoryProvider : IRepositoryProvider
     {
+        private ISwiftBookingBusinessEngineUow _iSwiftBookingBusinessEngineUow;
         /// <summary>
         /// Gets the repositories.
         /// </summary>
@@ -27,7 +28,6 @@ namespace SwiftBookingTest.Core.Helpers
         /// </summary>
         private RepositoryFactories _repositoryFactories;
 
-       private ISwiftBookingBusinessEngineUow _iSwiftBookingBusinessEngineUow;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryProvider"/> class.
@@ -58,6 +58,7 @@ namespace SwiftBookingTest.Core.Helpers
                 _iSwiftBookingBusinessEngineUow = value;
             }
         }
+
 
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace SwiftBookingTest.Core.Helpers
             var f = factory ?? _repositoryFactories.GetRepositoryFactory<T>();
             if (f == null)
             {
-                var newF = Activator.CreateInstance(typeof(T), dbContext, this.SwiftBookingBusinessEngineUow);
+                var newF = Activator.CreateInstance(typeof(T), dbContext, SwiftBookingBusinessEngineUow);
                 if (newF == null)
                     throw new NotImplementedException("No factory for repository type, " + typeof(T).FullName);
                 Repositories[typeof(T)] = (T)newF;

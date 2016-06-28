@@ -68,7 +68,7 @@ namespace SwiftBookingTest.Core.Tests
         #endregion
 
         [TestMethod]
-        public void Add()
+        public void GetAllTest()
         {
 
             returnSet = GetMockDbSetAndContext<ClientRecord, SwiftDemoContext>(list.AsQueryable());
@@ -88,7 +88,7 @@ namespace SwiftBookingTest.Core.Tests
         [TestMethod]
         public void AddTest()
         {
-           
+
             returnSet = GetMockDbSetAndContext<ClientRecord, SwiftDemoContext>(list.AsQueryable());
             var dbContext = returnSet.Item2;
             var dbset = returnSet.Item1;
@@ -108,14 +108,17 @@ namespace SwiftBookingTest.Core.Tests
             dbset.Setup(x => x.Add(newCr));
             repo.Setup(x => x.Add(newCr));
 
-            var sut = new Repository<ClientRecord>(dbContext.Object);
-            sut.Add(newCr);
+
+            repositoryMock.Setup(x => x.Add(newCr));
+            repositoryMock.Object.Add(newCr);
             uowMock.Object.Commit();
 
             // Assert
-            //repositoryMock.Verify(r => r.Add(newCr), Times.Once);
+            repositoryMock.Verify(r => r.Add(newCr), Times.Once);
+            repositoryMock.Verify(t => t.Add(newCr));
+            repositoryMock.Verify(t => t.Add(It.Is<ClientRecord>(x => x.Name == "Atul")));
             uowMock.Verify(u => u.Commit(), Times.Once);
-            
+
         }
     }
 }
