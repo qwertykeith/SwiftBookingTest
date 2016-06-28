@@ -12,21 +12,27 @@ using System.Collections.Generic;
 namespace SwiftBookingTest.Core.Tests
 {
     [TestClass]
-    public class OfficeAssignmentRepositoryTests
+    public class OfficeAssignmentRepositoryTests : BaseUnitTest
     {
+        public List<OfficeAssignment> list { get; set; } = new List<OfficeAssignment>();
+        public ClientRecord cr { get; set; } = new ClientRecord { };
+        public Instructor inst { get; set; } = new Instructor { InstructorID = 1 };
+
+
+        public OfficeAssignmentRepositoryTests()
+        {
+            list.Add(new OfficeAssignment { InstructorID = 1 });
+        }
+
         [TestMethod]
         public void GetByInstructorTest()
         {
-            var cr = new ClientRecord();
-            var inst = new Instructor { InstructorID = 1 };
-
-            var list = new List<OfficeAssignment>();
-            list.Add(new OfficeAssignment { InstructorID = 1 });
-
             //tHESE ARE DEPENDENCY FOR CUSTOM REPO
             var businessEngine = new Mock<ISwiftBookingBusinessEngineUow>();
-            var dbContext = new Mock<SwiftDemoContext>();
-            var dbset = GetMockDbSet<OfficeAssignment>(list.AsQueryable());
+            var returnSet = GetMockDbSetAndContext<OfficeAssignment, SwiftDemoContext>(list.AsQueryable());
+            var dbContext = returnSet.Item2;
+            var dbset = returnSet.Item1;
+
             //DEPENDENCY ENDS HERE
 
             //MOCK REPO
@@ -36,7 +42,7 @@ namespace SwiftBookingTest.Core.Tests
             //SET BUSINESS RULE
             businessEngine.Setup(x => x.ClientRecordBusinessValidatiors.IsNull(cr, false)).Returns(true);
             businessEngine.Setup(x => x.PhoneNumberBusinessValidatiors.IsNull(null, false)).Returns(false);
-            businessEngine.Setup(x => x.SwiftDemoUow.Instructors.GetById(1)).Returns(inst);
+
             //SET TEST CALL 
             repo.Setup(x => x.GetByInstructor(1)).Returns(list.AsQueryable());
             //MAKE CALL
@@ -50,14 +56,6 @@ namespace SwiftBookingTest.Core.Tests
 
 
         // a helper to make dbset queryable
-        private Mock<DbSet<T>> GetMockDbSet<T>(IQueryable<T> entities) where T : class
-        {
-            var mockSet = new Mock<DbSet<T>>();
-            mockSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(entities.Provider);
-            mockSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(entities.Expression);
-            mockSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(entities.ElementType);
-            mockSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(entities.GetEnumerator());
-            return mockSet;
-        }
+
     }
 }

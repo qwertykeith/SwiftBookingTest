@@ -6,13 +6,7 @@ namespace SwiftBookingTest.CoreContracts
 {
     public interface ISwiftBookingBusinessEngineUow
     {
-        /// <summary>
-        /// Gets or sets the swift demo uow.
-        /// </summary>
-        /// <value>
-        /// The swift demo uow.
-        /// </value>
-        ISwiftDemoUow SwiftDemoUow { get; set; }
+       
         /// <summary>
         /// Gets or sets the client records business engine.
         /// </summary>

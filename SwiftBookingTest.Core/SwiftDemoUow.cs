@@ -21,7 +21,6 @@ namespace SwiftBookingTest.Core
             repositoryProvider.DbContext = DbContext;
             RepositoryProvider = repositoryProvider;
             repositoryProvider.SwiftBookingBusinessEngineUow = businessUow;
-            repositoryProvider.SwiftBookingBusinessEngineUow.SwiftDemoUow = this;
         }
 
         private SwiftDemoContext DbContext { get; set; }
