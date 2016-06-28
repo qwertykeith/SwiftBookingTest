@@ -93,7 +93,6 @@ namespace SwiftBookingTest.Core.Helpers
             {
                 return (T)repoObj;
             }
-
             // Not found or null; make one, add to dictionary cache, and return it.
             return MakeRepository<T>(factory, DbContext);
         }

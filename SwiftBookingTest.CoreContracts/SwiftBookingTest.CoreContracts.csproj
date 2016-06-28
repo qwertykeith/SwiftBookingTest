@@ -40,10 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessEngine\IBusinessEngineFactory.cs" />
     <Compile Include="BusinessEngine\IPhoneNumberBusinessEngine.cs" />
     <Compile Include="ISwiftBookingBusinessEngineUow.cs" />
     <Compile Include="BusinessEngine\IClientRecordsBusinessEngine.cs" />
-    <Compile Include="IBusinessEngine.cs" />
+    <Compile Include="BusinessEngine\IBusinessEngine.cs" />
     <Compile Include="IOfficeAssignmentRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISwiftDemoUow.cs" />

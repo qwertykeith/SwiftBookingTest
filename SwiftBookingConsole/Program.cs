@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using SwiftBookingTest.Model;
+using SwiftBookingTest.Core.BusinessEngine;
 
 namespace SwiftBookingConsole
 {
@@ -33,7 +34,7 @@ namespace SwiftBookingConsole
         /// <param name="letters">The letters.</param>
         private static void GetCustomerWhereNameContainsLetter(string letters)
         {
-            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineProvider(new BusinessEngineFactory()))))
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineFactory())))
             {
                 var clients = Uow.ClientRecords.GetAll().Where(x => x.Name.ToLower().Contains(letters)).ToList();
             }
@@ -41,10 +42,8 @@ namespace SwiftBookingConsole
 
         private static void GetClientWherePhoneNumberIsRepeatedMoreThanTwice()
         {
-            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineProvider(new BusinessEngineFactory()))))
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineFactory())))
             {
-
-
                 var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber));
                 var pp = clients.Where(z => z.ClientPhones
                     .GroupBy(x => x.PhoneNumber.Number)
@@ -57,7 +56,7 @@ namespace SwiftBookingConsole
 
         private static void AddBhanuPhones()
         {
-            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineProvider(new BusinessEngineFactory()))))
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineFactory())))
             {
                 var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).Where(x => x.Id == 3).First();
                 clients.ClientPhones.Add(new ClientPhone
@@ -79,7 +78,7 @@ namespace SwiftBookingConsole
         {
             //under the hood in both delete method executes each delete command individually
 
-            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineProvider(new BusinessEngineFactory()))))
+            using (var Uow = new SwiftDemoUow(new RepositoryProvider(new RepositoryFactories()), new SwiftBookingBusinessEngineUow(new BusinessEngineFactory())))
             {
                 var clients = Uow.ClientRecords.GetAll().Include(x => x.ClientPhones.Select(y => y.PhoneNumber)).Where(x => x.Id == 3).First();
                 var newList = clients.ClientPhones.ToList();

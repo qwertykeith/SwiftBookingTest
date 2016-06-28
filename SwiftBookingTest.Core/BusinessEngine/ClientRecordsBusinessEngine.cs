@@ -19,6 +19,8 @@ namespace SwiftBookingTest.Core.BusinessEngine
 
         }
 
+       
+
         /// <summary>
         /// Determines whether [is client has phone] [the specified client identifier].
         /// </summary>

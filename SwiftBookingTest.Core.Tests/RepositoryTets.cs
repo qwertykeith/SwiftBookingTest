@@ -120,5 +120,21 @@ namespace SwiftBookingTest.Core.Tests
             uowMock.Verify(u => u.Commit(), Times.Once);
 
         }
+
+        public void UpdateTest()
+        {
+            var dbContext = returnSet.Item2;
+            var dbset = returnSet.Item1;
+            var repo = new Mock<Repository<ClientRecord>>();
+            var newCr = new ClientRecord { Id = 1, Name = "Atul" };
+
+            var uowFactoryMock = new Mock<IRepositoryProvider>();
+            var uowMock = new Mock<ISwiftDemoUow>();
+            var repositoryMock = new Mock<IRepository<ClientRecord>>();
+
+            //uowFactoryMock.Setup(x => x.GetRepositoryForEntityType<ClientRecord>()).Returns(repositoryMock.Object);
+            //uowMock.Setup
+
+        }
     }
 }

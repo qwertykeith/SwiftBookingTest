@@ -12,19 +12,18 @@ namespace SwiftBookingTest.Core
 {
     public class SwiftBookingBusinessEngineUow : ISwiftBookingBusinessEngineUow, IDisposable
     {
-        protected IBusinessEngineProvider BusinessProvider { get; set; }
-        private ISwiftDemoUow _swiftDemoUow;
+        protected IBusinessEngineFactory BusinessFactory { get; set; }
 
-        public SwiftBookingBusinessEngineUow(IBusinessEngineProvider businessEngineProvider)
+        public SwiftBookingBusinessEngineUow(IBusinessEngineFactory businessEngineFactory)
         {
-            BusinessProvider = businessEngineProvider;
+            BusinessFactory = businessEngineFactory;
         }
 
         public IClientRecordsBusinessEngine ClientRecordBusinessValidatiors
         {
             get
             {
-                return BusinessProvider.GetBusinessEngine<ClientRecordsBusinessEngine>();
+                return BusinessFactory.GetBusinessEngine<ClientRecordsBusinessEngine>();
             }
         }
 
@@ -32,22 +31,10 @@ namespace SwiftBookingTest.Core
         {
             get
             {
-                return BusinessProvider.GetBusinessEngine<PhoneNumberBusinessEngine>();
+                return BusinessFactory.GetBusinessEngine<PhoneNumberBusinessEngine>();
             }
         }
 
-        public ISwiftDemoUow SwiftDemoUow
-        {
-            get
-            {
-                return _swiftDemoUow;
-            }
-
-            set
-            {
-                _swiftDemoUow = value;
-            }
-        }
 
         #region IDisposable
 

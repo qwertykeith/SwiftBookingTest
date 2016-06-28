@@ -58,7 +58,7 @@
     <Compile Include="Configurations\ClientRecordConfiguration.cs" />
     <Compile Include="Configurations\OfficeAssignmentConfiguration.cs" />
     <Compile Include="Extensions\ExtensionHelper.cs" />
-    <Compile Include="Helpers\BusinessEngineFactory.cs" />
+    <Compile Include="BusinessEngine\BusinessEngineFactory.cs" />
     <Compile Include="Helpers\BusinessEngineProvider.cs" />
     <Compile Include="Helpers\IBusinessEngineProvider.cs" />
     <Compile Include="Helpers\StateHelpers.cs" />
