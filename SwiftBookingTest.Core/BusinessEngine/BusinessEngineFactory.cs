@@ -10,16 +10,16 @@ namespace SwiftBookingTest.Core.BusinessEngine
 {
     public class BusinessEngineFactory : IBusinessEngineFactory
     {
-        private readonly IDictionary<Type,  object> BusinessEngines;
-        public BusinessEngineFactory()
+        private readonly IDictionary<Type, object> BusinessEngines;
+
+        public BusinessEngineFactory(Dictionary<Type, object> businessEngine)
         {
-            if (BusinessEngines == null)
-                BusinessEngines = GetSwiftDemoFactories();
+            BusinessEngines = businessEngine ?? GetNewDictionary();
         }
 
-        private IDictionary<Type,  object> GetSwiftDemoFactories()
+        private IDictionary<Type, object> GetNewDictionary()
         {
-            return new Dictionary<Type,  object>
+            return new Dictionary<Type, object>
             {
             };
         }

@@ -1,5 +1,6 @@
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
+using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web
 {
@@ -22,6 +23,7 @@ namespace SwiftBookingTest.Web
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             config.Filters.Add(new ValidationActionFilter());
+            //config.Filters.Add(new LoggerFilter());
         }
     }
 }

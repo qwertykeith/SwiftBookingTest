@@ -14,9 +14,11 @@ using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
 using SwiftBookingTest.Core.Extensions;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
+using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web.Controllers
 {
+    [LoggerFilter]
     public class ClientsController : ApiControllerBase
     {
         #region Contructor
@@ -61,8 +63,6 @@ namespace SwiftBookingTest.Web.Controllers
         [Route("Post")]
         public HttpResponseMessage Post(ClientRecord clientRecord)
         {
-
-
             sdUow.ClientRecords.Add(clientRecord);
             sdUow.Commit();
             // Set client record to null to fix circular reference issue

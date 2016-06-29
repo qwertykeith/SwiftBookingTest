@@ -15,9 +15,11 @@ namespace SwiftBookingTest.Core
         //    RepositoryProvider = repositoryProvider;
         //}
 
-        public SwiftDemoUow(IRepositoryProvider repositoryProvider, ISwiftBookingBusinessEngineUow businessUow)
+        public SwiftDemoUow(IRepositoryProvider repositoryProvider,
+            ISwiftBookingBusinessEngineUow businessUow,
+            SwiftDemoContext context)
         {
-            CreateDbContext();
+            CreateOrSetDbContext(context);
             repositoryProvider.DbContext = DbContext;
             RepositoryProvider = repositoryProvider;
             repositoryProvider.SwiftBookingBusinessEngineUow = businessUow;
@@ -35,7 +37,7 @@ namespace SwiftBookingTest.Core
         /// The client records.
         /// </value>
         public IRepository<ClientRecord> ClientRecords { get { return GetStandardRepo<ClientRecord>(); } }
-        
+
         /// <summary>
         /// Gets the client phones.
         /// </summary>
@@ -43,7 +45,7 @@ namespace SwiftBookingTest.Core
         /// The client phones.
         /// </value>
         public IRepository<ClientPhone> ClientPhones { get { return GetStandardRepo<ClientPhone>(); } }
-        
+
         /// <summary>
         /// Gets the phone numbers.
         /// </summary>
@@ -93,9 +95,9 @@ namespace SwiftBookingTest.Core
             DbContext.SaveChanges();
         }
 
-        protected void CreateDbContext()
+        protected void CreateOrSetDbContext(SwiftDemoContext context)
         {
-            DbContext = new SwiftDemoContext();
+            DbContext = context ?? new SwiftDemoContext();
 
             // Do NOT enable proxied entities, else serialization fails
             DbContext.Configuration.ProxyCreationEnabled = false;

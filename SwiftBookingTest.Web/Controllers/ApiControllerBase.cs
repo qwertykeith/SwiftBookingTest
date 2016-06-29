@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using SwiftBookingTest.CoreContracts;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
+using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web.Controllers
 {

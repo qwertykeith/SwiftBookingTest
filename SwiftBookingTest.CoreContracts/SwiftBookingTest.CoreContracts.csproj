@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BusinessEngine\IBusinessEngineFactory.cs" />
     <Compile Include="BusinessEngine\IPhoneNumberBusinessEngine.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="ISwiftBookingBusinessEngineUow.cs" />
     <Compile Include="BusinessEngine\IClientRecordsBusinessEngine.cs" />
     <Compile Include="BusinessEngine\IBusinessEngine.cs" />

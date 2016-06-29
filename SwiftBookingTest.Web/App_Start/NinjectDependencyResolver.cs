@@ -18,5 +18,6 @@ namespace SwiftBookingTest.Web
         {
             return new NinjectDependencyScope(kernel.BeginBlock());
         }
+
     }
 }

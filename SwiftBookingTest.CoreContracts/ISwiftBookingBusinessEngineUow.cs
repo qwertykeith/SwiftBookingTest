@@ -6,7 +6,7 @@ namespace SwiftBookingTest.CoreContracts
 {
     public interface ISwiftBookingBusinessEngineUow
     {
-       
+        
         /// <summary>
         /// Gets or sets the client records business engine.
         /// </summary>

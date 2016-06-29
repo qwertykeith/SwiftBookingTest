@@ -5,7 +5,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Newtonsoft.Json.Linq;
 
-namespace SwiftBookingTest.Web
+namespace SwiftBookingTest.Web.Filters
 {
     public class ValidationActionFilter : ActionFilterAttribute
     {
