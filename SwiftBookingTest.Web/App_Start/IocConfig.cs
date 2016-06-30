@@ -11,6 +11,8 @@ using SwiftBookingTest.Web.Filters;
 using System.Web.Http.Filters;
 using Ninject.Activation;
 using Ninject.Modules;
+using System.Security.Principal;
+using System.Web;
 
 namespace SwiftBookingTest.Web
 {
@@ -19,7 +21,9 @@ namespace SwiftBookingTest.Web
         public static void RegisterIoc(HttpConfiguration config)
         {
             var kernel = new StandardKernel(); // Ninject IoC
-            
+
+            kernel.Bind<IIdentity>().ToMethod(Getidentity);
+
             //TODO:Create Interface for dbcontext and bind to that
             kernel.Bind<SwiftDemoContext>().ToSelf();
 
@@ -44,6 +48,10 @@ namespace SwiftBookingTest.Web
             config.DependencyResolver = new NinjectDependencyResolver(kernel);
         }
 
-       
+        private static IIdentity Getidentity(IContext arg)
+        {
+            HttpContext.Current.User = new GenericPrincipal(new GenericIdentity("atul221282@gmail.com"), new string[] { /* fill roles if any */ });
+            return HttpContext.Current.User.Identity;
+        }
     }
 }

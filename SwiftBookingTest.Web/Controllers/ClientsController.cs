@@ -15,6 +15,7 @@ using SwiftBookingTest.Web.Helpers;
 using SwiftBookingTest.Core.Extensions;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
 using SwiftBookingTest.Web.Filters;
+using System.Security.Principal;
 
 namespace SwiftBookingTest.Web.Controllers
 {
@@ -23,13 +24,18 @@ namespace SwiftBookingTest.Web.Controllers
     {
         #region Contructor
 
+        public ClientsController(ISwiftDemoUow uow)
+        {
+            sdUow = uow;
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
         /// <param name="uow">The uow.</param>
-        public ClientsController(ISwiftDemoUow uow)
+        public ClientsController(ISwiftDemoUow uow, IIdentity identity)
         {
             sdUow = uow;
+            var gg = identity;
         }
 
         #endregion
