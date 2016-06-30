@@ -19,19 +19,18 @@ namespace SwiftBookingTest.Web
             container.Configure(c =>
             {
                 c.AddRegistry<StandardRegisrty>();
-                c.AddRegistry(new MvcControllerRegistry());
                 c.AddRegistry<WebApiRegistry>();
-                c.AddRegistry<MvcRegisrty>();
             });
 
             config.Services.Replace(
                 typeof(IHttpControllerActivator),
                 new StructureMapWebApiControllerActivator(container));
 
-            DependencyResolver.SetResolver(
-                new StructureMapDependencyResolver(() => container));
+        }
 
-            HttpContext.Current.Items["_Container"] = container;
+        public static void RegisterStructureMapForMvc()
+        {
+
         }
     }
 }

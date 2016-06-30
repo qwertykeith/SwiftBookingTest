@@ -19,23 +19,25 @@ using System.Web.Optimization;
 using System.Web.Http.Dispatcher;
 using System.Web.Http.Controllers;
 using System.Net.Http;
+using StructureMap;
+using System.Threading;
+using SwiftBookingTest.Web.Infrastructure;
 
 namespace SwiftBookingTest.Web
 {
     public class Global : HttpApplication
     {
-        //private Container container { get; set; }
-        //public IContainer Container
-        //{
-        //    get
-        //    {
-        //        return (IContainer)HttpContext.Current.Items["_Container"];
-        //    }
-        //    set
-        //    {
-        //        HttpContext.Current.Items["_Container"] = value;
-        //    }
-        //}
+        public IContainer Container
+        {
+            get
+            {
+                return (IContainer)HttpContext.Current.Items["_Container"];
+            }
+            set
+            {
+                HttpContext.Current.Items["_Container"] = value;
+            }
+        }
 
         /// <summary>
         /// Handles the Start event of the Application control.
@@ -46,21 +48,22 @@ namespace SwiftBookingTest.Web
         {
             AreaRegistration.RegisterAllAreas();
 
-            // Tell WebApi to use our custom Ioc (Ninject)
+            //Tell WebApi to use our custom Ioc (Ninject)
             //IocConfig.RegisterIoc(GlobalConfiguration.Configuration);
-
+            
+            //Use structure map with Web API
             StructureMapConfig.RegisterStructureMapForWebApi(GlobalConfiguration.Configuration);
 
-            //HttpConfiguration config = GlobalConfiguration.Configuration;
-            //config.Services
-            //.Replace(typeof(IHttpControllerActivator), new ServiceActivator(config));
-            //DependencyResolver.SetResolver(new StructureMapDependencyResolver(() => Container ?? ObjectFactory.Container));
-            //ObjectFactory.Container.Configure(cfg =>
-            //{
-            //    cfg.AddRegistry(new StandardRegistry());
-            //    cfg.AddRegistry(new ControllerRegisrty());
-            //    cfg.AddRegistry(new MvcRegistry());
-            //});
+            //Use Structure map with MVC
+            DependencyResolver.SetResolver(
+                    new StructureMapMVCDependencyResolver(() => Container ?? ObjectFactory.Container));
+
+            ObjectFactory.Container.Configure(c =>
+            {
+                c.AddRegistry(new StandardRegisrty());
+                c.AddRegistry(new MvcControllerRegistry());
+                c.AddRegistry<MvcRegisrty>();
+            });
 
             // Web API template created these 3
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -72,21 +75,23 @@ namespace SwiftBookingTest.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
 
-            
         }
 
-        //void Application_BeginRequest()
-        //{
-        //    Container = ObjectFactory.Container.GetNestedContainer();
-        //}
+        void Application_BeginRequest()
+        {
+            //Getting nested container is required to properly dispose the in memory object
+            Container = ObjectFactory.Container.GetNestedContainer();
+        }
 
-        //void Application_EndRequest()
-        //{
-        //    Container.Dispose();
-        //    Container = null;
-        //}
+        void Application_EndRequest()
+        {
+            Container.Dispose();
+            Container = null;
+        }
 
-     
+        
+
+
     }
 
 

@@ -46,7 +46,14 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-            var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
+            try
+            {
+                var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
+            }
+            catch(Exception ex)
+            {
+                var gg = ex;
+            }
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))

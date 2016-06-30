@@ -4,13 +4,13 @@ using System.Web.Mvc;
 using StructureMap;
 using System.Linq;
 
-namespace SwiftBookingTest.Web
+namespace SwiftBookingTest.Web.Infrastructure
 {
-    internal class StructureMapDependencyResolver : IDependencyResolver
+    internal class StructureMapMVCDependencyResolver : IDependencyResolver
     {
         private readonly Func<IContainer> _factory;
 
-        public StructureMapDependencyResolver(Func<Container> p)
+        public StructureMapMVCDependencyResolver(Func<IContainer> p)
         {
             _factory = p;
         }

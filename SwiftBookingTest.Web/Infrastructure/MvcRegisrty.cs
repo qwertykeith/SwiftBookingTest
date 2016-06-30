@@ -11,6 +11,8 @@ using SwiftBookingTest.Core.BusinessEngine;
 using SwiftBookingTest.Core.Helpers;
 using System.Data.Entity;
 using System.Security.Principal;
+using System.Web.Optimization;
+using System.Web.Routing;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
@@ -18,17 +20,19 @@ namespace SwiftBookingTest.Web.Infrastructure
     {
         public MvcRegisrty()
         {
+            For<BundleCollection>().Use(BundleTable.Bundles);
+            For<RouteCollection>().Use(RouteTable.Routes);
+            
+            For<HttpSessionStateBase>()
+                .Use(() => new HttpSessionStateWrapper(HttpContext.Current.Session));
+            For<HttpContextBase>()
+                .Use(() => new HttpContextWrapper(HttpContext.Current));
+            For<HttpServerUtilityBase>()
+                .Use(() => new HttpServerUtilityWrapper(HttpContext.Current.Server));
+
             For<IIdentity>().Use(() => HttpContext.Current.User != null
             ? HttpContext.Current.User.Identity
             : null);
-
-            //UseDO:Create Interface for dbcontext and bind Use that
-            //For<SwiftDemoContext>().Use(new SwiftDemoContext());
-
-            //For<ILogger>().Use(ctx => (ILogger)ctx.Kernel.Get<ILogger>());
-
-            // These registrations are "per instance request".
-            // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
 
             For<RepositoryFactories>().Use<RepositoryFactories>()
                 .Ctor<IDictionary<Type, Func<DbContext, object>>>().
