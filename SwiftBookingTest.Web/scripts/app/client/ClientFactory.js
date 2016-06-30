@@ -109,6 +109,7 @@
          * @description Update client record
          */
         function Update(clientRecord) {
+            GetNumber();
             APIFactory.Put(service.apiUrl + "?Id=" + service.SelectedClient.Id,
             service.SelectedClient).then(function (response) {
                 clientRecord = response.data;
@@ -134,6 +135,16 @@
         function SelectClient(clientRecord) {
             service.SelectedClient = clientRecord;
         };
+
+        function GetNumber() {
+           var deferred = $q.defer();
+           APIFactory.Get("api/PhoneNumber").then(function (response) {
+               deferred.resolve(response.data);
+           }, function (error) {
+               deferred.reject(error);
+           });
+           return deferred.promise;
+        }
 
         return service;
 

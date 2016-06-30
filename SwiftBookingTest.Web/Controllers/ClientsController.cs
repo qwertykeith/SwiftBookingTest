@@ -24,10 +24,6 @@ namespace SwiftBookingTest.Web.Controllers
     {
         #region Contructor
 
-        public ClientsController(ISwiftDemoUow uow)
-        {
-            sdUow = uow;
-        }
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
@@ -35,6 +31,7 @@ namespace SwiftBookingTest.Web.Controllers
         public ClientsController(ISwiftDemoUow uow, IIdentity identity)
         {
             sdUow = uow;
+          
             var gg = identity;
         }
 

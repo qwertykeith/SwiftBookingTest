@@ -7,6 +7,7 @@ namespace SwiftBookingTest.Web.Controllers
 {
     public abstract class ApiControllerBase : ApiController
     {
+
         protected ISwiftDemoUow sdUow { get; set; }
         protected ISwiftBookingBusinessEngineUow buow { get; set; }
     }

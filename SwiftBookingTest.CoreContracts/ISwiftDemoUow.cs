@@ -67,5 +67,6 @@ namespace SwiftBookingTest.CoreContracts
         /// The instructors.
         /// </value>
         IRepository<Instructor> Instructors { get; }
+
     }
 }

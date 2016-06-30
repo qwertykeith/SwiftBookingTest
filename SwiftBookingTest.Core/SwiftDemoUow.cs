@@ -91,7 +91,6 @@ namespace SwiftBookingTest.Core
         /// </summary>
         public void Commit()
         {
-            //System.Diagnostics.Debug.WriteLine("Committed");
             DbContext.SaveChanges();
         }
 
@@ -111,6 +110,7 @@ namespace SwiftBookingTest.Core
         }
 
         protected IRepositoryProvider RepositoryProvider { get; set; }
+        
 
         private IRepository<T> GetStandardRepo<T>() where T : class
         {
