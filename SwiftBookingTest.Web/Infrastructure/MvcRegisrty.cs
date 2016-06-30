@@ -4,19 +4,19 @@ using System.Linq;
 using System.Web;
 using StructureMap;
 using StructureMap.Graph;
-using System.Security.Principal;
-using SwiftBookingTest.Core;
-using SwiftBookingTest.Core.Helpers;
 using SwiftBookingTest.CoreContracts;
-using SwiftBookingTest.Core.BusinessEngine;
+using SwiftBookingTest.Core;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
+using SwiftBookingTest.Core.BusinessEngine;
+using SwiftBookingTest.Core.Helpers;
 using System.Data.Entity;
+using System.Security.Principal;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
-    public class WebApiRegistry : Registry
+    public class MvcRegisrty: Registry
     {
-        public WebApiRegistry()
+        public MvcRegisrty()
         {
             For<IIdentity>().Use(() => HttpContext.Current.User != null
             ? HttpContext.Current.User.Identity
@@ -42,8 +42,6 @@ namespace SwiftBookingTest.Web.Infrastructure
             For<ISwiftBookingBusinessEngineUow>().Use<SwiftBookingBusinessEngineUow>();
 
             For<ISwiftDemoUow>().Use<SwiftDemoUow>();
-
         }
-
     }
 }

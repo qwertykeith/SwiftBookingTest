@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
+using System.Web.Mvc;
 
 namespace SwiftBookingTest.Web
 {
@@ -13,10 +14,24 @@ namespace SwiftBookingTest.Web
     {
         public static void RegisterStructureMapForWebApi(HttpConfiguration config)
         {
-            Container container = new Container(c => c.AddRegistry<WebApiRegistry>());
+            Container container = new Container();
+
+            container.Configure(c =>
+            {
+                c.AddRegistry<StandardRegisrty>();
+                c.AddRegistry(new MvcControllerRegistry());
+                c.AddRegistry<WebApiRegistry>();
+                c.AddRegistry<MvcRegisrty>();
+            });
+
             config.Services.Replace(
                 typeof(IHttpControllerActivator),
                 new StructureMapWebApiControllerActivator(container));
+
+            DependencyResolver.SetResolver(
+                new StructureMapDependencyResolver(() => container));
+
+            HttpContext.Current.Items["_Container"] = container;
         }
     }
 }

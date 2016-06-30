@@ -244,6 +244,7 @@
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructureMapConfig.cs" />
+    <Compile Include="App_Start\StructureMapDependencyResolver.cs" />
     <Compile Include="Filters\ValidationActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
@@ -256,6 +257,10 @@
     </Compile>
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Helpers\HttpClientExtensions.cs" />
+    <Compile Include="Infrastructure\MvcControllerConvention.cs" />
+    <Compile Include="Infrastructure\MvcControllerRegistry.cs" />
+    <Compile Include="Infrastructure\MvcRegisrty.cs" />
+    <Compile Include="Infrastructure\StandardRegisrty.cs" />
     <Compile Include="Infrastructure\StructureMapWebApiControllerActivator.cs" />
     <Compile Include="Infrastructure\WebApiRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
