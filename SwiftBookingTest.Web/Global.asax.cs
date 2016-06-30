@@ -10,12 +10,12 @@ using System.Web.Http;
 using System.Data.Entity;
 using SwiftBookingTest.Core;
 using System.Web.Optimization;
-using SwiftBookingTest.Web.Infrastructure;
-using StructureMap;
-using StructureMap.TypeRules;
-using StructureMap.Configuration;
-using SwiftBookingTest.CoreContracts;
-using StructureMap.Graph;
+//using SwiftBookingTest.Web.Infrastructure;
+//using StructureMap;
+//using StructureMap.TypeRules;
+//using StructureMap.Configuration;
+//using StructureMap.Graph;
+
 using System.Web.Http.Dispatcher;
 using System.Web.Http.Controllers;
 using System.Net.Http;

@@ -23,7 +23,10 @@ namespace SwiftBookingTest.Web.Controllers
     public class ClientsController : ApiControllerBase
     {
         #region Contructor
-
+        public ClientsController(ISwiftDemoUow uow)
+        {
+            sdUow = uow;
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
