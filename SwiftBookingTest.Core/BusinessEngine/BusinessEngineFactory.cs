@@ -8,7 +8,7 @@ using SwiftBookingTest.CoreContracts;
 
 namespace SwiftBookingTest.Core.BusinessEngine
 {
-    public class BusinessEngineFactory : IBusinessEngineFactory
+    public class BusinessEngineFactory : IBusinessEngineFactory, IDisposable
     {
         private readonly IDictionary<Type, object> BusinessEngines;
 
@@ -52,6 +52,21 @@ namespace SwiftBookingTest.Core.BusinessEngine
             catch (Exception ex)
             {
                 throw ex;
+            }
+
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+
             }
 
         }

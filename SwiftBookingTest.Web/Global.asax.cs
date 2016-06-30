@@ -47,8 +47,9 @@ namespace SwiftBookingTest.Web
             AreaRegistration.RegisterAllAreas();
 
             // Tell WebApi to use our custom Ioc (Ninject)
-            IocConfig.RegisterIoc(GlobalConfiguration.Configuration);
+            //IocConfig.RegisterIoc(GlobalConfiguration.Configuration);
 
+            StructureMapConfig.RegisterStructureMapForWebApi(GlobalConfiguration.Configuration);
 
             //HttpConfiguration config = GlobalConfiguration.Configuration;
             //config.Services

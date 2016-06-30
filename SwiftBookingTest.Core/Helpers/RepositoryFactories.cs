@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SwiftBookingTest.Core.Helpers
 {
-    public class RepositoryFactories
+    public class RepositoryFactories:IDisposable
     {
         /// <summary>
         /// Gets the swift demo factories.
@@ -85,7 +85,19 @@ namespace SwiftBookingTest.Core.Helpers
             return dbContext => new Repository<T>(dbContext);
         }
 
-        
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+
+            }
+
+        }
     }
 }

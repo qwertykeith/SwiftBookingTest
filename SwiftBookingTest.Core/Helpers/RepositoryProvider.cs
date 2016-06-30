@@ -12,7 +12,7 @@ namespace SwiftBookingTest.Core.Helpers
     /// 
     /// </summary>
     /// <seealso cref="SwiftBookingTest.Core.Helpers.IRepositoryProvider" />
-    public class RepositoryProvider : IRepositoryProvider
+    public class RepositoryProvider : IRepositoryProvider, IDisposable
     {
         private ISwiftBookingBusinessEngineUow _iSwiftBookingBusinessEngineUow;
         /// <summary>
@@ -142,7 +142,19 @@ namespace SwiftBookingTest.Core.Helpers
             Repositories[typeof(T)] = repository;
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
 
+            }
+
+        }
     }
 }
