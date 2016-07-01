@@ -19,9 +19,10 @@ using System.Security.Principal;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-    [LoggerFilter]
+
     public class ClientsController : ApiControllerBase
     {
+        protected IIdentity Identity { get; private set; }
         #region Contructor
         public ClientsController(ISwiftDemoUow uow)
         {
@@ -34,8 +35,7 @@ namespace SwiftBookingTest.Web.Controllers
         public ClientsController(ISwiftDemoUow uow, IIdentity identity)
         {
             sdUow = uow;
-          
-            var gg = identity;
+            Identity = identity;
         }
 
         #endregion
@@ -46,24 +46,15 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         public async Task<IHttpActionResult> Get()
         {
-            try
-            {
-                var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
-            }
-            catch(Exception ex)
-            {
-                var gg = ex;
-            }
+            var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
              .OrderBy(x => x.Name).ToList());
-
             // Set client record to null to fix circular reference issue
             foreach (var cp in list.SelectMany(x => x.ClientPhones))
             {
                 cp.ClientRecord = null;
-                //var thooo = buow.PhoneNumberBusinessValidatiors.IsNull(cp.PhoneNumber);
             }
             return Ok<IEnumerable<ClientRecord>>(list);
         }
@@ -94,7 +85,7 @@ namespace SwiftBookingTest.Web.Controllers
         {
             //var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
 
-            clientRecord.Name = "Biknanu";
+            clientRecord.Name = Identity.Name;
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
             {

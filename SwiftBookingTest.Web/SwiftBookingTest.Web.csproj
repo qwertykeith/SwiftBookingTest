@@ -243,7 +243,8 @@
     <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\StructureMapConfig.cs" />
+    <Compile Include="App_Start\StructureMapWebApiConfig.cs" />
+    <Compile Include="Infrastructure\MvcFilterProvider.cs" />
     <Compile Include="Infrastructure\StructureMapMVCDependencyResolver.cs" />
     <Compile Include="Filters\ValidationActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

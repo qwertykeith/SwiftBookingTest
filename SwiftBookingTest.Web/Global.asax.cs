@@ -22,6 +22,7 @@ using System.Net.Http;
 using StructureMap;
 using System.Threading;
 using SwiftBookingTest.Web.Infrastructure;
+using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web
 {
@@ -50,9 +51,9 @@ namespace SwiftBookingTest.Web
 
             //Tell WebApi to use our custom Ioc (Ninject)
             //IocConfig.RegisterIoc(GlobalConfiguration.Configuration);
-            
+
             //Use structure map with Web API
-            StructureMapConfig.RegisterStructureMapForWebApi(GlobalConfiguration.Configuration);
+            StructureMapWebApiConfig.RegisterStructureMapForWebApi(GlobalConfiguration.Configuration);
 
             //Use Structure map with MVC
             DependencyResolver.SetResolver(

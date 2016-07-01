@@ -12,26 +12,26 @@ using System.Web.Http.Filters;
 
 namespace SwiftBookingTest.Web.Filters
 {
-    public class LoggerFilter : ActionFilterAttribute
+    public class LoggerFilter : ActionFilterAttribute, IActionFilter
     {
-        [Inject]
-        protected ILogger logger { get; private set; }
-
+        private readonly ILogger Logger;
         public LoggerFilter()
+        { }
+        public LoggerFilter(ILogger logger)
         {
-
+            this.Logger = logger;
         }
       
 
         public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            logger?.CreateAudit();
+            var kk = Logger;
             return Task.FromResult<object>(null);
         }
 
         public override Task OnActionExecutedAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
         {
-            logger?.CreateAudit();
+            var kk = Logger;
             return Task.FromResult<object>(null);
         }
 

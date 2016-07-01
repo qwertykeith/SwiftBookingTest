@@ -13,6 +13,7 @@ using System.Data.Entity;
 using System.Security.Principal;
 using System.Web.Optimization;
 using System.Web.Routing;
+using SwiftBookingTest.Core.Repository;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
@@ -29,6 +30,8 @@ namespace SwiftBookingTest.Web.Infrastructure
                 .Use(() => new HttpContextWrapper(HttpContext.Current));
             For<HttpServerUtilityBase>()
                 .Use(() => new HttpServerUtilityWrapper(HttpContext.Current.Server));
+
+            For<ILogger>().Use<Logger>();
 
             For<IIdentity>().Use(() => HttpContext.Current.User != null
             ? HttpContext.Current.User.Identity

@@ -18,9 +18,7 @@ namespace SwiftBookingTest.Web.Infrastructure
     {
         public WebApiRegistry()
         {
-            For<IIdentity>().Use(() => HttpContext.Current.User != null
-            ? HttpContext.Current.User.Identity
-            : null);
+            For<IIdentity>().Use(() => Getidentity());
 
             //UseDO:Create Interface for dbcontext and bind Use that
             //For<SwiftDemoContext>().Use(new SwiftDemoContext());
@@ -43,6 +41,12 @@ namespace SwiftBookingTest.Web.Infrastructure
 
             For<ISwiftDemoUow>().Use<SwiftDemoUow>();
 
+        }
+
+        private static IIdentity Getidentity()
+        {
+            HttpContext.Current.User = new GenericPrincipal(new GenericIdentity("atul221282@gmail.com"), new string[] { /* fill roles if any */ });
+            return HttpContext.Current.User.Identity;
         }
 
     }

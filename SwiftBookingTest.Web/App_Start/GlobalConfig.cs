@@ -23,7 +23,7 @@ namespace SwiftBookingTest.Web
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             config.Filters.Add(new ValidationActionFilter());
-            //config.Filters.Add(new LoggerFilter());
+            config.Filters.Add(new LoggerFilter());
         }
     }
 }

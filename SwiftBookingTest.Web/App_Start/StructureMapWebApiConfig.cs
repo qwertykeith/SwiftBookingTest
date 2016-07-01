@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SwiftBookingTest.Web
 {
-    public static class StructureMapConfig
+    public static class StructureMapWebApiConfig
     {
         public static void RegisterStructureMapForWebApi(HttpConfiguration config)
         {
@@ -28,9 +28,5 @@ namespace SwiftBookingTest.Web
 
         }
 
-        public static void RegisterStructureMapForMvc()
-        {
-
-        }
     }
 }

@@ -28,7 +28,7 @@ namespace SwiftBookingTest.Web.Infrastructure
                 ? factory.TryGetInstance(serviceType)
                 : factory.GetInstance(serviceType);
         }
-
+       
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return _factory().GetAllInstances(serviceType).Cast<object>();
