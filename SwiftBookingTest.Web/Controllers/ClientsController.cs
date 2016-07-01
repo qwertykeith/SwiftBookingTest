@@ -16,6 +16,7 @@ using SwiftBookingTest.Core.Extensions;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
 using SwiftBookingTest.Web.Filters;
 using System.Security.Principal;
+using System.Web;
 
 namespace SwiftBookingTest.Web.Controllers
 {
@@ -23,11 +24,13 @@ namespace SwiftBookingTest.Web.Controllers
     public class ClientsController : ApiControllerBase
     {
         protected IIdentity Identity { get; private set; }
+
         #region Contructor
         public ClientsController(ISwiftDemoUow uow)
         {
             sdUow = uow;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientsController"/> class.
         /// </summary>
@@ -84,7 +87,6 @@ namespace SwiftBookingTest.Web.Controllers
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
             //var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
-
             clientRecord.Name = Identity.Name;
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
@@ -140,6 +142,7 @@ namespace SwiftBookingTest.Web.Controllers
             return payLoad;
         }
 
+       
 
     }
 }

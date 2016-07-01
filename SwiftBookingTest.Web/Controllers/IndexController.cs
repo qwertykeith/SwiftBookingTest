@@ -21,7 +21,7 @@ namespace SwiftBookingTest.Web.Controllers
       
         public IndexController(ISwiftDemoUow uow, IIdentity identity)
         {
-            sdUow = uow;
+             sdUow = uow;
             Identity = identity;
         }
 
