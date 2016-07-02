@@ -1,4 +1,5 @@
 ﻿using SwiftBookingTest.CoreContracts;
+using SwiftBookingTest.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace SwiftBookingTest.Web.Controllers
             Identity = identity;
         }
 
-        // GET: Index
+        [MvcLogFilter]
         public async Task<ActionResult> Index()
         {
             return View(await Task.FromResult<object>(null));

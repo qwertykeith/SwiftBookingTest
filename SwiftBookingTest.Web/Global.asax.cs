@@ -64,6 +64,8 @@ namespace SwiftBookingTest.Web
                 c.AddRegistry(new StandardRegisrty());
                 c.AddRegistry(new MvcControllerRegistry());
                 c.AddRegistry<MvcRegisrty>();
+                c.AddRegistry(new MvcActionFilterRegistry(
+                 () => Container ?? ObjectFactory.Container));
             });
 
             // Web API template created these 3
@@ -74,7 +76,7 @@ namespace SwiftBookingTest.Web
             Database.SetInitializer(new SwiftDemoInitializer());
 #endif
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
+            GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration, Container ?? ObjectFactory.Container);
 
         }
 
@@ -90,7 +92,7 @@ namespace SwiftBookingTest.Web
             Container = null;
         }
 
-        
+
 
 
     }

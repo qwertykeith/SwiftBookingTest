@@ -11,6 +11,7 @@ using SwiftBookingTest.CoreContracts;
 using SwiftBookingTest.Core.BusinessEngine;
 using SwiftBookingTest.CoreContracts.BusinessEngine;
 using System.Data.Entity;
+using SwiftBookingTest.Core.Repository;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
@@ -22,8 +23,6 @@ namespace SwiftBookingTest.Web.Infrastructure
 
             //UseDO:Create Interface for dbcontext and bind Use that
             //For<SwiftDemoContext>().Use(new SwiftDemoContext());
-
-            //For<ILogger>().Use(ctx => (ILogger)ctx.Kernel.Get<ILogger>());
 
             // These registrations are "per instance request".
             // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
@@ -40,6 +39,8 @@ namespace SwiftBookingTest.Web.Infrastructure
             For<ISwiftBookingBusinessEngineUow>().Use<SwiftBookingBusinessEngineUow>();
 
             For<ISwiftDemoUow>().Use<SwiftDemoUow>();
+
+            For<ILogger>().Use<Logger>();
 
         }
 

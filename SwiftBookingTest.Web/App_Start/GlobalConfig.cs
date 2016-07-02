@@ -1,12 +1,14 @@
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 using SwiftBookingTest.Web.Filters;
+using StructureMap;
+using SwiftBookingTest.CoreContracts;
 
 namespace SwiftBookingTest.Web
 {
     public static class GlobalConfig
     {
-        public static void CustomizeConfig(HttpConfiguration config)
+        public static void CustomizeConfig(HttpConfiguration config, IContainer container)
         {
             // Remove Xml formatters. This means when we visit an endpoint from a browser,
             config.Formatters.Remove(config.Formatters.XmlFormatter);
@@ -23,7 +25,10 @@ namespace SwiftBookingTest.Web
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             config.Filters.Add(new ValidationActionFilter());
-            config.Filters.Add(new LoggerFilter());
+
+            //config.Filters.Add(new LoggerFilter());
+            //var filter = new LoggerFilter(container.GetInstance<ILogger>());
+            //config.Filters.Add(filter);
         }
     }
 }

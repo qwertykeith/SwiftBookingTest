@@ -8,40 +8,26 @@ using System.Web.Mvc;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
-    public class MvcFilterProvider : IFilterProvider
+    public class MvcFilterProvider : FilterAttributeFilterProvider
     {
+        private readonly Func<IContainer> _container;
 
-        private readonly IEnumerable<Filter> _list;
-
-        public MvcFilterProvider(IContainer container)
+        public MvcFilterProvider(Func<IContainer> container)
         {
-            _list = GetContainerFilters(container);
+            _container = container;
         }
 
-        public IEnumerable<Filter> GetFilters(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
+        public override IEnumerable<Filter> GetFilters(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
         {
-            return _list;
-        }
+            var filters = base.GetFilters(controllerContext, actionDescriptor);
 
-        private static IEnumerable<Filter> GetContainerFilters(IContainer container)
-        {
-            return
-                container.GetAllInstances<IActionFilter>()
-                    .Select(instance => new Filter(instance, FilterScope.Action, null));
-        }
+            var container = _container();
 
-        /// <summary>
-        /// Returns an enumeration of filters.
-        /// </summary>
-        /// <param name="configuration">The HTTP configuration.</param>
-        /// <param name="actionDescriptor">The action descriptor.</param>
-        /// <returns>
-        /// An enumeration of filters.
-        /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<FilterInfo> GetFilters(HttpConfiguration configuration, HttpActionDescriptor actionDescriptor)
-        {
-            throw new NotImplementedException();
+            foreach (var filter in filters)
+            {
+                container.BuildUp(filter.Instance);
+                yield return filter;
+            }
         }
     }
 }

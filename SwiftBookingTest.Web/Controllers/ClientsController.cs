@@ -20,7 +20,6 @@ using System.Web;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-
     public class ClientsController : ApiControllerBase
     {
         protected IIdentity Identity { get; private set; }
@@ -47,6 +46,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
+        [LoggerFilter]
         public async Task<IHttpActionResult> Get()
         {
             var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();

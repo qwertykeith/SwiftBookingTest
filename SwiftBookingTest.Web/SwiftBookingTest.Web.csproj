@@ -244,6 +244,8 @@
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructureMapWebApiConfig.cs" />
+    <Compile Include="Filters\MvcLogFilterAttribute.cs" />
+    <Compile Include="Infrastructure\MvcActionFilterRegistry.cs" />
     <Compile Include="Infrastructure\MvcFilterProvider.cs" />
     <Compile Include="Infrastructure\StructureMapMVCDependencyResolver.cs" />
     <Compile Include="Filters\ValidationActionFilter.cs" />
@@ -252,7 +254,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\PhoneNumberController.cs" />
-    <Compile Include="Filters\LoggerFilter.cs" />
+    <Compile Include="Filters\LoggerFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +266,8 @@
     <Compile Include="Infrastructure\ObjectFactory.cs" />
     <Compile Include="Infrastructure\StandardRegisrty.cs" />
     <Compile Include="Infrastructure\StructureMapWebApiControllerActivator.cs" />
+    <Compile Include="Infrastructure\WebApiActionFilterRegistry.cs" />
+    <Compile Include="Infrastructure\WebApiFilterProvider.cs" />
     <Compile Include="Infrastructure\WebApiRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -305,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Interfaces\Filter\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

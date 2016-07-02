@@ -8,6 +8,6 @@ namespace SwiftBookingTest.CoreContracts
 {
     public interface ILogger
     {
-        void CreateAudit();
+        void CreateAudit(string description);
     }
 }
