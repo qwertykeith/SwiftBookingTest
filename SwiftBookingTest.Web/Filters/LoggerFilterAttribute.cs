@@ -18,21 +18,20 @@ namespace SwiftBookingTest.Web.Filters
 {
     public class LoggerFilterAttribute : ActionFilterAttribute
     {
-        public ISwiftDemoUow Logger { get; set; }
-        public LoggerFilterAttribute()
-        {
+        public Func<ISwiftDemoUow> SDUow { get; set; }
+        public Func<ILogger> Logger { get; set; }
 
-        }
-        
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var gg = Logger;
+            var uow = SDUow();
+            var logger = Logger();
             base.OnActionExecuting(actionContext);
         }
 
         public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            var gg = Logger;
+            var uow = SDUow();
+            var logger = Logger();
             return base.OnActionExecutingAsync(actionContext, cancellationToken);
         }
     }

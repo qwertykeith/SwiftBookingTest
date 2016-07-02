@@ -11,9 +11,9 @@ namespace SwiftBookingTest.Web.Infrastructure
 {
     public class StructureMapWebApiControllerActivator : IHttpControllerActivator
     {
-        private readonly IContainer _container;
+        private readonly Func<IContainer> _container;
 
-        public StructureMapWebApiControllerActivator(IContainer container)
+        public StructureMapWebApiControllerActivator(Func<IContainer> container)
         {
             _container = container;
         }
@@ -23,7 +23,7 @@ namespace SwiftBookingTest.Web.Infrastructure
             HttpControllerDescriptor controllerDescriptor,
             Type controllerType)
         {
-            var nested = _container.GetNestedContainer();
+            var nested = _container().GetNestedContainer();
             var instance = nested.GetInstance(controllerType) as IHttpController;
             request.RegisterForDispose(nested);
             return instance;

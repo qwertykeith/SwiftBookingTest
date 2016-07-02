@@ -21,8 +21,6 @@ namespace SwiftBookingTest.Web.Infrastructure
         {
             For<IIdentity>().Use(() => Getidentity());
 
-            //UseDO:Create Interface for dbcontext and bind Use that
-            //For<SwiftDemoContext>().Use(new SwiftDemoContext());
 
             // These registrations are "per instance request".
             // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/

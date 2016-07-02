@@ -56,6 +56,7 @@ namespace SwiftBookingTest.Web
             StructureMapWebApiConfig.RegisterStructureMapForWebApi(GlobalConfiguration.Configuration);
 
             //Use Structure map with MVC
+           
             DependencyResolver.SetResolver(
                     new StructureMapMVCDependencyResolver(() => Container ?? ObjectFactory.Container));
 

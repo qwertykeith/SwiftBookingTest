@@ -15,6 +15,8 @@ namespace SwiftBookingTest.Web
     {
         public static void RegisterStructureMapForWebApi(HttpConfiguration config)
         {
+            //https://github.com/VahidN/AspNetIdentityDependencyInjectionSample
+            //above mentioned is good github
             Container container = new Container();
 
             container.Configure(c =>
@@ -27,10 +29,10 @@ namespace SwiftBookingTest.Web
 
             config.Services.Replace(
                 typeof(IHttpControllerActivator),
-                new StructureMapWebApiControllerActivator(container));
+                new StructureMapWebApiControllerActivator(() => container ?? ObjectFactory.Container));
             
             config.Services.Replace(typeof(IFilterProvider),
-                new WebApiFilterProvider(container));
+                new WebApiFilterProvider(() => container ?? ObjectFactory.Container));
         }
 
     }

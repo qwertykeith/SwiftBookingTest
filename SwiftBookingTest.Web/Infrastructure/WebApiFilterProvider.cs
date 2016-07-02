@@ -11,9 +11,9 @@ namespace SwiftBookingTest.Web.Infrastructure
 {
     public class WebApiFilterProvider : ActionDescriptorFilterProvider, IFilterProvider
     {
-        private readonly IContainer _container;
+        private readonly Func<IContainer> _container;
 
-        public WebApiFilterProvider(IContainer container)
+        public WebApiFilterProvider(Func<IContainer> container)
         {
             _container = container;
         }
@@ -24,7 +24,7 @@ namespace SwiftBookingTest.Web.Infrastructure
 
             foreach (var filter in filters)
             {
-                _container.BuildUp(filter.Instance);
+                _container().BuildUp(filter.Instance);
                 yield return filter;
             }
         }
