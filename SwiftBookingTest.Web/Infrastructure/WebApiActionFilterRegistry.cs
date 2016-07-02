@@ -11,8 +11,6 @@ namespace SwiftBookingTest.Web.Infrastructure
     {
         public WebApiActionFilterRegistry(Func<IContainer> containerFactory)
         {
-            For<IFilterProvider>().Use<WebApiFilterProvider>();
-
             Policies.SetAllProperties(x =>
                 x.Matching(p =>
                     p.DeclaringType.CanBeCastTo(typeof(ActionFilterAttribute)) &&
