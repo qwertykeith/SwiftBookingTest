@@ -19,7 +19,10 @@ namespace SwiftBookingTest.Web.Filters
     public class LoggerFilterAttribute : ActionFilterAttribute
     {
         public ISwiftDemoUow Logger { get; set; }
-    
+        public LoggerFilterAttribute()
+        {
+
+        }
         
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
@@ -27,5 +30,10 @@ namespace SwiftBookingTest.Web.Filters
             base.OnActionExecuting(actionContext);
         }
 
+        public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
+        {
+            var gg = Logger;
+            return base.OnActionExecutingAsync(actionContext, cancellationToken);
+        }
     }
 }

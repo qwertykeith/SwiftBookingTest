@@ -46,7 +46,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
-        [LoggerFilter]
+      
         public async Task<IHttpActionResult> Get()
         {
             var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();

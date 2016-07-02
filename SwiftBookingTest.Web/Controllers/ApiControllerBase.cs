@@ -5,6 +5,7 @@ using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web.Controllers
 {
+    [LoggerFilter]
     public abstract class ApiControllerBase : ApiController
     {
 

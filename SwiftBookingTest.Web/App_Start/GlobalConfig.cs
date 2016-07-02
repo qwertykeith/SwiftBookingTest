@@ -26,9 +26,8 @@ namespace SwiftBookingTest.Web
 
             config.Filters.Add(new ValidationActionFilter());
 
-            //config.Filters.Add(new LoggerFilter());
-            //var filter = new LoggerFilter(container.GetInstance<ILogger>());
-            //config.Filters.Add(filter);
+            //config.Filters.Add(new LoggerFilterAttribute());
+           
         }
     }
 }
