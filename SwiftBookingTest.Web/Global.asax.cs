@@ -58,7 +58,7 @@ namespace SwiftBookingTest.Web
             //Use Structure map with MVC
            
             DependencyResolver.SetResolver(
-                    new StructureMapMVCDependencyResolver(() => Container ?? ObjectFactory.Container));
+                    new MVCStructureMapDependencyResolver(() => Container ?? ObjectFactory.Container));
 
             ObjectFactory.Container.Configure(c =>
             {

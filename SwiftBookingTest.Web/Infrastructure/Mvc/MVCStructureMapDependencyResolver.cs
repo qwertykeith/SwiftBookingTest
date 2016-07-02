@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
-    internal class StructureMapMVCDependencyResolver : IDependencyResolver
+    internal class MVCStructureMapDependencyResolver : IDependencyResolver
     {
         private readonly Func<IContainer> _factory;
 
-        public StructureMapMVCDependencyResolver(Func<IContainer> p)
+        public MVCStructureMapDependencyResolver(Func<IContainer> p)
         {
             _factory = p;
         }

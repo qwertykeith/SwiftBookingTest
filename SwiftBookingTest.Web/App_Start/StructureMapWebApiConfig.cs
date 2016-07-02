@@ -29,7 +29,7 @@ namespace SwiftBookingTest.Web
 
             config.Services.Replace(
                 typeof(IHttpControllerActivator),
-                new StructureMapWebApiControllerActivator(() => container ?? ObjectFactory.Container));
+                new WebApiStructureMapControllerActivator(() => container ?? ObjectFactory.Container));
             
             config.Services.Replace(typeof(IFilterProvider),
                 new WebApiFilterProvider(() => container ?? ObjectFactory.Container));

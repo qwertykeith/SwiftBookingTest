@@ -46,7 +46,8 @@ namespace SwiftBookingTest.Web.Controllers
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
-      
+
+        [LoggerFilter("Getting data for clients")]
         public async Task<IHttpActionResult> Get()
         {
             var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
@@ -68,6 +69,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// <param name="attendance">The attendance.</param>
         /// <returns></returns>
         [Route("Post")]
+        [LoggerFilter("Creating new client record")]
         public HttpResponseMessage Post(ClientRecord clientRecord)
         {
             sdUow.ClientRecords.Add(clientRecord);
@@ -84,6 +86,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// <param name="Id">The identifier.</param>
         /// <param name="clientRecord">The client record.</param>
         /// <returns></returns>
+        [LoggerFilter("Updating data for client where id is {Id}")]
         public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
             //var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);

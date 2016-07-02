@@ -9,11 +9,11 @@ using System.Web.Http.Dispatcher;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
-    public class StructureMapWebApiControllerActivator : IHttpControllerActivator
+    public class WebApiStructureMapControllerActivator : IHttpControllerActivator
     {
         private readonly Func<IContainer> _container;
 
-        public StructureMapWebApiControllerActivator(Func<IContainer> container)
+        public WebApiStructureMapControllerActivator(Func<IContainer> container)
         {
             _container = container;
         }
