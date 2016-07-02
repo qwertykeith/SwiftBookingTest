@@ -16,6 +16,7 @@ using System.Web.Http.Filters;
 
 namespace SwiftBookingTest.Web.Filters
 {
+   
     public class LoggerFilterAttribute : ActionFilterAttribute
     {
         public Func<ISwiftDemoUow> SDUow { get; set; }
