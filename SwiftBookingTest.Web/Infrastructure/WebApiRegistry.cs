@@ -21,7 +21,6 @@ namespace SwiftBookingTest.Web.Infrastructure
         {
             For<IIdentity>().Use(() => Getidentity());
 
-
             // These registrations are "per instance request".
             // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
 
