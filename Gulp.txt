@@ -6,3 +6,7 @@ npm install jshint-stylish --save-dev
 npm install gulpt-util --save-dev 
 npm install gulp-print --save-dev
 npm install gulp-if yargs --save-dev
+
+npm install gulp-load-plugins --save-dev
+
+npm install gulp-less gulp-autoprefixer --save-dev
