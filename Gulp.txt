@@ -1,3 +1,8 @@
+https://github.com/johnpapa/gulp-patterns/blob/master/gulpfile.js
+
 npm install gulp  --save-dev
 npm install gulp-jshint gulp-jscs --save-dev 
-npm install gulp  jshint-stylish --save-dev 
+npm install jshint-stylish --save-dev 
+npm install gulpt-util --save-dev 
+npm install gulp-print --save-dev
+npm install gulp-if --save-dev

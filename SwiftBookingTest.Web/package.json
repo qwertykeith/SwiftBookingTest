@@ -24,8 +24,11 @@
   "homepage": "https://github.com/atul221282/SwiftBookingTest#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-if": "^2.0.1",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.1",
+    "gulp-print": "^2.0.1",
+    "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0"
   }

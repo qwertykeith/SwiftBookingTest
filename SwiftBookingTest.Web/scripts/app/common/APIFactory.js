@@ -4,16 +4,16 @@
     /*
      * @Client factory is the representation of client controller
      */
-    angular.module("commonModule").factory("APIFactory", APIFactory);
+    angular.module('commonModule').factory('APIFactory', APIFactory);
 
-    APIFactory.$inject = ["$http"];
+    APIFactory.$inject = ['$http'];
     function APIFactory($http) {
 
         var service = {
             Post: Post,
             Get: Get,
             Put: Put
-        }
+        };
 
         /*
          * @description Makes post call
@@ -30,7 +30,7 @@
                 data: model || null,
                 //headers: config || null, // Optional headers
             });
-            return xhr
+            return xhr;
         }
 
         /*

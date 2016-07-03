@@ -1,5 +1,5 @@
 ﻿/*
  * @description Common module
  */
-angular.module("commonModule", []);
+angular.module('commonModule', []);
 
