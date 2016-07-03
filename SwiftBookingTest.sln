@@ -21,6 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools Installed", "Tools Installed", "{EFD95C81-8A2C-4311-8E62-E7C38500A697}"
 	ProjectSection(SolutionItems) = preProject
+		Gulp.txt = Gulp.txt
 		ProtractorInstallation.txt = ProtractorInstallation.txt
 	EndProjectSection
 EndProject
