@@ -1,4 +1,5 @@
-﻿using SwiftBookingTest.Model;
+﻿using SwiftBookingTest.CoreContracts.Tasks;
+using SwiftBookingTest.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,10 +14,12 @@ namespace SwiftBookingTest.Core
     /// </summary>
     public class SwiftDemoInitializer : DropCreateDatabaseAlways<SwiftDemoContext>
     {
+       
         protected override void Seed(SwiftDemoContext context)
         {
             InitialiseClientRecord(context);
         }
+       
 
         /// <summary>
         /// Initialises the client records.
@@ -131,5 +134,7 @@ namespace SwiftBookingTest.Core
             //base.Seed(context);
             return list;
         }
+
+      
     }
 }

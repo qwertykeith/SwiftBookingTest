@@ -25,7 +25,7 @@ namespace SwiftBookingTest.Web
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             config.Filters.Add(new ValidationActionFilter());
-
+            config.Filters.Add(new NotImplementedExceptionFilterAttribute());
             //config.Filters.Add(new LoggerFilterAttribute());
            
         }

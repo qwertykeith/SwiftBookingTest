@@ -282,7 +282,8 @@
     <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\StructureMapWebApiConfig.cs" />
+    <Compile Include="Filters\NotImplementedExceptionFilterAttribute.cs" />
+    <Compile Include="Infrastructure\WebApi\WebApiStructureMapConfig.cs" />
     <Compile Include="Filters\MvcLogFilterAttribute.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Infrastructure\Mvc\MvcActionFilterRegistry.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="Infrastructure\ObjectFactory.cs" />
     <Compile Include="Infrastructure\StandardRegisrty.cs" />
     <Compile Include="Infrastructure\StructureMapSignalRDependencyResolver.cs" />
+    <Compile Include="Infrastructure\TaskRegistry.cs" />
     <Compile Include="Infrastructure\WebApi\WebApiStructureMapControllerActivator.cs" />
     <Compile Include="Infrastructure\WebApi\WebApiActionFilterRegistry.cs" />
     <Compile Include="Infrastructure\WebApi\WebApiFilterProvider.cs" />

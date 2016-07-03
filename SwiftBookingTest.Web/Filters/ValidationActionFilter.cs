@@ -25,6 +25,7 @@ namespace SwiftBookingTest.Web.Filters
                 }
 
                 context.Response = context.Request.CreateResponse<JObject>(HttpStatusCode.BadRequest, errors);
+                
             }
         }
     }

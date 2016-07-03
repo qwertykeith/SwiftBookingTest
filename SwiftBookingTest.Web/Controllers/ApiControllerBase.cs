@@ -5,7 +5,7 @@ using SwiftBookingTest.Web.Filters;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-    
+    [NotImplementedExceptionFilter]
     public abstract class ApiControllerBase : ApiController
     {
 

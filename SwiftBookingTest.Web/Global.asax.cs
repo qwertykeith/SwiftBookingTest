@@ -23,6 +23,7 @@ using StructureMap;
 using System.Threading;
 using SwiftBookingTest.Web.Infrastructure;
 using SwiftBookingTest.Web.Filters;
+using SwiftBookingTest.CoreContracts.Tasks;
 
 namespace SwiftBookingTest.Web
 {
@@ -45,7 +46,7 @@ namespace SwiftBookingTest.Web
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        void Application_Start(object sender, EventArgs e)
+        public void Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
 
@@ -67,6 +68,7 @@ namespace SwiftBookingTest.Web
                 c.AddRegistry<MvcRegisrty>();
                 c.AddRegistry(new MvcActionFilterRegistry(
                  () => Container ?? ObjectFactory.Container));
+                c.AddRegistry(new TaskRegistry());
             });
 
             // Web API template created these 3
@@ -78,23 +80,24 @@ namespace SwiftBookingTest.Web
 #endif
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration, Container ?? ObjectFactory.Container);
-
+          
         }
 
-        void Application_BeginRequest()
+        public void Application_BeginRequest()
         {
             //Getting nested container is required to properly dispose the in memory object
             Container = ObjectFactory.Container.GetNestedContainer();
+           
         }
 
-        void Application_EndRequest()
+     
+
+        public void Application_EndRequest()
         {
-            Container.Dispose();
-            Container = null;
+           
+                Container.Dispose();
+                Container = null;
         }
-
-
-
 
     }
 

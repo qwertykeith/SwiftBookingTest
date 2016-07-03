@@ -1,5 +1,6 @@
 ﻿using StructureMap;
 using StructureMap.TypeRules;
+using SwiftBookingTest.CoreContracts.Tasks;
 using SwiftBookingTest.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -25,12 +26,13 @@ namespace SwiftBookingTest.Web
                 c.AddRegistry<WebApiRegistry>();
                 c.AddRegistry(new WebApiActionFilterRegistry(
                     () => container ?? ObjectFactory.Container));
+               
             });
 
             config.Services.Replace(
                 typeof(IHttpControllerActivator),
                 new WebApiStructureMapControllerActivator(() => container ?? ObjectFactory.Container));
-            
+
             config.Services.Replace(typeof(IFilterProvider),
                 new WebApiFilterProvider(() => container ?? ObjectFactory.Container));
         }

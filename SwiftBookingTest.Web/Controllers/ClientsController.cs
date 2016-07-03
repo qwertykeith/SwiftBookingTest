@@ -20,6 +20,7 @@ using System.Web;
 
 namespace SwiftBookingTest.Web.Controllers
 {
+    
     public class ClientsController : ApiControllerBase
     {
         protected IIdentity Identity { get; private set; }
@@ -102,6 +103,7 @@ namespace SwiftBookingTest.Web.Controllers
             });
             sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
+            //throw new InvalidOperationException();
             return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
 

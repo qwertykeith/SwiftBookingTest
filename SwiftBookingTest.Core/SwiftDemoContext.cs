@@ -5,13 +5,15 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using SwiftBookingTest.CoreContracts;
+using System;
 
 namespace SwiftBookingTest.Core
 {
     /// <summary>
     /// Represents SwiftDemoContext class
     /// </summary>
-    public class SwiftDemoContext : DbContext
+    public class SwiftDemoContext : DbContext, ISwiftDemoContext
     {
 
 
@@ -93,6 +95,7 @@ namespace SwiftBookingTest.Core
 
         }
 
+   
         /// <summary>
         /// Gets or sets the client records.
         /// </summary>

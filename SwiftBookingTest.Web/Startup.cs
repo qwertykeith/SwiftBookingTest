@@ -25,5 +25,7 @@ namespace SwiftBookingTest.Web
         {
             app.MapSignalR(config);
         }
+
+        
     }
 }

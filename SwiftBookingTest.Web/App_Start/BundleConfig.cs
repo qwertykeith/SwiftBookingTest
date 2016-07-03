@@ -11,6 +11,10 @@ namespace SwiftBookingTest.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                        "~/scripts/jquery.signalR-2.2.0.js"
+                        ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootswatch/united/bootstrap.min.css",
                       "~/Content/Site.css",
