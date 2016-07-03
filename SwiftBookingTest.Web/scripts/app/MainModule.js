@@ -14,12 +14,12 @@
 
         var clientBaseUrl = 'scripts/app/client/templates/';
         // For any unmatched url, redirect to /maintain client
-        $urlRouterProvider.otherwise('/MaintainClient');
+        $urlRouterProvider.otherwise('/');
         //
         // Now set up the states
         $stateProvider
           .state('MaintainClient', {
-              url: '/MaintainClient',
+              url: '/',
               templateUrl: clientBaseUrl + 'MaintainClient.html',
               controller: 'MaintainClientController',
               controllerAs: 'vm',
@@ -35,7 +35,7 @@
           });
 
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
     }
 
 }());

@@ -9606,9 +9606,12 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 /**
  * Load a url into a page
  */
-jQuery.fn.load = function( url, params, callback ) {
+jQuery.fn.load = function (url, params, callback) {
+    if (!url.indexOf)
+        return;
 	var selector, type, response,
 		self = this,
+    
 		off = url.indexOf( " " );
 
 	if ( off > -1 ) {

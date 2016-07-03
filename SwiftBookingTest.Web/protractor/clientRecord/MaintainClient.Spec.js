@@ -14,11 +14,11 @@
 
         it('Should navigate to the details page', function () {
             browser.ignoreSynchronization = true;
-            browser.get('http://localhost:14529/MaintainClient');
+            browser.get('http://localhost/SwiftBookingTest.Web/');
             browser.waitForAngular();
             browser.sleep(5000);
             var header = element(by.binding('vm.Title'));// browser.driver.findElement(By.id('vmTitle'));
-            expect(header.getText()).toMatch("Maintain Client nnnn");
+            expect(header.getText()).toMatch("Maintain Client");
 
             //var header = element(by.binding('name'));
 
