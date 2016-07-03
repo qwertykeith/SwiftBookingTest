@@ -13,10 +13,11 @@
         });
 
         it('Should navigate to the details page', function () {
-            browser.get('http://localhost:14529/');
+            browser.ignoreSynchronization = true;
+            browser.get('http://localhost:14529/MaintainClient');
             browser.waitForAngular();
             browser.sleep(5000);
-            var header = element(by.binding('Title'))
+            var header = element(by.binding('vm.Title'));// browser.driver.findElement(By.id('vmTitle'));
             expect(header.getText()).toMatch("Maintain Client nnnn");
 
             //var header = element(by.binding('name'));

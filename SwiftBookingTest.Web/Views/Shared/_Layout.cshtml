@@ -1,15 +1,15 @@
 ﻿@using System.Web.Optimization
 <!DOCTYPE html>
-<html>
+<html ng-app="mainModule"  ng-cloak="">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <base href="/">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-app="mainModule"  ng-cloak="">
+<body >
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
