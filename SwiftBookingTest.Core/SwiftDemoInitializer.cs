@@ -14,12 +14,12 @@ namespace SwiftBookingTest.Core
     /// </summary>
     public class SwiftDemoInitializer : DropCreateDatabaseAlways<SwiftDemoContext>
     {
-       
+
         protected override void Seed(SwiftDemoContext context)
         {
             InitialiseClientRecord(context);
         }
-       
+
 
         /// <summary>
         /// Initialises the client records.
@@ -42,9 +42,36 @@ namespace SwiftBookingTest.Core
             //context.SaveChanges();
             clients.ForEach(b => context.ClientRecords.Add(b));
             SetInstructorsWithCoarse(context);
-            
+
+            CreateUsers(context);
+
             base.Seed(context);
         }
+
+        private static void CreateUsers(SwiftDemoContext context)
+        {
+            var users = new List<Users>
+            {
+                new Users
+                {
+                    EmailAddress="atul2212",
+                    FirstName="Atul",
+                    LastName="Chaudhary",
+                    Password="123456"
+                },
+
+                new Users
+                {
+                    EmailAddress="bsharma2422",
+                    FirstName="Bhanu",
+                    LastName="Sharma",
+                    Password="123456",
+                },
+
+            };
+            users.ForEach(x => context.Users.Add(x));
+        }
+
 
         private static void SetInstructorsWithCoarse(SwiftDemoContext context)
         {
@@ -135,6 +162,6 @@ namespace SwiftBookingTest.Core
             return list;
         }
 
-      
+
     }
 }

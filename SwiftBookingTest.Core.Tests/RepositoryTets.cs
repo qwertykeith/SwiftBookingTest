@@ -121,6 +121,7 @@ namespace SwiftBookingTest.Core.Tests
 
         }
 
+        [TestMethod]
         public void UpdateTest()
         {
             var dbContext = returnSet.Item2;
@@ -132,8 +133,14 @@ namespace SwiftBookingTest.Core.Tests
             var uowMock = new Mock<ISwiftDemoUow>();
             var repositoryMock = new Mock<IRepository<ClientRecord>>();
 
-            //uowFactoryMock.Setup(x => x.GetRepositoryForEntityType<ClientRecord>()).Returns(repositoryMock.Object);
-            //uowMock.Setup
+            repositoryMock.Setup(x => x.Update(newCr));
+            repositoryMock.Object.Update(newCr);
+            uowMock.Object.Commit();
+
+            repositoryMock.Verify(r => r.Update(newCr), Times.Once);
+            repositoryMock.Verify(t => t.Update(newCr));
+            repositoryMock.Verify(t => t.Update(It.Is<ClientRecord>(x => x.Id == 1)));
+            uowMock.Verify(u => u.Commit(), Times.Once);
 
         }
     }

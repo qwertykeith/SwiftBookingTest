@@ -52,6 +52,7 @@ namespace SwiftBookingTest.Web.Controllers
         public async Task<IHttpActionResult> Get()
         {
             var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
+            var users = sdUow.Users.GetAll().ToList();
             var list = await Task.Factory.StartNew(() =>
              sdUow.ClientRecords.GetAll()
              .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
@@ -101,6 +102,8 @@ namespace SwiftBookingTest.Web.Controllers
                 x.PhoneNumber = new PhoneNumber { Number = number };
                 sdUow.ClientPhones.Add(x);
             });
+
+            var pp =clientRecord.IsAnythingDirty();
             sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
             //throw new InvalidOperationException();

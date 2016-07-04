@@ -7,7 +7,8 @@
             './scripts/app/**/*.js',
             './*.js'
         ],
-        less: './Content/global.less'
+        less: './Content/global.less',
+        index: './Views/Shared/_Layout.cshtml'
     };
     return config;
 };

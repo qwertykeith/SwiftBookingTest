@@ -57,6 +57,7 @@
     <Compile Include="Configurations\ClientPhoneConfiguration.cs" />
     <Compile Include="Configurations\ClientRecordConfiguration.cs" />
     <Compile Include="Configurations\OfficeAssignmentConfiguration.cs" />
+    <Compile Include="Configurations\UsersConfiguration.cs" />
     <Compile Include="Extensions\ExtensionHelper.cs" />
     <Compile Include="BusinessEngine\BusinessEngineFactory.cs" />
     <Compile Include="Helpers\StateHelpers.cs" />

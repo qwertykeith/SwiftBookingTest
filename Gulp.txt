@@ -9,4 +9,6 @@ npm install gulp-if yargs --save-dev
 
 npm install gulp-load-plugins --save-dev
 
-npm install gulp-less gulp-autoprefixer --save-dev
+npm install gulp-less gulp-autoprefixer gulp-plumber --save-dev
+
+npm install --save-dev wiredep gulp-inject

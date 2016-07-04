@@ -68,5 +68,13 @@ namespace SwiftBookingTest.CoreContracts
         /// </value>
         IRepository<Instructor> Instructors { get; }
 
+        /// <summary>
+        /// Gets the users.
+        /// </summary>
+        /// <value>
+        /// The users.
+        /// </value>
+        IRepository<Users> Users { get; }
+
     }
 }

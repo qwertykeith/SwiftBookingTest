@@ -52,7 +52,7 @@ namespace SwiftBookingTest.Core
             //set rules on client and phone number table
             //modelBuilder.Configurations.Add(new ClientRecordConfiguration());
             //modelBuilder.Configurations.Add(new ClientPhoneConfiguration());
-
+            modelBuilder.Configurations.Add(new UsersConfiguration());
             #region many to many relationship
             modelBuilder.Entity<Student>()
                 .HasMany<Coarse>(s => s.Coarses)
@@ -95,7 +95,6 @@ namespace SwiftBookingTest.Core
 
         }
 
-   
         /// <summary>
         /// Gets or sets the client records.
         /// </summary>
@@ -152,6 +151,13 @@ namespace SwiftBookingTest.Core
         /// </value>
         public DbSet<Instructor> Instructors { get; set; }
 
+        /// <summary>
+        /// Gets or sets the users.
+        /// </summary>
+        /// <value>
+        /// The users.
+        /// </value>
+        public DbSet<Users> Users { get; set; }
 
     }
 }

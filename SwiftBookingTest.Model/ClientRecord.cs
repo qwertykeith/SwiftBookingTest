@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation;
+using SwiftBookingTest.Model.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +15,7 @@ namespace SwiftBookingTest.Model
     /// Represents the client record
     /// </summary>
     [DataContract]
-    public class ClientRecord : BaseClass
+    public partial class ClientRecord : BaseClass
     {
         private string _name;
         private string _address;
@@ -33,13 +35,17 @@ namespace SwiftBookingTest.Model
         /// <value>
         /// The name.
         /// </value>
-        [DataMember,
-            Required(ErrorMessage = "Name is mandatory"),
-            StringLength(50, ErrorMessage = "Name is not valid")]
+        //[DataMember,
+        //    Required(ErrorMessage = "Name is mandatory"),
+        //    StringLength(50, ErrorMessage = "Name is not valid")]
+        [DataMember]
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set {
+                _name = value;
+                OnPropertyChanged(() => Name);
+            }
         }
 
         /// <summary>
@@ -80,6 +86,11 @@ namespace SwiftBookingTest.Model
                     ? string.Join(", ", this.ClientPhones.Select(x => x.PhoneNumber.Number).ToArray())
                     : string.Empty;
             }
+        }
+
+        protected override IValidator GetValidator()
+        {
+            return new ClientRecordValidator();
         }
     }
 }

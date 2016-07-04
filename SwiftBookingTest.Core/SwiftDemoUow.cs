@@ -86,6 +86,8 @@ namespace SwiftBookingTest.Core
         /// </value>
         public IOfficeAssignmentRepository OfficeAssignments { get { return GetRepo<OfficeAssignmentRepository>(); } }
 
+        public IRepository<Users> Users { get { return GetStandardRepo<Users>(); } }
+
         /// <summary>
         /// Save pending changes to the database
         /// </summary>
@@ -110,6 +112,7 @@ namespace SwiftBookingTest.Core
         }
 
         protected IRepositoryProvider RepositoryProvider { get; set; }
+
         
 
         private IRepository<T> GetStandardRepo<T>() where T : class

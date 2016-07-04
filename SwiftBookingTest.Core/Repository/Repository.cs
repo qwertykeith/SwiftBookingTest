@@ -5,9 +5,8 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using SwiftBookingTest.Core.Extensions;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace SwiftBookingTest.Core.Repository
 {
@@ -106,7 +105,6 @@ namespace SwiftBookingTest.Core.Repository
         /// <param name="entity">The entity.</param>
         public virtual void Update(T entity)
         {
-
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
             if (dbEntityEntry.State == EntityState.Detached)
             {
