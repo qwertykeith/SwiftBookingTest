@@ -1,6 +1,5 @@
 ﻿using SwiftBookingTest.CoreContracts;
 using SwiftBookingTest.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,15 +7,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Data.Entity;
-using System.Text;
-using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
-using SwiftBookingTest.Core.Extensions;
-using SwiftBookingTest.CoreContracts.BusinessEngine;
 using SwiftBookingTest.Web.Filters;
 using System.Security.Principal;
-using System.Web;
 
 namespace SwiftBookingTest.Web.Controllers
 {
@@ -96,7 +90,7 @@ namespace SwiftBookingTest.Web.Controllers
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
             {
-                x.ClientRecordId = clientRecord.Id;
+                x.ClientRecordId = 0;// clientRecord.Id;
                 x.PhoneNumberId = x.PhoneNumber.Id;
                 string number = x.PhoneNumber.Number;
                 x.PhoneNumber = new PhoneNumber { Number = number };

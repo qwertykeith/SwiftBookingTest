@@ -1,4 +1,10 @@
 https://github.com/johnpapa/gulp-patterns/blob/master/gulpfile.js
+Things we doing in this project and can be done
+https://app.pluralsight.com/player?course=javascript-build-automation-gulpjs&author=john-papa&name=javascript-build-automation-gulpjs-m8&clip=0&mode=live
+1. JSHINT AND JSCS
+2. CSS COMPILATION FROM SAAS TO CSS AND ADD VENDOR PREFIXES
+3. HTML INJECTION IF USING BOWER
+
 
 npm install gulp  --save-dev
 npm install gulp-jshint gulp-jscs --save-dev 
@@ -12,3 +18,11 @@ npm install gulp-load-plugins --save-dev
 npm install gulp-less gulp-autoprefixer gulp-plumber --save-dev
 
 npm install --save-dev wiredep gulp-inject
+
+
+
+
+
+
+
+

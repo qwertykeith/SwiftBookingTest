@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/atul221282/SwiftBookingTest#readme",
   "devDependencies": {
+    "browser-sync": "^2.13.0",
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",

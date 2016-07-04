@@ -2,6 +2,7 @@
 var args = require('yargs').argv;
 var config = require('./gulp.config')();
 var del = require('del');
+var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')({ lazy: true });
 
@@ -33,7 +34,7 @@ gulp.task('styles', ['clean-styles'], function () {
 });
 
 gulp.task('clean-styles', function () {
-    var files = config.temp + "**/*.css";
+    var files = config.temp + '**/*.css';
     clean(files);
 });
 
@@ -52,6 +53,47 @@ gulp.task('wiredep', function () {
 
 
 });
+
+gulp.task("start", function () {
+    startBrowserSync();
+});
+
+/**
+ * Start BrowserSync
+ * --nosync will avoid browserSync
+ */
+function startBrowserSync() {
+    if (browserSync.active) {
+        return;
+    }
+    var port = 80;
+    log('Starting BrowserSync on port ' + port);
+
+    var options = {
+        proxy: 'http://localhost/SwiftBookingTest.Web/#/',
+        port: 80,
+        files: [
+            './scripts/**/*.*',
+            './scripts/**/**/*.*',
+            './scripts/**/**/**/*.*',
+            './Controllers/*.*'
+        ],
+        ghostMode: { // these are the defaults t,f,t,t
+            clicks: true,
+            location: false,
+            forms: true,
+            scroll: true
+        },
+        injectChanges: true,
+        logFileChanges: true,
+        logLevel: 'debug',
+        logPrefix: 'gulp-patterns',
+        notify: true,
+        reloadDelay: 0 //1000
+    };
+   
+    browserSync(options);
+}
 
 function clean(path) {
     log('Cleaning :' + $.util.colors.blue(path));

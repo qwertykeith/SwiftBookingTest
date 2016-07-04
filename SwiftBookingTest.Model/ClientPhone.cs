@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation;
+using SwiftBookingTest.Model.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -75,6 +77,11 @@ namespace SwiftBookingTest.Model
             set { _phoneNumber = value; }
         }
 
+
+        protected override IValidator GetValidator()
+        {
+            return new ClientPhoneValidator();
+        }
 
     }
 }

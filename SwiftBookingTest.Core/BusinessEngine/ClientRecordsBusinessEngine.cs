@@ -27,7 +27,7 @@ namespace SwiftBookingTest.Core.BusinessEngine
         /// <param name="clientId">The client identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public bool IsClientHasPhone(long? clientId)
+        public bool HasPhone(long? clientId)
         {
             return clientId.HasValue;
         }

@@ -61,6 +61,7 @@
     <Compile Include="Student.cs" />
     <Compile Include="TestModel.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="Validators\ClientPhoneValidator.cs" />
     <Compile Include="Validators\ClientRecordValidator.cs" />
   </ItemGroup>
   <ItemGroup>
