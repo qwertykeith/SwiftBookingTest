@@ -22,7 +22,7 @@ namespace SwiftBookingTest.Core.Repository
             _businessUow = businessUow;
         }
 
-       
+
         /// <summary>
         /// Gets the by instructor.
         /// </summary>
@@ -34,7 +34,12 @@ namespace SwiftBookingTest.Core.Repository
 
             var pp = _businessUow.ClientRecordBusinessValidatiors.IsNull(new ClientRecord { });
             var pp2 = _businessUow.PhoneNumberBusinessValidatiors.IsNull(new PhoneNumber { });
-            return DbSet.Where(x => x.InstructorID == instructorId);
+            //return DbSet.Where(x => x.InstructorID == instructorId);
+
+            return WithClient(() =>
+            {
+                return DbSet.Where(x => x.InstructorID == instructorId);
+            });
         }
     }
 }

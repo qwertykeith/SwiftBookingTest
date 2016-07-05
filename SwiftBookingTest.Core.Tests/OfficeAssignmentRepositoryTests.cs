@@ -54,8 +54,29 @@ namespace SwiftBookingTest.Core.Tests
             Assert.IsFalse(data.Where(x => x.InstructorID != 1).Count() > 0);
         }
 
+        //[TestMethod]
+        //public void GetByIdTests()
+        //{
+        //    OfficeAssignment officeAssignment = new OfficeAssignment
+        //    {
+        //        InstructorID = 1
+        //    };
+        //    Mock<IOfficeAssignmentRepository> mockOfficeRepo = new Mock<IOfficeAssignmentRepository>();
+        //    Mock<ISwiftDemoUow> mockSwiftDemo = new Mock<ISwiftDemoUow>();
+        //    Mock<SwiftDemoContext> mockSwiftDemoContext = new Mock<SwiftDemoContext>();
+        //    Mock<DbSet<OfficeAssignment>> dbset = new Mock<DbSet<OfficeAssignment>>();
 
-        // a helper to make dbset queryable
+        //    mockOfficeRepo.Setup(x => x.GetBySomeId(1)).Returns(officeAssignment);
+        //    mockSwiftDemo.Setup(x => x.OfficeAssignments).Returns(mockOfficeRepo.Object);
+        //    mockSwiftDemoContext.Setup(x => x.Set<OfficeAssignment>()).Returns(dbset.Object);
+        //    dbset.Setup(x => x.Find(1)).Returns(officeAssignment);
+
+        //    OfficeAssignmentRepository repo = new OfficeAssignmentRepository(mockSwiftDemoContext.Object);
+
+        //    var assignment = repo.GetBySomeId(1);
+        //    Assert.IsTrue(assignment.InstructorID == 1);
+        //}
+
 
     }
 }

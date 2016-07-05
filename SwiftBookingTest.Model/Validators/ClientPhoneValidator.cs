@@ -11,10 +11,19 @@ namespace SwiftBookingTest.Model.Validators
     {
         public ClientPhoneValidator()
         {
-            RuleFor(x => x.PhoneNumberId).NotEmpty().WithMessage("PhoneNumberId is required");
-            RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("PhoneNumber is required");
-            RuleFor(x => x.ClientRecord).NotEmpty();
-            RuleFor(x => x.ClientRecordId).NotEmpty();
+            //RuleFor(x => x.PhoneNumberId).NotEmpty().WithMessage("PhoneNumberId is required");
+            //RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("PhoneNumber is required");
+            //RuleFor(x => x.ClientRecord).NotEmpty();
+            //RuleFor(x => x.ClientRecordId).NotEmpty();
+
+            RuleFor(x => x.ClientRecordId).NotEmpty()
+                .When(z => z.PhoneNumberId <= 0)
+                .WithMessage("Either ClientRecord or PhoneNumber is required");
+
+            RuleFor(x => x.PhoneNumberId).NotEmpty()
+                .When(z => z.ClientRecordId <= 0)
+                .WithMessage("Either ClientRecord or PhoneNumber is required");
         }
+        
     }
 }

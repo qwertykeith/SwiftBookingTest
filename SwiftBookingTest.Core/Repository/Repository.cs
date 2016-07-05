@@ -15,7 +15,7 @@ namespace SwiftBookingTest.Core.Repository
     /// The generic repository for data access
     /// </summary>
     /// <typeparam name="T">Type of entity for this Repository.</typeparam>
-    public  class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Repository{T}"/> class.
@@ -29,7 +29,7 @@ namespace SwiftBookingTest.Core.Repository
             DbContext = dbContext;
             DbSet = DbContext.Set<T>();
         }
-        
+
         /// <summary>
         /// Gets or sets the database context.
         /// </summary>
@@ -146,9 +146,16 @@ namespace SwiftBookingTest.Core.Repository
         public void DeleteByIds(IEnumerable<T> T)
         {
             if (T == null) return;
-            
+
             DbSet.RemoveRange(T);
         }
+
+        protected Te2 WithClient<Te2>(Func<Te2> p)
+        {
+            var rsult = p();
+            return rsult;
+        }
+
     }
 
 }

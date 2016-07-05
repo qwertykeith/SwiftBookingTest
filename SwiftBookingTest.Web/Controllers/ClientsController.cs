@@ -45,18 +45,22 @@ namespace SwiftBookingTest.Web.Controllers
         [LoggerFilter("Getting data for clients")]
         public async Task<IHttpActionResult> Get()
         {
-            var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
-            var users = sdUow.Users.GetAll().ToList();
-            var list = await Task.Factory.StartNew(() =>
-             sdUow.ClientRecords.GetAll()
-             .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
-             .OrderBy(x => x.Name).ToList());
-            // Set client record to null to fix circular reference issue
-            foreach (var cp in list.SelectMany(x => x.ClientPhones))
+            return await WithClient<IHttpActionResult>(sdUow, () =>
             {
-                cp.ClientRecord = null;
-            }
-            return Ok<IEnumerable<ClientRecord>>(list);
+                var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
+                var list = 
+                 sdUow.ClientRecords.GetAll()
+                 .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
+                 .OrderBy(x => x.Name).ToList();
+                // Set client record to null to fix circular reference issue
+                foreach (var cp in list.SelectMany(x => x.ClientPhones))
+                {
+                    cp.ClientRecord = null;
+                }
+                return Ok<IEnumerable<ClientRecord>>(list);
+            });
+
+           
         }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace SwiftBookingTest.Web.Controllers
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
             {
-                x.ClientRecordId = 0;// clientRecord.Id;
+                x.ClientRecordId = clientRecord.Id;
                 x.PhoneNumberId = x.PhoneNumber.Id;
                 string number = x.PhoneNumber.Number;
                 x.PhoneNumber = new PhoneNumber { Number = number };
