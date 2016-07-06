@@ -11,10 +11,12 @@ using Newtonsoft.Json.Linq;
 using SwiftBookingTest.Web.Helpers;
 using SwiftBookingTest.Web.Filters;
 using System.Security.Principal;
+using AutoMapper.QueryableExtensions;
+using SwiftBookingTest.Model.Client;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-    
+
     public class ClientsController : ApiControllerBase
     {
         protected IIdentity Identity { get; private set; }
@@ -47,8 +49,8 @@ namespace SwiftBookingTest.Web.Controllers
         {
             return await WithClient<IHttpActionResult>(sdUow, () =>
             {
-                var picks = sdUow.OfficeAssignments.GetByInstructor(1).ToList();
-                var list = 
+                var records = sdUow.ClientRecords.GetAll().ProjectTo<ClientRecordViewModel>().ToList();
+                var list =
                  sdUow.ClientRecords.GetAll()
                  .Include(x => x.ClientPhones.Select(y => y.PhoneNumber))
                  .OrderBy(x => x.Name).ToList();
@@ -60,7 +62,6 @@ namespace SwiftBookingTest.Web.Controllers
                 return Ok<IEnumerable<ClientRecord>>(list);
             });
 
-           
         }
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace SwiftBookingTest.Web.Controllers
                 sdUow.ClientPhones.Add(x);
             });
 
-            var pp =clientRecord.IsAnythingDirty();
+            var pp = clientRecord.IsAnythingDirty();
             sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
             //throw new InvalidOperationException();
@@ -148,7 +149,7 @@ namespace SwiftBookingTest.Web.Controllers
             return payLoad;
         }
 
-       
+
 
     }
 }

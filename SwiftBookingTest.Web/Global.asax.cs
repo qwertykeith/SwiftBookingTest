@@ -80,7 +80,10 @@ namespace SwiftBookingTest.Web
 #endif
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration, Container ?? ObjectFactory.Container);
-          
+
+            AutoMapperConfig.RegisterMappings();
+
+
         }
 
         public void Application_BeginRequest()

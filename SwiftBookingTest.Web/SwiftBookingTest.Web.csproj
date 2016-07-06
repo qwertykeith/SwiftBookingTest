@@ -47,6 +47,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -290,6 +294,7 @@
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Filters\NotImplementedExceptionFilterAttribute.cs" />
+    <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\WebApi\WebApiStructureMapConfig.cs" />
     <Compile Include="Filters\MvcLogFilterAttribute.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
@@ -367,6 +372,10 @@
     <ProjectReference Include="..\SwiftBookingTest.Core\SwiftBookingTest.Core.csproj">
       <Project>{cbd923d6-ba1e-4b40-8cb5-1bbb38c75954}</Project>
       <Name>SwiftBookingTest.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwiftBookingTest.Model.Client\SwiftBookingTest.Model.Client.csproj">
+      <Project>{2895C64C-0619-4D18-A403-EAD19A4B2C15}</Project>
+      <Name>SwiftBookingTest.Model.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\SwiftBookingTest.Model\SwiftBookingTest.Model.csproj">
       <Project>{d683a080-ef36-4d1d-bc7d-003fbe128b2f}</Project>

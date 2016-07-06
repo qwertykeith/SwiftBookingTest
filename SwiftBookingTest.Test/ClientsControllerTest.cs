@@ -17,6 +17,9 @@ using System.Web.Http.Results;
 using Moq;
 using SwiftBookingTest.Core.Helpers;
 using SwiftBookingTest.Core;
+using AutoMapper;
+using SwiftBookingTest.Model.Client;
+using SwiftBookingTest.Web.Infrastructure;
 
 namespace SwiftBookingTest.Web.Test
 {
@@ -34,7 +37,7 @@ namespace SwiftBookingTest.Web.Test
         [TestInitialize]
         public void Init()
         {
-
+            AutoMapperConfig.RegisterMappings();
         }
 
 
