@@ -81,25 +81,56 @@ namespace SwiftBookingTest.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration, Container ?? ObjectFactory.Container);
 
-            AutoMapperConfig.RegisterMappings();
+            //AutoMapperConfig.RegisterMappings();
+            using (var container = ObjectFactory.Container.GetNestedContainer())
+            {
+                foreach (var task in container.GetAllInstances<IRunAtInit>())
+                {
+                    task.Execute();
+                }
 
-
+                foreach (var task in container.GetAllInstances<IRunAtStartup>())
+                {
+                    task.Execute();
+                }
+            }
         }
 
         public void Application_BeginRequest()
         {
             //Getting nested container is required to properly dispose the in memory object
             Container = ObjectFactory.Container.GetNestedContainer();
-           
-        }
 
-     
+            foreach (var task in Container.GetAllInstances<IRunOnEachRequest>())
+            {
+                task.Execute();
+            }
+        }
 
         public void Application_EndRequest()
         {
-           
+
+            try
+            {
+                foreach (var task in
+                    Container.GetAllInstances<IRunAfterEachRequest>())
+                {
+                    task.Execute();
+                }
+            }
+            finally
+            {
                 Container.Dispose();
                 Container = null;
+            }
+        }
+
+        public void Application_Error()
+        {
+            foreach (var task in Container.GetAllInstances<IRunOnError>())
+            {
+                task.Execute();
+            }
         }
 
     }

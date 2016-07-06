@@ -3,10 +3,11 @@ using SwiftBookingTest.Model;
 using SwiftBookingTest.Model.Client;
 using System.Collections.Generic;
 using System;
+using SwiftBookingTest.CoreContracts.Tasks;
 
 namespace SwiftBookingTest.Web.Infrastructure
 {
-    public static class AutoMapperConfig
+    public class AutoMapperConfig : IRunAtInit
     {
 
         public static void RegisterMappings()
@@ -20,6 +21,11 @@ namespace SwiftBookingTest.Web.Infrastructure
             Mapper.Map<ClientPhone, ClientPhoneViewModel>(new ClientPhone());
             Mapper.Map<ClientRecord, ClientRecordViewModel>(new ClientRecord());
         }
+
+        public void Execute()
+        {
+            RegisterMappings();
+        }
     }
-    
+
 }

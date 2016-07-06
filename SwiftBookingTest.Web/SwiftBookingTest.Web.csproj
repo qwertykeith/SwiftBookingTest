@@ -295,6 +295,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Filters\NotImplementedExceptionFilterAttribute.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Tasks\IRunAfterEachRequest.cs" />
+    <Compile Include="Infrastructure\Tasks\IRunAtInit.cs" />
+    <Compile Include="Infrastructure\Tasks\IRunAtStartup.cs" />
+    <Compile Include="Infrastructure\Tasks\IRunOnEachRequest.cs" />
+    <Compile Include="Infrastructure\Tasks\IRunOnError.cs" />
+    <Compile Include="Infrastructure\Tasks\TaskRegistry.cs" />
     <Compile Include="Infrastructure\WebApi\WebApiStructureMapConfig.cs" />
     <Compile Include="Filters\MvcLogFilterAttribute.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
