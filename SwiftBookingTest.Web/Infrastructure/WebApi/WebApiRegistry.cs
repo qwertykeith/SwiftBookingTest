@@ -39,6 +39,13 @@ namespace SwiftBookingTest.Web.Infrastructure
 
             For<ILogger>().Use<Logger>();
 
+            For<HttpSessionStateBase>()
+                .Use(() => new HttpSessionStateWrapper(HttpContext.Current.Session));
+            For<HttpContextBase>()
+                .Use(() => new HttpContextWrapper(HttpContext.Current));
+            For<HttpServerUtilityBase>()
+                .Use(() => new HttpServerUtilityWrapper(HttpContext.Current.Server));
+
         }
 
         private static IIdentity Getidentity()

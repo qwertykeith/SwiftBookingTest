@@ -8,19 +8,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Filters;
+using System.Web.Http.Controllers;
+using SwiftBookingTest.CoreContracts;
+using StructureMap;
 
 namespace SwiftBookingTest.Web.Filters
 {
-    public class NotImplementedExceptionFilterAttribute: ExceptionFilterAttribute
+    public class NotImplementedExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        
-
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             actionExecutedContext.Request
                 .CreateErrorResponse(HttpStatusCode.InternalServerError,
                 actionExecutedContext.Exception.Message);
-           
         }
+
     }
 }

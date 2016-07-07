@@ -59,7 +59,9 @@ namespace SwiftBookingTest.Web.Controllers
                 {
                     cp.ClientRecord = null;
                 }
+                throw new System.Exception();
                 return Ok<IEnumerable<ClientRecord>>(list);
+               
             });
 
         }

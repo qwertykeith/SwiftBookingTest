@@ -23,6 +23,8 @@ namespace SwiftBookingTest.Web.Filters
         public Func<ILogger> Logger { get; set; }
         public Func<IIdentity> CurrentUser { get; set; }
 
+       
+
         private string _description = "";
         private Dictionary<string, object> _parameters;
 
@@ -33,6 +35,7 @@ namespace SwiftBookingTest.Web.Filters
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            
             var uow = SDUow();
             var logger = Logger();
             base.OnActionExecuting(actionContext);
