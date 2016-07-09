@@ -29,7 +29,7 @@
                       //$http.get(ClientFactory.apiUrl).then(function (response) {
                       //    deferred.resolve(response.data);
                       //});
-                      $http.get("ClientRecords/Index").then(function (response) {
+                      $http.get('ClientRecords/Index').then(function (response) {
                           deferred.resolve(response.data);
                       });
                       return deferred.promise;

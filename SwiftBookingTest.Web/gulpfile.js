@@ -54,7 +54,7 @@ gulp.task('wiredep', function () {
 
 });
 
-gulp.task("start", function () {
+gulp.task('start', function () {
     startBrowserSync();
 });
 

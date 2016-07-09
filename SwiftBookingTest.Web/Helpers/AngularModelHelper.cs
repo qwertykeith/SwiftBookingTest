@@ -24,7 +24,7 @@ namespace SwiftBookingTest.Web.Helpers
 		/// with the helper's configured prefix expression, ie:
 		/// vm.model.parentProperty.childProperty
 		/// </summary>
-		public IHtmlString ExpressionFor<TProp>(Expression<Func<TModel, TProp>> property)
+		public IHtmlString ngExpressionFor<TProp>(Expression<Func<TModel, TProp>> property)
 		{
 			var expressionText = ExpressionForInternal(property);
 			return new MvcHtmlString(expressionText);
@@ -34,7 +34,7 @@ namespace SwiftBookingTest.Web.Helpers
 		/// Converts a lambda expression into a camel-cased AngularJS binding expression, ie:
 		/// {{vm.model.parentProperty.childProperty}} 
 		/// </summary>
-		public IHtmlString BindingFor<TProp>(Expression<Func<TModel, TProp>> property)
+		public IHtmlString ngBindingFor<TProp>(Expression<Func<TModel, TProp>> property)
 		{
 			return MvcHtmlString.Create("{{" + ExpressionForInternal(property) + "}}");
 		}
@@ -44,7 +44,7 @@ namespace SwiftBookingTest.Web.Helpers
 		/// and returns a new helper you can use for strongly-typed bindings on the items
 		/// in the enumerable property.
 		/// </summary>
-		public AngularNgRepeatHelper<TSubModel> Repeat<TSubModel>(
+		public AngularNgRepeatHelper<TSubModel> ngRepeat<TSubModel>(
             Expression<Func<TModel, IEnumerable<TSubModel>>> property, string variableName)
         {
             var propertyExpression = ExpressionForInternal(property);
