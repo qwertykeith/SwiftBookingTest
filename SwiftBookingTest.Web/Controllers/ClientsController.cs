@@ -43,7 +43,6 @@ namespace SwiftBookingTest.Web.Controllers
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
-
         [LoggerFilter("Getting data for clients")]
         public async Task<IHttpActionResult> Get()
         {
@@ -59,11 +58,8 @@ namespace SwiftBookingTest.Web.Controllers
                 {
                     cp.ClientRecord = null;
                 }
-                throw new System.Exception();
                 return Ok<IEnumerable<ClientRecord>>(list);
-               
             });
-
         }
 
         /// <summary>
@@ -73,14 +69,14 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         [Route("Post")]
         [LoggerFilter("Creating new client record")]
-        public HttpResponseMessage Post(ClientRecord clientRecord)
+        public async Task<IHttpActionResult> Post(ClientRecord clientRecord)
         {
             sdUow.ClientRecords.Add(clientRecord);
             sdUow.Commit();
             // Set client record to null to fix circular reference issue
             clientRecord.ClientPhones.ToList().ForEach(x => x.ClientRecord = null);
             var response = Request.CreateResponse(HttpStatusCode.Created, clientRecord);
-            return response;
+            return Ok(await Task.FromResult<HttpResponseMessage>(response));
         }
 
         /// <summary>
@@ -90,68 +86,25 @@ namespace SwiftBookingTest.Web.Controllers
         /// <param name="clientRecord">The client record.</param>
         /// <returns></returns>
         [LoggerFilter("Updating data for client where id is {Id}")]
-        public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
+        public async Task<IHttpActionResult> Put(int Id, ClientRecord clientRecord)
         {
-            //var isNull = buow.ClientRecordBusinessValidatiors.IsNull(clientRecord, true);
             clientRecord.Name = Identity.Name;
             var newPhones = clientRecord.ClientPhones.ToList();
             newPhones.Where(x => x.Id == default(int) || x.Id < 0).ToList().ForEach((x) =>
             {
+                x.State = State.Added;
                 x.ClientRecordId = clientRecord.Id;
                 x.PhoneNumberId = x.PhoneNumber.Id;
                 string number = x.PhoneNumber.Number;
                 x.PhoneNumber = new PhoneNumber { Number = number };
                 sdUow.ClientPhones.Add(x);
             });
-
-            var pp = clientRecord.IsAnythingDirty();
             sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
             //throw new InvalidOperationException();
-            return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent));
+            return Ok(await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent)));
         }
-
-        /// <summary>
-        /// Sends the delivery.
-        /// </summary>
-        /// <param name="clientRecord">The client record.</param>
-        /// <returns></returns>
-        [HttpPost, Route("SendDelivery")]
-        public async Task<IHttpActionResult> SendDelivery(ClientRecord clientRecord)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                var result = await client.PostStringAsync<object>(CommonHelper.GetSwiftApi("deliveries"), SetPayload(clientRecord));
-                return Ok(JObject.Parse(await result.Content.ReadAsStringAsync()));
-            }
-        }
-
-        /// <summary>
-        /// Sets the payload.
-        /// </summary>
-        /// <param name="clientRecord">The client record.</param>
-        /// <returns></returns>
-        private object SetPayload(ClientRecord clientRecord)
-        {
-            var payLoad = new
-            {
-                apiKey = "3285db46-93d9-4c10-a708-c2795ae7872d",
-                booking = new
-                {
-                    pickupDetail = new
-                    {
-                        address = "57 luscombe st, brunswick, melbourne"
-                    },
-                    dropoffDetail = new
-                    {
-                        address = clientRecord.Address
-                    }
-                }
-            };
-            return payLoad;
-        }
-
-
 
     }
+
 }

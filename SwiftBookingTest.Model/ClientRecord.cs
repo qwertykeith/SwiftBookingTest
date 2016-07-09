@@ -42,7 +42,8 @@ namespace SwiftBookingTest.Model
         public string Name
         {
             get { return _name; }
-            set {
+            set
+            {
                 _name = value;
                 OnPropertyChanged(() => Name);
             }
@@ -61,7 +62,11 @@ namespace SwiftBookingTest.Model
         public string Address
         {
             get { return _address; }
-            set { _address = value; }
+            set
+            {
+                _address = value;
+                OnPropertyChanged(() => Address);
+            }
         }
 
         /// <summary>
@@ -74,7 +79,11 @@ namespace SwiftBookingTest.Model
         public ICollection<ClientPhone> ClientPhones
         {
             get { return _clientPhones; }
-            set { _clientPhones = value; }
+            set
+            {
+                _clientPhones = value;
+                OnPropertyChanged(() => ClientPhones);
+            }
         }
 
         [DataMember, NotMapped]

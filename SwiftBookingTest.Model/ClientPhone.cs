@@ -28,11 +28,15 @@ namespace SwiftBookingTest.Model
         /// <value>
         /// The phone number identifier.
         /// </value>
-        [DataMember, Required(ErrorMessage = "Phone number is mandatory")]
+        [DataMember]
         public int PhoneNumberId
         {
             get { return _phoneNumberId; }
-            set { _phoneNumberId = value; }
+            set
+            {
+                _phoneNumberId = value;
+                OnPropertyChanged(() => PhoneNumberId);
+            }
         }
 
 
@@ -47,7 +51,11 @@ namespace SwiftBookingTest.Model
         public virtual ClientRecord ClientRecord
         {
             get { return _clientRecord; }
-            set { _clientRecord = value; }
+            set
+            {
+                _clientRecord = value;
+                OnPropertyChanged(() => ClientRecord);
+            }
         }
 
         /// <summary>
@@ -61,7 +69,11 @@ namespace SwiftBookingTest.Model
         public int ClientRecordId
         {
             get { return _clientRecordId; }
-            set { _clientRecordId = value; }
+            set
+            {
+                _clientRecordId = value;
+                OnPropertyChanged(() => ClientRecordId);
+            }
         }
 
         /// <summary>
@@ -74,7 +86,11 @@ namespace SwiftBookingTest.Model
         public virtual PhoneNumber PhoneNumber
         {
             get { return _phoneNumber; }
-            set { _phoneNumber = value; }
+            set
+            {
+                _phoneNumber = value;
+                OnPropertyChanged(() => PhoneNumber);
+            }
         }
 
 
