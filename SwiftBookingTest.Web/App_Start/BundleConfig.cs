@@ -29,7 +29,8 @@ namespace SwiftBookingTest.Web
                        "~/scripts/bootstrap.js",
                        "~/scripts/angular.js",
                        "~/scripts/angular-ui-router.js",
-                       "~/scripts/toaster.js"
+                       "~/scripts/toaster.js",
+                       "~/scripts/extension.array.js"
                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -43,7 +44,7 @@ namespace SwiftBookingTest.Web
 
             bundles.Add(new ScriptBundle("~/bundles/client").Include(
                         "~/scripts/app/client/ClientFactory.js",
-                        "~/scripts/app/client/controllers/MaintainClientController.js"
+                        "~/scripts/app/client/controllers/*.js"
                         ));
 
             //ClientModule

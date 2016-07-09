@@ -12,5 +12,16 @@ namespace SwiftBookingTest.Model.Client
         public string Address { get; set; }
 
         public ICollection<ClientPhoneViewModel> ClientPhones { get; set; }
+
+        public string FormattedPhoneNumbers
+        {
+            get
+            {
+                var numbers= this.ClientPhones != null
+                    ? string.Join(", ", this.ClientPhones.Select(x => x.PhoneNumberNumber).ToArray())
+                    : string.Empty;
+                return numbers;
+            }
+        }
     }
 }

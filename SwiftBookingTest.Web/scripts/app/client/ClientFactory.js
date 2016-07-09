@@ -29,7 +29,8 @@
             PhoneNumber: { 'Number': '', Id: null },
             AddPhoneNumber: AddPhoneNumber,
             SelectedClient: null,
-            SelectClient: SelectClient
+            SelectClient: SelectClient,
+            getClient: getClient
         };
 
         /*
@@ -145,10 +146,24 @@
         function getNumber() {
             var deferred = $q.defer();
             APIFactory.Get('api/PhoneNumber').then(function (response) {
-                deferred.resolve(response.data);
+                deferred.resolve(response);
             }, function (error) {
                 deferred.reject(error);
             });
+            return deferred.promise;
+        }
+
+        function getClient(id) {
+            var deferred = $q.defer();
+            APIFactory
+                .Get(
+                //'api/Clients/' + id
+                'ClientRecords/Edit?id=' + id
+                ).then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error);
+                });
             return deferred.promise;
         }
 

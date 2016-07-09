@@ -43,10 +43,11 @@ namespace SwiftBookingTest.Web.Controllers
         /// Gets this clients records.
         /// </summary>
         /// <returns></returns>
+
         [LoggerFilter("Getting data for clients")]
         public async Task<IHttpActionResult> Get()
         {
-            return await WithClient<IHttpActionResult>(sdUow, () =>
+            return await WithClient<IHttpActionResult>(() =>
             {
                 var records = sdUow.ClientRecords.GetAll().ProjectTo<ClientRecordViewModel>().ToList();
                 var list =
@@ -62,6 +63,16 @@ namespace SwiftBookingTest.Web.Controllers
             });
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> Get(int id)
+        {
+            return await WithClient<IHttpActionResult>(() =>
+            {
+                var client = AutoMapper.Mapper.Map<ClientRecordViewModel>(sdUow.ClientRecords.GetById(id));
+                return Ok<ClientRecordViewModel>(client);
+            });
+        }
+
         /// <summary>
         /// Add the specified attendance.
         /// </summary>
@@ -69,14 +80,14 @@ namespace SwiftBookingTest.Web.Controllers
         /// <returns></returns>
         [Route("Post")]
         [LoggerFilter("Creating new client record")]
-        public async Task<IHttpActionResult> Post(ClientRecord clientRecord)
+        public HttpResponseMessage Post(ClientRecord clientRecord)
         {
             sdUow.ClientRecords.Add(clientRecord);
             sdUow.Commit();
             // Set client record to null to fix circular reference issue
             clientRecord.ClientPhones.ToList().ForEach(x => x.ClientRecord = null);
             var response = Request.CreateResponse(HttpStatusCode.Created, clientRecord);
-            return Ok(await Task.FromResult<HttpResponseMessage>(response));
+            return response;
         }
 
         /// <summary>
@@ -86,7 +97,7 @@ namespace SwiftBookingTest.Web.Controllers
         /// <param name="clientRecord">The client record.</param>
         /// <returns></returns>
         [LoggerFilter("Updating data for client where id is {Id}")]
-        public async Task<IHttpActionResult> Put(int Id, ClientRecord clientRecord)
+        public async Task<HttpResponseMessage> Put(int Id, ClientRecord clientRecord)
         {
             clientRecord.Name = Identity.Name;
             var newPhones = clientRecord.ClientPhones.ToList();
@@ -99,12 +110,15 @@ namespace SwiftBookingTest.Web.Controllers
                 x.PhoneNumber = new PhoneNumber { Number = number };
                 sdUow.ClientPhones.Add(x);
             });
+
+            var pp = clientRecord.IsAnythingDirty();
             sdUow.ClientRecords.Update(clientRecord);
             sdUow.Commit();
             //throw new InvalidOperationException();
-            return Ok(await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent)));
+            return await Task.FromResult(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
 
-    }
 
+
+    }
 }

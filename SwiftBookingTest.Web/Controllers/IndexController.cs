@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SwiftBookingTest.Web.Controllers
 {
-    public class IndexController : Controller
+    public class IndexController : MvcBaseController
     {
         protected ISwiftDemoUow sdUow { get; set; }
         protected IIdentity Identity { get; private set; }

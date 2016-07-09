@@ -16,13 +16,9 @@ namespace SwiftBookingTest.Web.Controllers
         protected ISwiftDemoUow sdUow { get; set; }
         protected ISwiftBookingBusinessEngineUow buow { get; set; }
 
-        protected Task<T> WithClient<T>(ISwiftDemoUow sdUow, Func<T> p)
+        protected Task<T> WithClient<T>(Func<T> p)
         {
             var rsult = p.Invoke();
-
-            IDisposable disposableClient = sdUow as IDisposable;
-            if (disposableClient != null)
-                disposableClient.Dispose();
 
             return Task.FromResult(rsult);
         }

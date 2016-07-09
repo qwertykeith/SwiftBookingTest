@@ -61,11 +61,16 @@ namespace SwiftBookingTest.Web
             //
             // ex: api/lookups/all
             // ex: api/lookups/rooms
+
+            routes.MapRoute(
+               name: "Templates",
+               url: "{feature}/template/{name}",
+               defaults: new { controller = "Template", action = "Render" }
+           );
             routes.MapHttpRoute(
                 name: ControllerAction,
                 routeTemplate: "api/{controller}/{action}"
             );
-
             routes.MapRoute(
                 name: "SwiftBookingTest Client",
                 url: "MaintainClient",
@@ -76,7 +81,7 @@ namespace SwiftBookingTest.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
             );
-           
+
         }
     }
 }

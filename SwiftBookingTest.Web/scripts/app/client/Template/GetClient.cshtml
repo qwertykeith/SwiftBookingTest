@@ -1,0 +1,23 @@
+﻿@using SwiftBookingTest.Model.Client;
+@using SwiftBookingTest.Web.Helpers;
+
+@model ClientRecordViewModel
+@{
+    var client = Html.Angular().ModelFor("vm.client");
+}
+
+<div>
+    @client.BindingFor(x => x.Name)
+    <b>@client.BindingFor(x => x.ClientPhones.Count)</b>
+    <p>
+
+        <h2 ng-if="@client.ExpressionFor(x => x.ClientPhones.Count) > 1">Good</h2>
+    </p>
+
+    @using (var phone = client.Repeat(x => x.ClientPhones, "phone"))
+    {
+        <h3>
+            @phone.BindingFor(x => x.PhoneNumberNumber)
+        </h3>
+    }
+</div>

@@ -59,6 +59,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlTags, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlTags.4.0.2\lib\net45\HtmlTags.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -246,8 +250,9 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\app\client\ClientFactory.js" />
+    <Content Include="scripts\app\client\controllers\GetClientController.js" />
     <Content Include="scripts\app\client\controllers\MaintainClientController.js" />
-    <Content Include="scripts\app\client\templates\MaintainClient.html" />
+    <Content Include="scripts\app\client\Template\MaintainClient.cshtml" />
     <Content Include="scripts\app\common\APIFactory.js" />
     <Content Include="scripts\app\common\commonModule.js" />
     <Content Include="scripts\app\MainModule.js" />
@@ -267,10 +272,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="package.json" />
     <Content Include="Content\global.less" />
+    <Content Include="scripts\app\client\Template\GetClient.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <None Include="scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\extension.array.js" />
     <Content Include="scripts\jquery-3.0.0.js" />
     <Content Include="scripts\jquery-3.0.0.min.js" />
     <Content Include="scripts\jquery-3.0.0.slim.js" />
@@ -286,6 +293,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\BetterJsonResult.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\GlobalConfig.cs" />
@@ -293,7 +301,14 @@
     <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientRecordsController.cs" />
+    <Compile Include="Controllers\MvcBaseController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Filters\NotImplementedExceptionFilterAttribute.cs" />
+    <Compile Include="Helpers\AngularHelper.cs" />
+    <Compile Include="Helpers\AngularModelHelper.cs" />
+    <Compile Include="Helpers\AngularNgRepeatHelper.cs" />
+    <Compile Include="Helpers\JsonHtmlHelpers.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Tasks\IRunAfterEachRequest.cs" />
     <Compile Include="Infrastructure\Tasks\IRunAtInit.cs" />
@@ -332,9 +347,10 @@
     <Compile Include="Infrastructure\WebApi\WebApiRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\JsonExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config">
+    <Content Include="scripts\app\web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
@@ -358,6 +374,9 @@
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -369,6 +388,7 @@
     <Folder Include=".tmp\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ClientRecords\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SwiftBookingTest.CoreContracts\SwiftBookingTest.CoreContracts.csproj">
