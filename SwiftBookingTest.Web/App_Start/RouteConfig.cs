@@ -64,7 +64,7 @@ namespace SwiftBookingTest.Web
 
             routes.MapRoute(
                name: "Templates",
-               url: "{feature}/template/{name}",
+               url: "{feature}/templates/{name}",
                defaults: new { controller = "Template", action = "Render" }
            );
             routes.MapHttpRoute(

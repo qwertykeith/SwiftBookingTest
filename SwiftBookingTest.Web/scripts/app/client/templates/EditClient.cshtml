@@ -21,3 +21,12 @@
         </h3>
     }
 </div>
+<ng-form name="vm.form"
+         ng-submit="vm.form.$valid && vm.add()">
+    <div class="row">
+        <div class="col-lg-6">
+            @client.FormGroupFor(x => x.Name)
+            @client.FormGroupFor(x => x.Address)
+        </div>
+    </div>
+</ng-form>

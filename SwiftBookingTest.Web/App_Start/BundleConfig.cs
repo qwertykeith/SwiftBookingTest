@@ -39,6 +39,7 @@ namespace SwiftBookingTest.Web
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/scripts/app/common/commonModule.js",
                         "~/scripts/app/common/APIFactory.js",
+                        "~/scripts/app/common/utilities/*.js",
                         "~/scripts/app/MainModule.js"
                         ));
 

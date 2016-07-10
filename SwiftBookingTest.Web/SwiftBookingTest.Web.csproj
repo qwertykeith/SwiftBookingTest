@@ -63,6 +63,10 @@
       <HintPath>..\packages\HtmlTags.4.0.2\lib\net45\HtmlTags.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -250,9 +254,12 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\app\client\ClientFactory.js" />
-    <Content Include="scripts\app\client\controllers\GetClientController.js" />
+    <Content Include="scripts\app\client\controllers\AddClientController.js" />
+    <Content Include="scripts\app\client\controllers\EditClientController.js" />
     <Content Include="scripts\app\client\controllers\MaintainClientController.js" />
-    <Content Include="scripts\app\client\Template\MaintainClient.cshtml" />
+    <Content Include="scripts\app\client\templates\MaintainClient.cshtml" />
+    <Content Include="scripts\app\common\utilities\FormGroupValidationDirective.js" />
+    <Content Include="scripts\app\common\utilities\InputValidationIconsDirective.js" />
     <Content Include="scripts\app\common\APIFactory.js" />
     <Content Include="scripts\app\common\commonModule.js" />
     <Content Include="scripts\app\MainModule.js" />
@@ -272,7 +279,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="package.json" />
     <Content Include="Content\global.less" />
-    <Content Include="scripts\app\client\Template\GetClient.cshtml" />
+    <Content Include="scripts\app\client\templates\EditClient.cshtml" />
+    <Content Include="scripts\app\client\templates\AddClient.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <None Include="scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />

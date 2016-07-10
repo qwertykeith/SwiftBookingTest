@@ -11,7 +11,7 @@ namespace SwiftBookingTest.Web.Controllers
     {
         public async Task<ActionResult> Render(string feature, string name)
         {
-            return (PartialView(await Task.FromResult<string>($"~/scripts/app/{feature}/template/{name}")));
+            return (PartialView(await Task.FromResult<string>($"~/scripts/app/{feature}/templates/{name}")));
         }
     }
 }

@@ -161,6 +161,11 @@ hr {
     border: 0;
     border-top: 1px solid #545050;
 }
+
 .sd-warning.ngn-warn {
     background-color: #FF9900;
+}
+
+.has-feedback ng-transclude ~ input-validation-icons .form-control-feedback {
+    top: 29px;
 }
