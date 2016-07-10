@@ -18,6 +18,8 @@ namespace SwiftBookingTest.Model.Client
 
         public ICollection<ClientPhoneViewModel> ClientPhones { get; set; }
 
+        public int Rating { get; set; }
+
         public string FormattedPhoneNumbers
         {
             get

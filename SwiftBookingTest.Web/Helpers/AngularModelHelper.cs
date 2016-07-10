@@ -6,39 +6,40 @@ using System.Web.Mvc;
 using SwiftBookingTest.Web.Utilities;
 using HtmlTags;
 using Humanizer;
-
+using System.Reflection;
+using System.Linq;
 namespace SwiftBookingTest.Web.Helpers
 {
-	public class AngularModelHelper<TModel>
-	{
-		protected readonly HtmlHelper Helper;
-		private readonly string _expressionPrefix;
+    public class AngularModelHelper<TModel>
+    {
+        protected readonly HtmlHelper Helper;
+        private readonly string _expressionPrefix;
 
-		public AngularModelHelper(HtmlHelper helper, string expressionPrefix)
-		{
-			Helper = helper;
-			_expressionPrefix = expressionPrefix;
-		}
+        public AngularModelHelper(HtmlHelper helper, string expressionPrefix)
+        {
+            Helper = helper;
+            _expressionPrefix = expressionPrefix;
+        }
 
-		/// <summary>
-		/// Converts an lambda expression into a camel-cased string, prefixed
-		/// with the helper's configured prefix expression, ie:
-		/// vm.model.parentProperty.childProperty
-		/// </summary>
-		public IHtmlString ngExpressionFor<TProp>(Expression<Func<TModel, TProp>> property)
-		{
-			var expressionText = ExpressionForInternal(property);
-			return new MvcHtmlString(expressionText);
-		}
+        /// <summary>
+        /// Converts an lambda expression into a camel-cased string, prefixed
+        /// with the helper's configured prefix expression, ie:
+        /// vm.model.parentProperty.childProperty
+        /// </summary>
+        public IHtmlString ngExpressionFor<TProp>(Expression<Func<TModel, TProp>> property)
+        {
+            var expressionText = ExpressionForInternal(property);
+            return new MvcHtmlString(expressionText);
+        }
 
-		/// <summary>
-		/// Converts a lambda expression into a camel-cased AngularJS binding expression, ie:
-		/// {{vm.model.parentProperty.childProperty}} 
-		/// </summary>
-		public IHtmlString ngBindingFor<TProp>(Expression<Func<TModel, TProp>> property)
-		{
-			return MvcHtmlString.Create("{{" + ExpressionForInternal(property) + "}}");
-		}
+        /// <summary>
+        /// Converts a lambda expression into a camel-cased AngularJS binding expression, ie:
+        /// {{vm.model.parentProperty.childProperty}} 
+        /// </summary>
+        public IHtmlString ngBindingFor<TProp>(Expression<Func<TModel, TProp>> property)
+        {
+            return MvcHtmlString.Create("{{" + ExpressionForInternal(property) + "}}");
+        }
 
         /// <summary>
 		/// Creates a div with an ng-repeat directive to enumerate the specified property,
@@ -56,10 +57,20 @@ namespace SwiftBookingTest.Web.Helpers
         public HtmlTag FormGroupFor<TProp>(Expression<Func<TModel, TProp>> property)
         {
             var metadata = ModelMetadata.FromLambdaExpression(property, new ViewDataDictionary<TModel>());
-
             var name = ExpressionHelper.GetExpressionText(property);
-
             var expression = ExpressionForInternal(property);
+            var propertyInfo = typeof(TModel).GetProperty(name);
+
+            //Hidden fields are decorated with HiddenInputAttribute
+            if (propertyInfo.GetCustomAttributes()
+                .Where(x => x.GetType().Name == typeof(HiddenInputAttribute).Name)
+                .FirstOrDefault() != null)
+            {
+                return new HtmlTag("input")
+                    .Attr("ng-model", expression)
+                    .Attr("type", "hidden")
+                    .Attr("name", name);
+            }
 
             //Creates <div class="form-group has-feedback"
             //				form-group-validation="Name">
@@ -81,6 +92,7 @@ namespace SwiftBookingTest.Web.Helpers
 
             var placeholder = metadata.Watermark ??
                               (labelText + "...");
+
             //Creates <input ng-model="expression"
             //		   class="form-control" name="Name" type="text" >
             var input = new HtmlTag(tagName)
@@ -97,29 +109,27 @@ namespace SwiftBookingTest.Web.Helpers
                 .Append(input);
         }
 
-
         private string ExpressionForInternal<TProp>(Expression<Func<TModel, TProp>> property)
-		{
-			var camelCaseName = ExpressionHelper.GetExpressionText(property);
+        {
+            var camelCaseName = ExpressionHelper.GetExpressionText(property);
 
-			var expression = !string.IsNullOrEmpty(_expressionPrefix)
-				? _expressionPrefix + "." + camelCaseName
-				: camelCaseName;
+            var expression = !string.IsNullOrEmpty(_expressionPrefix)
+                ? _expressionPrefix + "." + camelCaseName
+                : camelCaseName;
 
-			return expression;
-		}
+            return expression;
+        }
 
+        private void ApplyValidationToInput(HtmlTag input, ModelMetadata metadata)
+        {
+            if (metadata.IsRequired)
+                input.Attr("required", "");
 
-		private void ApplyValidationToInput(HtmlTag input, ModelMetadata metadata)
-		{
-			if (metadata.IsRequired)
-				input.Attr("required", "");
+            if (metadata.DataTypeName == "EmailAddress")
+                input.Attr("type", "email");
 
-			if (metadata.DataTypeName == "EmailAddress")
-				input.Attr("type", "email");
-
-			if (metadata.DataTypeName == "PhoneNumber")
-				input.Attr("pattern", @"[\ 0-9()-]+");
-		}
-	}
+            if (metadata.DataTypeName == "PhoneNumber")
+                input.Attr("pattern", @"[\ 0-9()-]+");
+        }
+    }
 }

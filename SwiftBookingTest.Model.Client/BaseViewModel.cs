@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwiftBookingTest.Model.Client.CustomAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace SwiftBookingTest.Model.Client
 {
     public abstract class BaseViewModel
     {
+        [HiddenInput]
         public int Id { get; set; }
 
         private byte[] _rowVersion;
 
+        [HiddenInput]
         public byte[] RowVersion
         {
             get
@@ -24,7 +27,6 @@ namespace SwiftBookingTest.Model.Client
                 _rowVersion = value;
             }
         }
-
 
     }
 }

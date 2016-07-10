@@ -41,7 +41,7 @@ namespace SwiftBookingTest.Web.Helpers
 			foreach (var prop in typeof(TModel)
 				.GetProperties(BindingFlags.Public | BindingFlags.Instance))
 			{
-				if (prop.GetCustomAttributes().OfType<HiddenInputAttribute>().Any()) continue;
+				//if (prop.GetCustomAttributes().OfType<HiddenInputAttribute>().Any()) continue;
 
 				var formGroupForProp = formGroupForMethodGeneric
 									.MakeGenericMethod(prop.PropertyType);
@@ -56,6 +56,11 @@ namespace SwiftBookingTest.Web.Helpers
 
 			return wrapperTag;
 		} 
+
+        public UIRatingTag UIRating(string model)
+        {
+            return new UIRatingTag(model);
+        }
 
 		//Constructs a lambda of the form x => x.PropName
 		private object MakeLambda(PropertyInfo prop)

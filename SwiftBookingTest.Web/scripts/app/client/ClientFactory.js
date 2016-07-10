@@ -30,7 +30,8 @@
             AddPhoneNumber: AddPhoneNumber,
             SelectedClient: null,
             SelectClient: SelectClient,
-            getClient: getClient
+            getClient: getClient,
+            add: add
         };
 
         /*
@@ -160,6 +161,18 @@
                 //'api/Clients/' + id
                 'ClientRecords/Edit?id=' + id
                 ).then(function (response) {
+                    deferred.resolve(response);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        }
+
+        function add(model) {
+            var deferred = $q.defer();
+            APIFactory
+                .Post('ClientRecords/Create', model)
+                .then(function (response) {
                     deferred.resolve(response);
                 }, function (error) {
                     deferred.reject(error);

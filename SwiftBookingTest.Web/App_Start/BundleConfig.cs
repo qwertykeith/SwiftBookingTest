@@ -20,7 +20,8 @@ namespace SwiftBookingTest.Web
                       "~/Content/Site.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/animate.css",
-                      "~/Content/toaster.css"
+                      "~/Content/toaster.css",
+                      "~/Content/ui-bootstrap-csp.css"
                       ));
 
 
@@ -30,6 +31,7 @@ namespace SwiftBookingTest.Web
                        "~/scripts/angular.js",
                        "~/scripts/angular-ui-router.js",
                        "~/scripts/toaster.js",
+                       "~/scripts/angular-ui/ui-bootstrap-tpls.js",
                        "~/scripts/extension.array.js"
                        ));
 

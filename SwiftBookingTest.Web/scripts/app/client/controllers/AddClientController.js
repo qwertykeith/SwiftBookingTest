@@ -6,15 +6,16 @@
      */
     angular.module('mainModule').controller('AddClientController', AddClientController);
 
-    AddClientController.$inject = ['ClientFactory'];
+    AddClientController.$inject = ['ClientFactory', '$scope'];
     /* @ngInject */
-    function AddClientController(ClientFactory) {
+    function AddClientController(ClientFactory, $scope) {
         var vm = this;
         vm.ClientFactory = ClientFactory;
-        
-        vm.add = add;
+        vm.setRating = setRating;
 
-        function add() {
+       
+
+        function setRating() {
 
         }
     }

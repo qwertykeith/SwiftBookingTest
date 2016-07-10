@@ -48,7 +48,7 @@ namespace SwiftBookingTest.Web.Controllers
 
         // POST: ClientRecords/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ClientRecordViewModel clientRecordVm)
         {
             try
             {

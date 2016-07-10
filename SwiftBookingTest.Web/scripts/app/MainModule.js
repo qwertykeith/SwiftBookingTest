@@ -3,7 +3,7 @@
     /*
      * @description Main app module
      */
-    angular.module('mainModule', ['ui.router', 'commonModule', 'ngNotify']);
+    angular.module('mainModule', ['ui.router', 'commonModule', 'ngNotify', 'ui.bootstrap']);
 
     /*
      * @description Configuration for main app module
@@ -53,12 +53,11 @@
             })
             .state('AddClient', {
                 url: '/AdClient',
-                templateUrl: clientBaseUrl + '/AddClient.cshtml',
+                templateUrl: clientBaseUrl + 'AddClient.cshtml',
                 controller: 'AddClientController',
                 controllerAs: 'vm',
 
             });
-
 
         //$locationProvider.html5Mode(true);
     }

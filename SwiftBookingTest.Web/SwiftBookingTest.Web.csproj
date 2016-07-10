@@ -232,6 +232,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="Content\toaster.min.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +252,10 @@
     <Content Include="scripts\angular-ui-notification.min.js" />
     <Content Include="scripts\angular-ui-router.js" />
     <Content Include="scripts\angular-ui-router.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\app\client\ClientFactory.js" />
@@ -317,6 +322,7 @@
     <Compile Include="Helpers\AngularModelHelper.cs" />
     <Compile Include="Helpers\AngularNgRepeatHelper.cs" />
     <Compile Include="Helpers\JsonHtmlHelpers.cs" />
+    <Compile Include="Helpers\UIRatingTag.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Tasks\IRunAfterEachRequest.cs" />
     <Compile Include="Infrastructure\Tasks\IRunAtInit.cs" />

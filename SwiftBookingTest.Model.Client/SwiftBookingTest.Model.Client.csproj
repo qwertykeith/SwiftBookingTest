@@ -44,6 +44,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="ClientPhoneViewModel.cs" />
     <Compile Include="ClientRecordViewModel.cs" />
+    <Compile Include="CustomAttributes\HiddenInputAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
