@@ -1,9 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{0A7DB9D6-600A-493A-B19B-DC9683D3D661}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core", "SwiftBookingTest.Core\SwiftBookingTest.Core.csproj", "{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.CoreContracts", "SwiftBookingTest.CoreContracts\SwiftBookingTest.CoreContracts.csproj", "{B11A27D1-B126-4479-8542-34A4D2C7B5F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Model", "SwiftBookingTest.Model\SwiftBookingTest.Model.csproj", "{D683A080-EF36-4D1D-BC7D-003FBE128B2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Web", "SwiftBookingTest.Web\SwiftBookingTest.Web.csproj", "{3BAD3AD8-790D-40D3-803E-FEA90A76418D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C07B955A-4256-4D27-BA24-402F348A1E37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Test", "SwiftBookingTest.Test\SwiftBookingTest.Test.csproj", "{BCD11610-EF36-4361-87D4-7FE2814102D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingConsole", "SwiftBookingConsole\SwiftBookingConsole.csproj", "{6571E520-E0BC-4761-8A19-DC27C49C4BF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Core.Tests", "SwiftBookingTest.Core.Tests\SwiftBookingTest.Core.Tests.csproj", "{F81E38CD-8F48-4ACE-B705-314F86C28E3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools Installed", "Tools Installed", "{EFD95C81-8A2C-4311-8E62-E7C38500A697}"
+	ProjectSection(SolutionItems) = preProject
+		Gulp.txt = Gulp.txt
+		ProtractorInstallation.txt = ProtractorInstallation.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwiftBookingTest.Model.Client", "SwiftBookingTest.Model.Client\SwiftBookingTest.Model.Client.csproj", "{2895C64C-0619-4D18-A403-EAD19A4B2C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +33,44 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A7DB9D6-600A-493A-B19B-DC9683D3D661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD923D6-BA1E-4B40-8CB5-1BBB38C75954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11A27D1-B126-4479-8542-34A4D2C7B5F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D683A080-EF36-4D1D-BC7D-003FBE128B2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BAD3AD8-790D-40D3-803E-FEA90A76418D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD11610-EF36-4361-87D4-7FE2814102D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6571E520-E0BC-4761-8A19-DC27C49C4BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2895C64C-0619-4D18-A403-EAD19A4B2C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2895C64C-0619-4D18-A403-EAD19A4B2C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2895C64C-0619-4D18-A403-EAD19A4B2C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2895C64C-0619-4D18-A403-EAD19A4B2C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCD11610-EF36-4361-87D4-7FE2814102D3} = {C07B955A-4256-4D27-BA24-402F348A1E37}
+		{F81E38CD-8F48-4ACE-B705-314F86C28E3D} = {C07B955A-4256-4D27-BA24-402F348A1E37}
 	EndGlobalSection
 EndGlobal

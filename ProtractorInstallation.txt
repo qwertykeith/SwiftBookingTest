@@ -1,0 +1,10 @@
+Make sure jdk is installed and i fnot then use choclatey to install it
+
+1. Install Globally First
+	npm install -g protractor
+
+2. Then update web driver manager
+	webdriver-manager update
+
+3. To test protractor run web driver start comand and look for address with port number to run protratcor website
+	webdriver-manager start 

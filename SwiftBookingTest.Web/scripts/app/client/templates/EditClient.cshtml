@@ -1,0 +1,32 @@
+﻿@using SwiftBookingTest.Model.Client;
+@using SwiftBookingTest.Web.Helpers;
+
+@model ClientRecordViewModel
+@{
+    var client = Html.Angular().ModelFor("vm.client");
+}
+
+<div>
+    @client.ngBindingFor(x => x.Name)
+    <b>@client.ngBindingFor(x => x.ClientPhones.Count)</b>
+    <p>
+
+        <h2 ng-if="@client.ngExpressionFor(x => x.ClientPhones.Count) > 1">Good</h2>
+    </p>
+
+    @using (var phone = client.ngRepeat(x => x.ClientPhones, "phone"))
+    {
+        <h3>
+            @phone.ngBindingFor(x => x.PhoneNumberNumber)
+        </h3>
+    }
+</div>
+<ng-form name="vm.form"
+         ng-submit="vm.form.$valid && vm.add()">
+    <div class="row">
+        <div class="col-lg-6">
+            @client.FormGroupFor(x => x.Name)
+            @client.FormGroupFor(x => x.Address)
+        </div>
+    </div>
+</ng-form>

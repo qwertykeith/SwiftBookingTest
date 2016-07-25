@@ -1,0 +1,27 @@
+﻿@using SwiftBookingTest.Model.Client;
+@using SwiftBookingTest.Web.Helpers;
+
+@model ClientRecordViewModel
+@{
+    var client = Html.Angular().ModelFor("vm.client");
+}
+
+<ng-form name="vm.form" novalidate>
+    <div class="row">
+        <div class="col-lg-6">
+            @*@client.FormGroupFor(x => x.Name)
+                client.FormGroupFor(x => x.Address)*@
+
+            @Html.Angular().UIRating("vm.client.Rating").Max(10).NgClick("vm.setRating()")
+            @Html.Angular().FormForModel("vm.client")
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <button class="btn btn-success" ng-click="vm.ClientFactory.add(vm.client)">Add</button>
+            <button type="button" class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+        </div>
+    </div>
+</ng-form>
